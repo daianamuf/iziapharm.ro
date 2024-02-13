@@ -1,0 +1,541 @@
+@font-face {
+  font-family: "Heading";
+  src: url("/assets/fonts/engr-webfont.woff2") format("woff2"), url("/assets/fonts/engr-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Cursive";
+  src: url("/assets/fonts/homemadeapple-regular-webfont.woff2") format("woff2"), url("/assets/fonts/engr-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+}
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-10%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(20%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes switchImages {
+  0%, 50% {
+    opacity: 0;
+  }
+  25%, 75% {
+    opacity: 1;
+  }
+}
+@keyframes leafMove {
+  0% {
+    opacity: 0.5;
+    transform: translateX(-20rem) translateY(15%) rotate(0deg);
+  }
+  30% {
+    opacity: 1;
+    transform: translateX(-5rem) translateY(0) rotate(30deg);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(5rem) translateY(-60%) rotate(-180deg);
+  }
+  99% {
+    opacity: 0;
+    transform: translateX(40rem) translateY(15%) rotate(-360deg);
+  }
+  100% {
+    visibility: hidden;
+  }
+}
+@keyframes cardMove {
+  0% {
+    transform: translateX(-200%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+.underline_animation_hover {
+  padding-bottom: 1px;
+  background-image: linear-gradient(#fff 0 0);
+  background-position: 0 100%;
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s, background-position 0s 0.3s;
+}
+.underline_animation_hover:hover, .underline_animation_hover:active {
+  background-position: 100% 100%;
+  background-size: 100% 2px;
+}
+
+.underline_animation_hover--green {
+  padding-bottom: 1px;
+  background-image: linear-gradient(#606658 0 0);
+  background-position: 0 100%;
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s, background-position 0s 0.3s;
+}
+.underline_animation_hover--green:hover, .underline_animation_hover--green:active {
+  background-position: 100% 100%;
+  background-size: 100% 2px;
+}
+
+.nav {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  width: 100%;
+  height: 20rem;
+  display: grid;
+  grid-template-columns: 1fr 28rem 1fr;
+}
+.nav-fixed {
+  height: 11rem;
+  grid-template-columns: 1fr 12rem 1fr;
+  background: #f4f4f2;
+  border-bottom: 3px solid #f4bf87;
+}
+.nav__logo {
+  width: 28rem;
+  height: 20rem;
+  grid-column: 2/3;
+  justify-self: center;
+}
+.nav__logo-fixed {
+  width: 12rem;
+  height: 11rem;
+}
+@media (max-width: 49em) {
+  .nav__logo-fixed {
+    width: 20rem;
+  }
+}
+.nav__logo--img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: inherit;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+.nav__logo--img:last-of-type {
+  width: 12rem;
+  height: auto;
+  padding-top: 1rem;
+}
+.nav__order {
+  grid-column: 1/2;
+}
+.nav__other {
+  grid-column: 3/4;
+}
+.nav__order, .nav__other {
+  display: inline-flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.nav__link {
+  font-family: "Cabin";
+  font-size: 2rem;
+  color: #606658;
+  text-decoration: none;
+}
+
+.hero {
+  margin: 0 auto;
+  margin-top: 20rem;
+  width: 80%;
+  background: #606658;
+  display: flex;
+  border-radius: 10px;
+}
+@media (max-width: 38em) {
+  .hero {
+    width: 80%;
+    flex-direction: column-reverse;
+  }
+}
+.hero__img {
+  width: 40%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+@media (max-width: 38em) {
+  .hero__img {
+    width: 100%;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 0px;
+  }
+}
+.hero__heading {
+  font-size: 2.5rem;
+  font-family: "Heading";
+  color: #f4bf87;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 8rem 8rem;
+  padding-bottom: 4rem;
+  animation: slideInFromLeft 1s 1 ease-in;
+}
+@media (max-width: 69em) {
+  .hero__heading {
+    font-size: 2rem;
+    padding: 4rem;
+    padding-bottom: 0rem;
+  }
+}
+@media (max-width: 63em) {
+  .hero__heading {
+    font-size: 1.8rem;
+  }
+}
+@media (max-width: 38em) {
+  .hero__heading {
+    text-align: center;
+  }
+}
+.hero__text {
+  width: 95%;
+  font-family: "Cabin";
+  font-size: 2rem;
+  color: #f4f4f2;
+  padding: 0 8rem;
+  animation: slideInFromLeft 1s 1 ease-in;
+}
+@media (max-width: 69em) {
+  .hero__text {
+    font-size: 1.8rem;
+    padding: 4rem;
+  }
+}
+.hero__text span:first-of-type {
+  line-height: 2;
+}
+.hero__btn {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 3rem 8rem;
+  text-decoration: none;
+  font-family: "Cursive";
+  font-size: 2rem;
+  color: #f4f4f2;
+  animation: slideInFromLeft 1s 1 ease-in;
+}
+@media (max-width: 69em) {
+  .hero__btn {
+    margin: 2rem 4rem;
+  }
+}
+
+.about {
+  margin-top: 20rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-width: 91em) {
+  .about {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20rem;
+  }
+}
+.about__heading {
+  font-family: "Heading";
+  font-size: 4.8828rem;
+  color: #464035;
+  margin-bottom: 4rem;
+}
+@media (max-width: 48em) {
+  .about__heading {
+    font-size: 3.125rem;
+  }
+}
+@media (max-width: 33em) {
+  .about__heading {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+}
+.about__section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about__section.odd {
+  position: relative;
+  width: 100%;
+  flex-direction: row-reverse;
+}
+.about__section.odd::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/assets/images/wallpaper2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  opacity: 0.2;
+}
+.about__section--content {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  opacity: 0;
+}
+@media (max-width: 33em) {
+  .about__section--content {
+    gap: 1rem;
+    flex-direction: column-reverse;
+  }
+}
+.about__section--content.in {
+  animation: cardMove 1s forwards;
+  animation-delay: 1s;
+}
+.about__section--content.even {
+  flex-direction: row-reverse;
+}
+@media (max-width: 33em) {
+  .about__section--content.even {
+    gap: 1rem;
+    flex-direction: column-reverse;
+  }
+}
+.about__section--content--img {
+  width: 28rem;
+  height: auto;
+  aspect-ratio: 3/4;
+  border-radius: 8px;
+}
+.about__section--content--text {
+  width: 50%;
+  height: 37rem;
+  padding: 8rem 4rem;
+  font-family: "Cabin";
+  font-size: 2.5rem;
+  color: #606658;
+  border-radius: 10px;
+}
+@media (max-width: 48em) {
+  .about__section--content--text {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 33em) {
+  .about__section--content--text {
+    padding: 2rem;
+    font-size: 1.8rem;
+    width: 80%;
+    height: inherit;
+  }
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+@media (max-width: 41em) {
+  html {
+    font-size: 50%;
+  }
+}
+
+body {
+  width: 100%;
+  min-height: 100dvh;
+  font-size: 1.6rem;
+  background: #f4f4f2;
+}
+
+.loader {
+  width: 100%;
+  height: 70rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: pulsate 2s infinite;
+}
+.loader__img {
+  width: 40rem;
+  height: auto;
+}
+
+.error {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 20rem;
+  font-family: "Cabin";
+  color: #464035;
+}
+.error__heading {
+  font-size: 3.125rem;
+}
+.error__btn {
+  font-family: "Cabin";
+  padding: 1rem 3rem;
+  background: #f4bf87;
+  color: #464035;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.leaf-icon {
+  font-size: 14rem;
+  position: absolute;
+  color: #f4bf87;
+  margin-left: 10rem;
+  opacity: 0;
+}
+.leaf-icon.in {
+  animation: leafMove 2s ease-in-out forwards;
+}
+
+.review {
+  margin-top: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.review__heading {
+  font-family: "Heading";
+  text-transform: uppercase;
+  color: #464035;
+  font-size: 2.5rem;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 4rem;
+}
+.review__intro {
+  width: 70%;
+  font-family: "Cabin";
+  font-size: 1.6rem;
+  color: #464035;
+  margin-bottom: 3rem;
+}
+.review__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  width: 50%;
+  padding: 4rem 10rem;
+  border-radius: 10px;
+  background: #f4bf87;
+  font-family: "Cabin";
+  font-size: 2rem;
+  color: #464035;
+}
+.review__form--text {
+  font-size: 1.28rem;
+  color: #800000;
+}
+.review__form--label {
+  margin-bottom: -0.8rem;
+}
+.review__form--label span {
+  font-size: 1.28rem;
+  color: #800000;
+}
+.review__form--input {
+  padding: 1rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #fdecdc;
+  font-family: "Cabin";
+  font-size: 1.6rem;
+  color: #464035;
+}
+.review__form--input:focus {
+  outline: 1.5px solid #606658;
+}
+.review__form--btn {
+  cursor: pointer;
+  width: 40%;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 0 auto;
+  margin-top: 3rem;
+  border: none;
+  font-family: "Cabin";
+  background: #606658;
+  color: #f4f4f2;
+  font-size: 1.6rem;
+  transition: all 0.2s;
+}
+.review__form--btn:hover {
+  padding: 1.4rem;
+}
+
+.footer {
+  width: 100%;
+  height: 10rem;
+  position: sticky;
+  background: #606658;
+  margin-top: 3rem;
+}/*# sourceMappingURL=index.css.map */

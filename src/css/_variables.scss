@@ -1,0 +1,57 @@
+// Color Palette
+$green: #606658ff;
+$gold: #f4bf87ff;
+$gold-light: #fdecdc;
+$white: #ffffffff;
+$white-smoke: #f4f4f2ff;
+$taupe: #464035ff;
+$red: #800000;
+
+//Fonts
+
+@font-face {
+  font-family: "Heading";
+  src: url("/assets/fonts/engr-webfont.woff2") format("woff2"),
+    url("/assets/fonts/engr-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Cursive";
+  src: url("/assets/fonts/homemadeapple-regular-webfont.woff2") format("woff2"),
+    url("/assets/fonts/engr-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+// @font-face {
+//   font-family: "Text Italic";
+//   src: url("/assets/fonts/cabin-italic-variablefont_wdthwght-webfont.woff2")
+//       format("woff2"),
+//     url("/assets/fonts/cabin-italic-variablefont_wdthwght-webfont.woff")
+//       format("woff");
+//   font-weight: normal;
+//   font-style: normal;
+// }
+
+// @font-face {
+//   font-family: "Text";
+//   src: url("/assets/fonts/cabin-variablefont_wdthwght-webfont.woff2")
+//       format("woff2"),
+//     url("/assets/fonts/cabin-variablefont_wdthwght-webfont.woff")
+//       format("woff");
+//   font-weight: normal;
+//   font-style: normal;
+// }
+
+// Font size
+$h1: 4.8828rem;
+$h2: 3.906rem;
+$h3: 3.125rem;
+$h4: 2.5rem;
+$h5: 2rem;
+$h6: 1.8rem;
+$p: 1.6rem;
+$small: 1.28rem;
+$vsmall: 1.024rem;

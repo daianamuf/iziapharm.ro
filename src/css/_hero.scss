@@ -1,0 +1,96 @@
+.hero {
+  margin: 0 auto;
+  margin-top: 20rem;
+
+  width: 80%;
+  background: $green;
+  display: flex;
+
+  border-radius: 10px;
+
+  @media (max-width: 38em) {
+    width: 80%;
+    flex-direction: column-reverse;
+  }
+
+  &__img {
+    width: 40%;
+    height: auto;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+    @media (max-width: 38em) {
+      width: 100%;
+      border-top-right-radius: 10px;
+      border-bottom-left-radius: 0px;
+    }
+  }
+
+  &__content {
+    @media (max-width: 38em) {
+      // width: ;
+    }
+  }
+
+  &__heading {
+    font-size: $h4;
+    font-family: "Heading";
+    color: $gold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 8rem 8rem;
+    padding-bottom: 4rem;
+    animation: slideInFromLeft 1s 1 ease-in;
+
+    @media (max-width: 69em) {
+      font-size: $h5;
+      padding: 4rem;
+      padding-bottom: 0rem;
+    }
+
+    @media (max-width: 63em) {
+      font-size: $h6;
+    }
+
+    @media (max-width: 38em) {
+      text-align: center;
+    }
+  }
+
+  &__text {
+    width: 95%;
+    font-family: "Cabin";
+    font-size: $h5;
+    color: $white-smoke;
+    padding: 0 8rem;
+    animation: slideInFromLeft 1s 1 ease-in;
+
+    @media (max-width: 69em) {
+      font-size: $h6;
+      padding: 4rem;
+    }
+
+    & span:first-of-type {
+      line-height: 2;
+    }
+  }
+
+  &__btn {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 3rem 8rem;
+
+    @media (max-width: 69em) {
+      margin: 2rem 4rem;
+    }
+
+    text-decoration: none;
+    font-family: "Cursive";
+    font-size: $h5;
+    color: $white-smoke;
+    animation: slideInFromLeft 1s 1 ease-in;
+  }
+}
