@@ -52,6 +52,12 @@ function Nav() {
 
       <div className="nav__other">
         <Link
+          to={"/produse"}
+          className="nav__link underline_animation_hover--green"
+        >
+          Produse
+        </Link>
+        <Link
           to={"/review"}
           className="nav__link underline_animation_hover--green"
         >
@@ -64,7 +70,7 @@ function Nav() {
           Blog
         </Link>
         <Link
-          to={"/produse"}
+          to={"/contact"}
           className="nav__link underline_animation_hover--green"
         >
           Contact

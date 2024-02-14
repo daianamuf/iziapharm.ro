@@ -9,6 +9,7 @@ import Error from "./components/Error";
 import Review from "./pages/Review";
 import Blog from "./pages/Blog";
 import Products from "./pages/Products";
+import Contact from "./pages/Contact";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "/produse",
         element: <Products />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
     ],
   },

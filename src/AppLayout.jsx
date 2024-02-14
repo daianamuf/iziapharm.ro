@@ -8,7 +8,7 @@ function AppLayout() {
   const isLoading = navigation.state === "loading";
 
   return (
-    <div>
+    <div className="wrapper">
       <Nav />
       {isLoading && <Loader />}
 

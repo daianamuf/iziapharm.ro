@@ -13,8 +13,10 @@
     "@phosphor-icons/react": "^2.0.15",
     "@sanity/block-content-to-react": "^3.0.0",
     "classnames": "^2.5.1",
+    "leaflet": "^1.9.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.22.0"
   },
   "devDependencies": {
