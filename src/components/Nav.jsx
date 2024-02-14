@@ -57,8 +57,16 @@ function Nav() {
         >
           Lasă un review
         </Link>
-        <Link className="nav__link underline_animation_hover--green">Blog</Link>
-        <Link className="nav__link underline_animation_hover--green">
+        <Link
+          to={"/blog"}
+          className="nav__link underline_animation_hover--green"
+        >
+          Blog
+        </Link>
+        <Link
+          to={"/produse"}
+          className="nav__link underline_animation_hover--green"
+        >
           Contact
         </Link>
       </div>
