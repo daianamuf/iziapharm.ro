@@ -175,6 +175,7 @@
 .hero {
   margin: 0 auto;
   margin-top: 20rem;
+  margin-bottom: 5rem;
   width: 80%;
   background: #606658;
   display: flex;
@@ -378,6 +379,190 @@
   }
 }
 
+.contact {
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 10rem 1fr;
+  margin-top: 20rem;
+}
+@media (max-width: 75em) {
+  .contact {
+    width: 85%;
+  }
+}
+@media (max-width: 56em) {
+  .contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+  }
+}
+.contact__heading {
+  grid-row: 1/2;
+  grid-column: 1/3;
+  justify-self: center;
+  font-family: "Heading";
+  font-size: 3.906rem;
+  color: #464035;
+}
+.contact__info {
+  align-self: center;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.contact__info--el {
+  display: flex;
+  gap: 1rem;
+  font-size: 2rem;
+  font-family: "Cabin";
+  color: #606658;
+  font-style: italic;
+}
+.contact__info--icon {
+  font-size: 3.125rem;
+  color: #f4bf87;
+}
+.contact__map {
+  width: 100%;
+}
+
+.review {
+  margin-top: 20rem;
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.review__heading {
+  font-family: "Heading";
+  text-transform: uppercase;
+  color: #464035;
+  font-size: 2.5rem;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 4rem;
+}
+@media (max-width: 25em) {
+  .review__heading {
+    font-size: 2rem;
+  }
+}
+.review__intro {
+  width: 70%;
+  font-family: "Cabin";
+  font-size: 1.6rem;
+  color: #464035;
+  margin-bottom: 3rem;
+  text-align: justify;
+}
+@media (max-width: 36em) {
+  .review__intro {
+    width: 80%;
+  }
+}
+.review__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  width: 50%;
+  padding: 4rem 10rem;
+  border-radius: 10px;
+  background: #f4bf87;
+  font-family: "Cabin";
+  font-size: 2rem;
+  color: #464035;
+}
+@media (max-width: 64em) {
+  .review__form {
+    width: 60%;
+  }
+}
+@media (max-width: 48em) {
+  .review__form {
+    width: 80%;
+  }
+}
+@media (max-width: 35em) {
+  .review__form {
+    padding: 4rem 6rem;
+  }
+}
+@media (max-width: 27em) {
+  .review__form {
+    width: 90%;
+    padding: 4rem;
+    font-size: 1.8rem;
+  }
+}
+.review__form--text {
+  font-size: 1.28rem;
+  color: #800000;
+}
+.review__form--label {
+  margin-bottom: -0.8rem;
+}
+.review__form--label span {
+  font-size: 1.28rem;
+  color: #800000;
+}
+.review__form--input {
+  padding: 1rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #fdecdc;
+  font-family: "Cabin";
+  font-size: 1.6rem;
+  color: #464035;
+}
+.review__form--input:focus {
+  outline: 1.5px solid #606658;
+}
+.review__form--btn {
+  cursor: pointer;
+  width: 40%;
+  padding: 1.4rem;
+  border-radius: 8px;
+  margin: 0 auto;
+  margin-top: 3rem;
+  border: none;
+  font-family: "Cabin";
+  background: #606658;
+  color: #f4f4f2;
+  font-size: 1.6rem;
+  transition: all 0.2s;
+}
+@media (max-width: 23em) {
+  .review__form--btn {
+    width: 55%;
+  }
+}
+.review__form--btn:hover {
+  background: #454a3f;
+}
+.review__submit {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.review__leaf {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 4.8828rem;
+  animation: leafMove 2s ease-in-out forwards;
+}
+
 .hidden {
   visibility: hidden;
 }
@@ -461,85 +646,6 @@ body {
   animation: leafMove 2s ease-in-out forwards;
 }
 
-.review {
-  margin-top: 20rem;
-  margin-bottom: 4rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.review__heading {
-  font-family: "Heading";
-  text-transform: uppercase;
-  color: #464035;
-  font-size: 2.5rem;
-  margin: 0 auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 4rem;
-}
-.review__intro {
-  width: 70%;
-  font-family: "Cabin";
-  font-size: 1.6rem;
-  color: #464035;
-  margin-bottom: 3rem;
-}
-.review__form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.4rem;
-  width: 50%;
-  padding: 4rem 10rem;
-  border-radius: 10px;
-  background: #f4bf87;
-  font-family: "Cabin";
-  font-size: 2rem;
-  color: #464035;
-}
-.review__form--text {
-  font-size: 1.28rem;
-  color: #800000;
-}
-.review__form--label {
-  margin-bottom: -0.8rem;
-}
-.review__form--label span {
-  font-size: 1.28rem;
-  color: #800000;
-}
-.review__form--input {
-  padding: 1rem;
-  border-radius: 8px;
-  border: none;
-  background-color: #fdecdc;
-  font-family: "Cabin";
-  font-size: 1.6rem;
-  color: #464035;
-}
-.review__form--input:focus {
-  outline: 1.5px solid #606658;
-}
-.review__form--btn {
-  cursor: pointer;
-  width: 40%;
-  padding: 1rem;
-  border-radius: 8px;
-  margin: 0 auto;
-  margin-top: 3rem;
-  border: none;
-  font-family: "Cabin";
-  background: #606658;
-  color: #f4f4f2;
-  font-size: 1.6rem;
-  transition: all 0.2s;
-}
-.review__form--btn:hover {
-  padding: 1.4rem;
-}
-
 .footer {
   width: 100%;
   height: 10rem;
@@ -565,56 +671,211 @@ body {
   color: #606658;
 }
 
-.contact {
-  width: 70%;
-  margin: 0 auto;
-  margin-bottom: 4rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 10rem 1fr;
-  margin-top: 20rem;
-}
-@media (max-width: 75em) {
-  .contact {
-    width: 85%;
-  }
-}
-@media (max-width: 56em) {
-  .contact {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
-  }
-}
-.contact__heading {
-  grid-row: 1/2;
-  grid-column: 1/3;
-  justify-self: center;
-  font-family: "Heading";
-  font-size: 3.906rem;
-  color: #464035;
-}
-.contact__info {
-  align-self: center;
-  justify-self: center;
+.blog {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  justify-content: center;
+  align-items: center;
 }
-.contact__info--el {
+.blog__heading {
+  margin-bottom: 4rem;
+  font-size: 3.906rem;
+  font-family: "Heading";
+  color: #464035;
+}
+.blog__posts {
+  width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 3rem;
+}
+.blog__post {
+  position: relative;
+  width: 80%;
+  height: 25rem;
+  padding: 1rem;
+  padding-top: 15rem;
+}
+.blog__post--heading {
+  font-family: "Cabin";
+  font-size: 2rem;
+  margin-bottom: 0.6rem;
+  color: #606658;
+  width: 35rem;
+}
+.blog__post--heading:hover {
+  text-decoration: underline;
+}
+.blog__post--publishedAt {
+  font-family: "Cabin";
+  font-size: 1.28rem;
+  color: grey;
+  margin-bottom: 2rem;
+}
+.blog__post--img {
+  width: 100%;
+  height: 55%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+.blog__post--img:hover {
+  transform: scale(1.1);
+}
+.blog__post--content {
+  font-size: 1.6rem;
+  font-family: "Cabin";
+  color: #464035;
+  width: 24rem;
+  height: 5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.blog__post--link {
+  font-size: 1.6rem;
+  color: #606658;
+}
+.blog__post--btn {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.post {
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  margin-top: 20rem;
+}
+.post__img {
+  width: 70%;
+  height: 40rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  align-self: center;
+}
+.post__heading {
+  font-size: 4.8828rem;
+  font-family: "Heading";
+  color: #606658;
+  align-self: center;
+}
+.post__info {
+  font-family: "Cabin";
+  color: grey;
+  font-size: 1.28rem;
+  margin-bottom: 1rem;
+}
+.post__text {
+  width: 90%;
+  align-self: center;
+  padding: 4rem 2rem;
+}
+.post__content {
   font-size: 2rem;
   font-family: "Cabin";
+  color: #464035;
+  text-align: justify;
+}
+
+.treatments__section {
+  display: flex;
+  flex-direction: column;
+}
+.treatments__section--btn {
+  font-family: "Cursive";
+  font-size: 2.5rem;
   color: #606658;
-  font-style: italic;
+  text-decoration: none;
+  margin: 0 auto;
 }
-.contact__info--icon {
-  font-size: 3.125rem;
+
+.categories {
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+  -moz-column-gap: 3rem;
+       column-gap: 3rem;
+  row-gap: 3rem;
+  margin-bottom: 1rem;
+}
+@media (max-width: 50em) {
+  .categories {
+    width: 95%;
+  }
+}
+@media (max-width: 55em) {
+  .categories {
+    grid-template-columns: repeat(2, 50%);
+  }
+}
+@media (max-width: 25em) {
+  .categories {
+    -moz-column-gap: 0.4rem;
+         column-gap: 0.4rem;
+    row-gap: 1.6rem;
+  }
+}
+
+.group {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  grid-template-rows: 5rem 1fr;
+}
+@media (max-width: 25em) {
+  .group {
+    grid-template-columns: 4rem 1fr;
+    grid-template-rows: 5rem 1fr;
+  }
+}
+.group__icon {
+  grid-row: 1/2;
+  font-size: 4.8828rem;
   color: #f4bf87;
+  background-color: #fdecdc;
+  border-radius: 50%;
+  padding: 0.4rem;
 }
-.contact__map {
-  width: 100%;
+@media (max-width: 25em) {
+  .group__icon {
+    font-size: 3.906rem;
+  }
+}
+.group__content {
+  grid-column: 2/3;
+  margin-top: -0.8rem;
+}
+.group__heading {
+  font-family: "Cabin";
+  font-size: 2rem;
+  font-weight: 400;
+  color: #606658;
+  align-self: center;
+  margin-left: 0.4rem;
+}
+@media (max-width: 59em) {
+  .group__heading {
+    font-size: 1.8rem;
+  }
+}
+@media (max-width: 25em) {
+  .group__heading {
+    font-size: 1.6rem;
+  }
+}
+.group__text {
+  font-family: "Cabin";
+  font-size: 1.28rem;
+  color: #454a3f;
+  margin-left: 0.4rem;
+  margin-bottom: 0.4rem;
 }/*# sourceMappingURL=index.css.map */

@@ -18,6 +18,7 @@ function Contact() {
           <Envelope className="contact__info--icon" />
           <p>iziapharm@gmail.com</p>
         </div>
+        <p>PROGRAM</p>
         <div className="contact__info--el">
           <MapPin className="contact__info--icon" />
           <p>

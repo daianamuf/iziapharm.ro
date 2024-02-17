@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import Loader from "../components/Loader";
 
 import Nav from "../components/Nav";
+import Categories from "../components/Categories";
 
 function Homepage() {
   const navigation = useNavigation();
@@ -12,6 +13,7 @@ function Homepage() {
       {isLoading && <Loader />}
       <Nav />
       <Hero />
+      <Categories />
     </div>
   );
 }

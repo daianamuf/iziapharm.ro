@@ -1,0 +1,138 @@
+.review {
+  margin-top: 20rem;
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__heading {
+    font-family: "Heading";
+    text-transform: uppercase;
+    color: $taupe;
+    font-size: $h4;
+
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 4rem;
+
+    @media (max-width: 25em) {
+      font-size: $h5;
+    }
+  }
+
+  &__intro {
+    width: 70%;
+    font-family: "Cabin";
+    font-size: $p;
+    color: $taupe;
+    margin-bottom: 3rem;
+    text-align: justify;
+
+    @media (max-width: 36em) {
+      width: 80%;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    width: 50%;
+    padding: 4rem 10rem;
+    border-radius: 10px;
+    background: $gold;
+    font-family: "Cabin";
+    font-size: $h5;
+    color: $taupe;
+
+    @media (max-width: 64em) {
+      width: 60%;
+    }
+
+    @media (max-width: 48em) {
+      width: 80%;
+    }
+
+    @media (max-width: 35em) {
+      padding: 4rem 6rem;
+    }
+
+    @media (max-width: 27em) {
+      width: 90%;
+      padding: 4rem;
+      font-size: $h6;
+    }
+
+    &--text {
+      font-size: $small;
+      color: $red;
+    }
+
+    &--label {
+      margin-bottom: -0.8rem;
+
+      & span {
+        font-size: $small;
+        color: $red;
+      }
+    }
+
+    &--input {
+      padding: 1rem;
+      border-radius: 8px;
+      border: none;
+      background-color: $gold-light;
+
+      font-family: "Cabin";
+      font-size: $p;
+      color: $taupe;
+
+      &:focus {
+        outline: 1.5px solid $green;
+      }
+    }
+
+    &--btn {
+      cursor: pointer;
+      width: 40%;
+      padding: 1.4rem;
+      border-radius: 8px;
+      margin: 0 auto;
+      margin-top: 3rem;
+      border: none;
+      font-family: "Cabin";
+      background: $green;
+      color: $white-smoke;
+      font-size: $p;
+      transition: all 0.2s;
+
+      @media (max-width: 23em) {
+        width: 55%;
+      }
+
+      &:hover {
+        background: $green-dark;
+      }
+    }
+  }
+
+  &__submit {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__leaf {
+    position: absolute;
+    bottom: 0;
+    // z-index: -1;
+    right: 0;
+    font-size: $h1;
+    animation: leafMove 2s ease-in-out forwards;
+  }
+}

@@ -10,6 +10,7 @@ import Review from "./pages/Review";
 import Blog from "./pages/Blog";
 import Products from "./pages/Products";
 import Contact from "./pages/Contact";
+import BlogPost from "./pages/BlogPost";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
         path: "/blog",
         element: <Blog />,
       },
+      { path: "/blog/:slug", element: <BlogPost /> },
       {
         path: "/produse",
         element: <Products />,
