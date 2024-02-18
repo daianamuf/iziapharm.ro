@@ -336,3 +336,83 @@ body {
     margin-bottom: 0.4rem;
   }
 }
+
+.products {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 20rem;
+  margin-bottom: 5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  column-gap: 2rem;
+  row-gap: 2rem;
+
+  &__heading {
+    grid-column: 1/-1;
+    display: block;
+    margin: 0 auto;
+    font-family: "Heading";
+    font-size: $h2;
+    color: $taupe;
+    margin-bottom: 3rem;
+  }
+}
+
+.product {
+  width: 20rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  // height: 20rem;
+
+  &__img {
+    width: 20rem;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 3/4;
+    filter: blur(2px);
+  }
+
+  &__content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 3rem;
+  }
+
+  &__heading {
+    padding: 1rem 2rem;
+    width: 100%;
+    min-height: 10rem;
+    font-family: "Cabin";
+    font-size: $p;
+    color: $white-smoke;
+    background-color: rgba($green, 0.7);
+  }
+
+  &__text {
+    padding: 0.8rem 2rem;
+    font-family: "Cabin";
+    font-size: $small;
+    font-weight: 600;
+    color: $white-smoke;
+    background-color: rgba($green, 0.6);
+
+    &.price {
+      font-size: $h5;
+    }
+  }
+
+  &__btn {
+    width: 20rem;
+    font-family: "Cabin";
+    font-size: $h5;
+    font-weight: 700;
+    text-decoration: none;
+    color: $green-dark;
+    cursor: pointer;
+    text-align: center;
+  }
+}

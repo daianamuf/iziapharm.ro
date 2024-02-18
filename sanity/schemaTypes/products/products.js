@@ -7,7 +7,17 @@ export default {
       name: 'name',
       title: 'Name',
       type: 'string', // Text input
-      validation: (Rule) => Rule.required(), // Makes this field required
+      validation: (Rule) => Rule.required().max(80), // Makes this field required
+    },
+    {
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'name',
+        maxLength: 96,
+      },
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'description',
@@ -22,10 +32,16 @@ export default {
       validation: (Rule) => Rule.required().min(0), // Price must be a positive number
     },
     {
-      name: 'category',
-      title: 'Category',
+      name: 'field',
+      title: 'Field',
       type: 'reference', // References another document
-      to: [{type: 'category'}], // Assumes you have a 'category' schema defined
+      to: [{type: 'medicalField'}], // Assumes you have a 'category' schema defined
+    },
+    {
+      name: 'administration',
+      title: 'Administration',
+      type: 'reference',
+      to: [{type: 'routeOfAdministration'}],
     },
     {
       name: 'images',
