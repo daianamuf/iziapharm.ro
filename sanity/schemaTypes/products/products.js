@@ -35,13 +35,15 @@ export default {
       name: 'field',
       title: 'Field',
       type: 'reference', // References another document
-      to: [{type: 'medicalField'}], // Assumes you have a 'category' schema defined
+      to: [{type: 'medicalField'}],
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'administration',
       title: 'Administration',
       type: 'reference',
       to: [{type: 'routeOfAdministration'}],
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'images',
@@ -51,6 +53,7 @@ export default {
       options: {
         hotspot: true, // Enables image cropping and hotspot selection
       },
+      validation: (Rule) => Rule.required(),
     },
   ],
 }

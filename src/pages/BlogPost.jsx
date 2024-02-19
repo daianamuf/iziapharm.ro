@@ -81,6 +81,8 @@ const serializers = {
 function BlogPost() {
   const { slug } = useParams();
   const [post, setPost] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const query = encodeURIComponent(
@@ -103,11 +105,15 @@ function BlogPost() {
       .then(({ result }) => {
         if (result?.length > 0) {
           setPost(result[0]);
+        } else {
+          setError("Product not found.");
         }
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
-        return <Error />;
+        setError("Error fetching post.");
+        setIsLoading(false);
       });
   }, [slug]);
 
@@ -124,7 +130,8 @@ function BlogPost() {
     return `${day}/${month}/${year}`;
   };
 
-  if (!post) return <Loader />;
+  if (isLoading) return <Loader />;
+  if (!post) return <Error message={error} />;
 
   return (
     <article className="post">

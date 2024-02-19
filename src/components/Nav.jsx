@@ -1,8 +1,10 @@
+import { List } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function Nav() {
   const [isScrolling, setIsScrolling] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,7 +22,11 @@ function Nav() {
   }, []);
 
   return (
-    <nav className={`nav ${isScrolling ? "nav-fixed" : ""}`}>
+    <nav
+      className={`nav ${isScrolling ? "nav-scrolling" : ""} ${
+        menuOpen ? "nav--active" : ""
+      }`}
+    >
       <div className="nav__order">
         <Link
           to={"/despre"}
@@ -35,7 +41,6 @@ function Nav() {
           Comandă
         </Link>
       </div>
-
       <Link
         to={"/"}
         className={`nav__logo ${isScrolling ? "nav__logo-fixed" : ""}`}
@@ -49,7 +54,6 @@ function Nav() {
           className={`nav__logo--img ${!isScrolling ? "hidden" : ""}`}
         />
       </Link>
-
       <div className="nav__other">
         <Link
           to={"/produse"}
@@ -76,6 +80,11 @@ function Nav() {
           Contact
         </Link>
       </div>
+      {isScrolling && (
+        <button className="nav__toggle" onClick={() => setMenuOpen(!menuOpen)}>
+          <List />
+        </button>
+      )}
     </nav>
   );
 }
