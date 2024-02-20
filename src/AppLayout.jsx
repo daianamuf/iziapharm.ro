@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Outlet, useNavigation } from "react-router-dom";
 import Nav from "./components/Nav";
 import Loader from "./components/Loader";
@@ -7,12 +8,22 @@ function AppLayout() {
   const navigation = useNavigation();
   const isLoading = navigation.state === "loading";
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <div className="wrapper">
-      <Nav />
+      <Nav
+        menuOpen={menuOpen}
+        setMenuOpen={setMenuOpen}
+        toggleMenu={toggleMenu}
+      />
       {isLoading && <Loader />}
 
-      <div>
+      <div className={menuOpen ? "content blur" : "content"}>
         <main>
           <Outlet />
         </main>

@@ -34,6 +34,26 @@
     opacity: 1;
   }
 }
+@keyframes navMenuOpen {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes navMenuClose {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
 @keyframes slideInFromRight {
   from {
     transform: translateX(20%);
@@ -118,7 +138,7 @@
   display: grid;
   grid-template-columns: 1fr 28rem 1fr;
 }
-.nav-fixed {
+.nav-scrolling {
   height: 11rem;
   grid-template-columns: 1fr 12rem 1fr;
   background: #f4f4f2;
@@ -130,12 +150,12 @@
   grid-column: 2/3;
   justify-self: center;
 }
-.nav__logo-fixed {
+.nav__logo--scrolling {
   width: 12rem;
   height: 11rem;
 }
 @media (max-width: 49em) {
-  .nav__logo-fixed {
+  .nav__logo--scrolling {
     width: 20rem;
   }
 }
@@ -172,6 +192,66 @@
   text-decoration: none;
 }
 
+@media (max-width: 65em) {
+  .nav {
+    display: flex;
+  }
+  .nav__menu--btn {
+    border: none;
+    background: transparent;
+    padding-left: 4rem;
+    font-size: 4.8828rem;
+    color: #606658;
+    cursor: pointer;
+  }
+  .nav__sidebar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 100%;
+    background: #f4f4f2;
+    transform: translateX(-100%);
+    z-index: 20;
+  }
+  .nav__sidebar--open {
+    display: flex;
+    transform: translateX(0);
+    animation: navMenuOpen;
+    animation-duration: 0.3s;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .nav__sidebar--btn {
+    display: inline;
+    width: 20%;
+    background: transparent;
+    border: none;
+    align-self: end;
+    padding-top: 1rem;
+    font-size: 4.8828rem;
+    color: #f4bf87;
+    cursor: pointer;
+  }
+  .nav__sidebar--link {
+    padding-left: 2rem;
+    font-family: "Cabin";
+    font-size: 2.5rem;
+    text-decoration: none;
+    color: #606658;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .nav__sidebar--link:hover .nav__sidebar--icon {
+    font-size: 3.125rem;
+  }
+  .nav__sidebar--icon {
+    color: #f4bf87;
+    transition: all 0.3s;
+  }
+}
 .hero {
   margin: 0 auto;
   margin-top: 20rem;
@@ -589,6 +669,29 @@ body {
   min-height: 100dvh;
   font-size: 1.6rem;
   background: #f4f4f2;
+}
+
+.content {
+  transition: filter 0.5s ease;
+}
+.content::before {
+  content: "";
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10; /* Ensure this is below your sidebar's z-index */
+}
+
+.blur {
+  filter: blur(4px);
+  pointer-events: none;
+}
+.blur:before {
+  display: block;
 }
 
 .wrapper {

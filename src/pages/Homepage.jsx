@@ -1,8 +1,6 @@
 import { useNavigation } from "react-router-dom";
 import Hero from "../components/Hero";
 import Loader from "../components/Loader";
-
-import Nav from "../components/Nav";
 import Categories from "../components/Categories";
 
 function Homepage() {
@@ -11,7 +9,6 @@ function Homepage() {
   return (
     <div>
       {isLoading && <Loader />}
-      <Nav />
       <Hero />
       <Categories />
     </div>

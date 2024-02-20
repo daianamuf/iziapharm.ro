@@ -7,7 +7,7 @@
   display: grid;
   grid-template-columns: 1fr 28rem 1fr;
 
-  &-fixed {
+  &-scrolling {
     height: 11rem;
     grid-template-columns: 1fr 12rem 1fr;
     background: $white-smoke;
@@ -20,7 +20,7 @@
     grid-column: 2/3;
     justify-self: center;
 
-    &-fixed {
+    &--scrolling {
       width: 12rem;
       height: 11rem;
 
@@ -67,5 +67,77 @@
     font-size: $h5;
     color: $green;
     text-decoration: none;
+  }
+}
+
+@media (max-width: 65em) {
+  .nav {
+    display: flex;
+  }
+
+  .nav__menu--btn {
+    border: none;
+    background: transparent;
+    padding-left: 4rem;
+    font-size: $h1;
+    color: $green;
+    cursor: pointer;
+  }
+
+  .nav__sidebar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 100%;
+    background: $white-smoke;
+    transform: translateX(-100%);
+    z-index: 20;
+    // animation: navMenuClose;
+    // animation-duration: 0.3s;
+
+    &--open {
+      display: flex;
+      transform: translateX(0);
+      animation: navMenuOpen;
+      animation-duration: 0.3s;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    &--btn {
+      display: inline;
+      width: 20%;
+      background: transparent;
+      border: none;
+      align-self: end;
+      padding-top: 1rem;
+      font-size: $h1;
+      color: $gold;
+      cursor: pointer;
+    }
+
+    &--link {
+      padding-left: 2rem;
+      font-family: "Cabin";
+      font-size: $h4;
+      text-decoration: none;
+      color: $green;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+
+      &:hover {
+        .nav__sidebar--icon {
+          font-size: $h3;
+        }
+      }
+    }
+
+    &--icon {
+      color: $gold;
+      transition: all 0.3s;
+    }
   }
 }
