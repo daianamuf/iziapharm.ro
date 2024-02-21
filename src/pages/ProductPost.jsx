@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import Loader from "../components/Loader";
 import Error from "../components/Error";
 import BlockContent from "@sanity/block-content-to-react";
+import FlyingLeaf from "../components/FlyingLeaf";
 
 const serializers = {
   types: {
@@ -108,39 +109,43 @@ function ProductPost() {
   if (error) return <Error message={error} />;
 
   return (
-    <div className="product__details">
-      {product ? (
-        <>
-          <h1 className="product__details--heading">{product.name}</h1>
-          <img
-            className="product__details--img"
-            src={product.imageUrls[0]}
-            alt={product.name}
-          />
-          <div className="product__details--content">
-            <p className="product__details--text">{product.field.fieldName}</p>
-            <p className="product__details--text">
-              Cale de administrare: {product.administration.routeName}
-            </p>
-            <p className="product__details--text product__details--price">
-              Preț: {product.price} RON
-            </p>
-            <BlockContent
-              className="product__details--description"
-              blocks={product.description}
-              serializers={serializers}
-              projectId="c9cs4cyr"
-              dataset="production"
+    <>
+      <div className="product__details ">
+        {product ? (
+          <>
+            <h1 className="product__details--heading">{product.name}</h1>
+            <img
+              className="product__details--img"
+              src={product.imageUrls[0]}
+              alt={product.name}
             />
-          </div>
-        </>
-      ) : (
-        <p className="product__text">Product not found.</p>
-      )}
-      <Link to={"/produse"} className="product__details--btn ">
-        Înapoi
-      </Link>
-    </div>
+            <div className="product__details--content">
+              <p className="product__details--text">
+                {product.field.fieldName}
+              </p>
+              <p className="product__details--text">
+                Cale de administrare: {product.administration.routeName}
+              </p>
+              <p className="product__details--text product__details--price">
+                Preț: {product.price} RON
+              </p>
+              <BlockContent
+                className="product__details--description"
+                blocks={product.description}
+                serializers={serializers}
+                projectId="c9cs4cyr"
+                dataset="production"
+              />
+            </div>
+          </>
+        ) : (
+          <p className="product__text">Product not found.</p>
+        )}
+        <Link to={"/produse"} className="product__details--btn ">
+          Înapoi
+        </Link>
+      </div>
+    </>
   );
 }
 

@@ -103,8 +103,7 @@
     background: $white-smoke;
     transform: translateX(-100%);
     z-index: 20;
-    // animation: navMenuClose;
-    // animation-duration: 0.3s;
+    border-right: 4px solid $gold;
 
     &--open {
       display: flex;

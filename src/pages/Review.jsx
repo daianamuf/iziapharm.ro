@@ -1,6 +1,6 @@
 // import GoogleForm from "../components/GoogleForm";
 import { useState } from "react";
-import StarRating from "../components/StarRating";
+// import StarRating from "../components/StarRating";
 import { Leaf } from "@phosphor-icons/react";
 
 function Review() {

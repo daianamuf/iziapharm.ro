@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import BlockContent from "@sanity/block-content-to-react";
 import Loader from "../components/Loader";
 import Error from "../components/Error";
+import FlyingLeaf from "../components/FlyingLeaf";
 
 const serializers = {
   types: {
@@ -134,25 +135,28 @@ function BlogPost() {
   if (!post) return <Error message={error} />;
 
   return (
-    <article className="post">
-      <Link to={"/produse"} className="product__details--btn post__btn--back">
-        Înapoi
-      </Link>
-      <img src={post.mainImageUrl} alt={post.title} className="post__img" />
-      <h1 className="post__heading">{post.title}</h1>
-      <div className="post__text">
-        <p className="post__info">
-          {post.authorName}, {formatData(post.publishedAt)}
-        </p>
-        <BlockContent
-          blocks={post.body}
-          serializers={serializers}
-          projectId="c9cs4cyr"
-          dataset="production"
-          className="post__content"
-        />
-      </div>
-    </article>
+    <>
+      <FlyingLeaf className="post__leaf" />
+      <article className="post slideFromLeft">
+        <img src={post.mainImageUrl} alt={post.title} className="post__img" />
+        <h1 className="post__heading">{post.title}</h1>
+        <div className="post__text">
+          <p className="post__info">
+            {post.authorName}, {formatData(post.publishedAt)}
+          </p>
+          <BlockContent
+            blocks={post.body}
+            serializers={serializers}
+            projectId="c9cs4cyr"
+            dataset="production"
+            className="post__content"
+          />
+        </div>
+        <Link to={"/blog"} className="product__details--btn post__btn--back">
+          Înapoi
+        </Link>
+      </article>
+    </>
   );
 }
 

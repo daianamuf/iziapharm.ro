@@ -39,8 +39,6 @@ function About() {
           key={section.id}
           ref={setElementRef}
           data-index={index}
-          //   className={`about__section ${isVisible[index] ? "in" : ""}`}
-          // className="about__section"
           className={`about__section ${index % 2 === 0 ? "odd" : "even"}`}
         >
           <div

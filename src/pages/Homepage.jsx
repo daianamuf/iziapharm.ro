@@ -2,6 +2,7 @@ import { useNavigation } from "react-router-dom";
 import Hero from "../components/Hero";
 import Loader from "../components/Loader";
 import Categories from "../components/Categories";
+import ReviewSection from "../components/ReviewSection";
 
 function Homepage() {
   const navigation = useNavigation();
@@ -11,6 +12,7 @@ function Homepage() {
       {isLoading && <Loader />}
       <Hero />
       <Categories />
+      <ReviewSection />
     </div>
   );
 }

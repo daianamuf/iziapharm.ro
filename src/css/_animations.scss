@@ -131,3 +131,8 @@
     background-size: 100% 2px;
   }
 }
+
+.slideFromLeft {
+  animation: cardMove 1s forwards;
+  animation-delay: 1s;
+}

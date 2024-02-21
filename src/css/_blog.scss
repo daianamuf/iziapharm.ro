@@ -1,0 +1,141 @@
+.blog {
+  margin-top: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__heading {
+    margin-bottom: 4rem;
+    font-size: $h2;
+    font-family: "Heading";
+    color: $taupe;
+  }
+  &__posts {
+    width: 90%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 3rem;
+  }
+
+  &__post {
+    position: relative;
+    width: 80%;
+    height: 25rem;
+    padding: 1rem;
+    padding-top: 15rem;
+
+    &--heading {
+      font-family: "Cabin";
+      font-size: $h5;
+      margin-bottom: 0.6rem;
+      color: $green;
+      width: 35rem;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &--publishedAt {
+      font-family: "Cabin";
+      font-size: $small;
+      color: grey;
+      margin-bottom: 2rem;
+    }
+
+    &--img {
+      width: 100%;
+      height: 55%;
+      object-fit: cover;
+      border-radius: 10px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      // filter: brightness(80%) blur(2px);
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    &--content {
+      font-size: $p;
+      font-family: "Cabin";
+      color: $taupe;
+      width: 24rem;
+      height: 5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &--link {
+      font-size: $p;
+      color: $green;
+    }
+
+    &--btn {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+}
+
+.post {
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20rem;
+  margin-bottom: 3rem;
+  opacity: 0;
+
+  &__leaf {
+    margin-top: 10rem;
+
+    @media (max-width: 27em) {
+      margin-top: 14rem;
+    }
+  }
+
+  &__img {
+    width: 70%;
+    height: 40rem;
+    object-fit: cover;
+    align-self: center;
+  }
+
+  &__heading {
+    font-size: $h1;
+    font-family: "Heading";
+    color: $green;
+    align-self: center;
+  }
+
+  &__info {
+    font-family: "Cabin";
+    color: grey;
+    font-size: $small;
+    margin-bottom: 1rem;
+  }
+
+  &__text {
+    width: 90%;
+    align-self: center;
+    padding: 4rem 2rem;
+  }
+
+  &__content {
+    font-size: $h5;
+    font-family: "Cabin";
+    color: $taupe;
+    text-align: justify;
+  }
+
+  //   &__btn--back {
+  //   }
+}
