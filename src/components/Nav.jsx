@@ -38,7 +38,9 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu }) {
         </button>
         <Link
           to={"/"}
-          className={`nav__logo ${isScrolling ? "nav__logo--scrolling" : ""}`}
+          className={`nav__logo ${isScrolling ? "nav__logo--scrolling" : ""} ${
+            menuOpen ? "nav__logo--blur" : ""
+          }`}
         >
           <img
             src="/assets/logo/logo2_transparent.png"

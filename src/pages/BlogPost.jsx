@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import BlockContent from "@sanity/block-content-to-react";
 import Loader from "../components/Loader";
 import Error from "../components/Error";
@@ -135,6 +135,9 @@ function BlogPost() {
 
   return (
     <article className="post">
+      <Link to={"/produse"} className="product__details--btn post__btn--back">
+        Înapoi
+      </Link>
       <img src={post.mainImageUrl} alt={post.title} className="post__img" />
       <h1 className="post__heading">{post.title}</h1>
       <div className="post__text">

@@ -75,6 +75,15 @@
     display: flex;
   }
 
+  .nav__logo--blur {
+    // filter: blur(1px);
+    pointer-events: none;
+
+    & img {
+      filter: blur(2px);
+    }
+  }
+
   .nav__menu--btn {
     border: none;
     background: transparent;
@@ -139,5 +148,30 @@
       color: $gold;
       transition: all 0.3s;
     }
+  }
+}
+
+@media (max-width: 48em) {
+  .nav__sidebar {
+    width: 50%;
+
+    &--link {
+      font-size: $h5;
+      &:hover {
+        .nav__sidebar--icon {
+          font-size: $h4;
+        }
+      }
+    }
+
+    &--btn {
+      font-size: $h2;
+    }
+  }
+}
+
+@media (max-width: 24em) {
+  .nav__sidebar {
+    width: 60%;
   }
 }
