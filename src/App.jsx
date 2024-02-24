@@ -12,8 +12,7 @@ import Products from "./pages/Products";
 import Contact from "./pages/Contact";
 import BlogPost from "./pages/BlogPost";
 import ProductPost from "./pages/ProductPost";
-import FormUman from "./pages/FormUman";
-import FormVet from "./pages/FormVet";
+import OrderForm from "./pages/OrderForm";
 
 const router = createBrowserRouter([
   {
@@ -54,12 +53,8 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: "/form-uman",
-        element: <FormUman />,
-      },
-      {
-        path: "/form-vet",
-        element: <FormVet />,
+        path: "/comanda",
+        element: <OrderForm />,
       },
     ],
   },

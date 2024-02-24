@@ -1,0 +1,110 @@
+.cart {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 5rem;
+  overflow: scroll;
+
+  &__item {
+    position: relative;
+    width: 95%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    column-gap: 1rem;
+    row-gap: 1rem;
+    align-items: center;
+    justify-content: space-evenly;
+
+    font-family: "Cabin";
+    color: $green-dark;
+    font-size: $h6;
+
+    &::after {
+      content: "";
+      width: 100%;
+      height: 0.8px;
+      background: $green;
+      position: absolute;
+      bottom: -2rem;
+    }
+
+    &--quantity {
+      width: 100%;
+    }
+
+    &--price {
+      grid-column: 1/2;
+      justify-self: start;
+      color: $green;
+      font-weight: 700;
+    }
+
+    &--prescription {
+      justify-self: start;
+      color: $red;
+      font-weight: 600;
+    }
+
+    & .btn__delete {
+      font-size: $p;
+      grid-column: 2/3;
+      grid-row: 2/3;
+      width: 80%;
+
+      @media (max-width: 25em) {
+        width: 100%;
+      }
+    }
+  }
+
+  &__quantity {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    & button {
+      font-size: $p;
+    }
+  }
+}
+
+.cartOverview {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: $white-smoke;
+  transform: translateX(100%);
+  z-index: 20;
+  border-left: 4px solid $gold;
+  transition: transform 0.5s ease;
+
+  @media (min-width: 48em) {
+    width: 70%;
+  }
+
+  &--open {
+    display: flex;
+    transform: translateX(0);
+    animation: cartOpen;
+    animation-duration: 0.4s;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  &__btn {
+    display: inline;
+    width: 20%;
+    background: transparent;
+    border: none;
+    align-self: flex-start;
+    padding-top: 1rem;
+    font-size: $h1;
+    cursor: pointer;
+
+    &--icon {
+      color: $gold;
+    }
+  }
+}

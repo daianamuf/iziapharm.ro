@@ -8,9 +8,10 @@ function AppLayout() {
   const navigation = useNavigation();
   const isLoading = navigation.state === "loading";
   const [menuOpen, setMenuOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
 
   useEffect(() => {
-    if (menuOpen) {
+    if (menuOpen || cartOpen) {
       document.body.style.overflow = "hidden";
       document.body.classList.add("ScrollBehindOffIOS");
     } else {
@@ -21,14 +22,14 @@ function AppLayout() {
     return () => {
       document.body.style.overflow = "visible";
     };
-  }, [menuOpen]);
+  }, [menuOpen, cartOpen]);
 
   useEffect(() => {
-    const handleOutsideClick = (event) => {
+    const handleOutsideClick = (e) => {
       if (
         menuOpen &&
-        !event.target.closest(".nav__sidebar") &&
-        !event.target.closest(".nav__menu--btn")
+        !e.target.closest(".nav__sidebar") &&
+        !e.target.closest(".nav__menu--btn")
       ) {
         setMenuOpen(false);
       }
@@ -39,22 +40,45 @@ function AppLayout() {
     return () => document.removeEventListener("click", handleOutsideClick);
   }, [menuOpen]);
 
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (
+        cartOpen &&
+        !e.target.closest(".cartOverview") &&
+        !e.target.closest(".btn__openCart")
+      ) {
+        setCartOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [cartOpen]);
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
   return (
-    <div className={menuOpen ? "wrapper wrapper__blur" : "wrapper"}>
+    <div className={menuOpen || cartOpen ? "wrapper wrapper__blur" : "wrapper"}>
       <Nav
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
         toggleMenu={toggleMenu}
+        cartOpen={cartOpen}
+        setCartOpen={setCartOpen}
       />
       {isLoading && <Loader />}
 
       <div
-        onClick={() => setMenuOpen(false)}
-        className={menuOpen ? "content blur" : "content"}
+        onClick={() => {
+          setMenuOpen(false);
+          setCartOpen(false);
+        }}
+        className={menuOpen || cartOpen ? "content blur" : "content"}
       >
         <main>
           <Outlet />

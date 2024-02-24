@@ -2,10 +2,16 @@ import { Leaf, List, X } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getCart } from "../cart/cartSlice";
+// import Cart from "../cart/Cart";
+import OpenCart from "../cart/OpenCart";
+import Cart from "../cart/Cart";
 
-function Nav({ menuOpen, setMenuOpen, toggleMenu }) {
+function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
   const [isScrolling, setIsScrolling] = useState(false);
   const [media, setMedia] = useState(window.innerWidth <= 1110);
+  const cart = useSelector(getCart);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -114,11 +120,26 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu }) {
             Contact
           </Link>
         </div>
+        {cart.length > 0 && (
+          <OpenCart
+            cartOpen={cartOpen}
+            onClick={() => setCartOpen(true)}
+            classname="nav__cart--smallMedia"
+          />
+        )}
+        {cartOpen && <Cart cartOpen={cartOpen} setCartOpen={setCartOpen} />}
       </nav>
     );
 
   return (
     <nav className={`nav ${isScrolling ? "nav-scrolling" : ""}`}>
+      {cart.length > 0 && (
+        <OpenCart
+          onClick={() => setCartOpen(true)}
+          classname="nav__cart--bigMedia"
+        />
+      )}
+      {cartOpen && <Cart cartOpen={cartOpen} setCartOpen={setCartOpen} />}
       <div className="nav__order">
         <Link
           to={"/despre"}
@@ -181,6 +202,8 @@ Nav.propTypes = {
   menuOpen: PropTypes.bool.isRequired,
   setMenuOpen: PropTypes.func.isRequired,
   toggleMenu: PropTypes.func.isRequired,
+  cartOpen: PropTypes.bool.isRequired,
+  setCartOpen: PropTypes.func.isRequired,
 };
 
 export default Nav;

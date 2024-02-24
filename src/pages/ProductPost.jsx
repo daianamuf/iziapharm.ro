@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
+
 import { Link, useParams } from "react-router-dom";
 import Loader from "../components/Loader";
 import Error from "../components/Error";
 import BlockContent from "@sanity/block-content-to-react";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem, getCurrentQuantityById } from "../cart/cartSlice";
+import UpdateItemQuantity from "../cart/UpdateItemQuantity";
+import DeleteItem from "../cart/DeleteItem";
 
 const serializers = {
   types: {
@@ -67,14 +72,16 @@ function ProductPost() {
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setIsLoading(true);
     const query =
       encodeURIComponent(`*[_type == "product" && slug.current == "${slug}"]{
-      _id,
+      "id": _id,
       name,
       description,
+      prescription,
       price,
       "slug": slug.current,
       "field":field->{
@@ -104,6 +111,25 @@ function ProductPost() {
       });
   }, [slug]);
 
+  const currentQuantity = useSelector((state) =>
+    getCurrentQuantityById(product?.id)(state)
+  );
+
+  const isInCart = currentQuantity > 0;
+
+  const handleAddToCart = () => {
+    const newItem = {
+      productId: product.id,
+      name: product.name,
+      prescription: product.prescription,
+      quantity: 1,
+      unitPrice: product.price,
+      totalPrice: product.price * 1,
+    };
+    dispatch(addItem(newItem));
+    console.log(currentQuantity);
+  };
+
   if (isLoading) return <Loader />;
   if (error) return <Error message={error} />;
 
@@ -119,12 +145,37 @@ function ProductPost() {
               alt={product.name}
             />
             <div className="product__details--content">
+              {!isInCart && (
+                <button
+                  className="product__details--orderBtn"
+                  onClick={handleAddToCart}
+                >
+                  Adaugă în coș
+                </button>
+              )}
+              {isInCart && (
+                <div className="product__details--updateOrder">
+                  <UpdateItemQuantity
+                    classname="product__details--quantity"
+                    productId={product.id}
+                    currentQuantity={currentQuantity}
+                  />
+                  <DeleteItem productId={product.id} />
+                </div>
+              )}
+
               <p className="product__details--text">
                 {product.field.fieldName}
               </p>
               <p className="product__details--text">
                 Cale de administrare: {product.administration.routeName}
               </p>
+
+              {product.prescription && (
+                <p className="product__details--text product__details--prescription">
+                  Acest preparat este eliberat doar pe baza rețetei medicale!
+                </p>
+              )}
               <p className="product__details--text product__details--price">
                 Preț: {product.price} RON
               </p>

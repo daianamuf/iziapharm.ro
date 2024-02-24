@@ -7,6 +7,7 @@
 @import "review";
 @import "blog";
 @import "products";
+@import "cart";
 
 .hidden {
   visibility: hidden;
@@ -540,5 +541,69 @@ body {
         display: none;
       }
     }
+  }
+}
+
+.btn {
+  &__update {
+    padding: 0.4rem 1.2rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background: $gold;
+    font-family: "Cabin";
+    font-size: $h4;
+    color: $green-dark;
+  }
+
+  &__delete {
+    cursor: pointer;
+    border: none;
+    background: $gold;
+    font-family: "Cabin";
+    padding: 0.8rem 0.8rem;
+    font-size: $h6;
+    font-weight: 700;
+    color: $green;
+    border-radius: 8px;
+
+    @media (max-width: 25em) {
+      font-size: $p;
+    }
+  }
+
+  &__openCart {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    font-family: "Cabin";
+    text-transform: uppercase;
+    font-size: $h6;
+    font-weight: 600;
+    color: $green;
+    background: $gold;
+    border: none;
+    padding: 0.6rem;
+    cursor: pointer;
+    border-radius: 8px;
+
+    &--icon {
+      font-size: $h2;
+      transition: all 0.3s;
+    }
+
+    &:hover {
+      & .btn__openCart--icon {
+        transform: rotate(16deg);
+      }
+    }
+  }
+}
+
+.text {
+  &__quantity {
+    font-family: "Cabin";
+    color: $green;
+    padding: 0.8rem;
   }
 }

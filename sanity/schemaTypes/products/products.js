@@ -20,6 +20,12 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: 'prescription',
+      title: 'Prescription',
+      type: 'boolean', // Checkbox input
+      description: 'Check if the product requires a prescription',
+    },
+    {
       name: 'description',
       title: 'Description',
       type: 'blockContent', // Multi-line text input
