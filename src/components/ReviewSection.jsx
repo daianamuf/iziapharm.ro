@@ -42,7 +42,7 @@ function ReviewSection() {
         );
       })}
       <a
-        className="reviews__link"
+        className="reviews__link underline_animation_hover--green"
         href="https://www.facebook.com/Iziapharm/reviews"
         target="_blank"
         rel="noreferrer"

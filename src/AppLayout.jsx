@@ -14,7 +14,7 @@ function AppLayout() {
       document.body.style.overflow = "hidden";
       document.body.classList.add("ScrollBehindOffIOS");
     } else {
-      document.body.style.overflow = "visible";
+      document.body.style.overflow = "visibile";
       document.body.classList.remove("ScrollBehindOffIOS");
     }
 
@@ -53,7 +53,7 @@ function AppLayout() {
       {isLoading && <Loader />}
 
       <div
-        onMouseDown={() => setMenuOpen(false)}
+        onClick={() => setMenuOpen(false)}
         className={menuOpen ? "content blur" : "content"}
       >
         <main>

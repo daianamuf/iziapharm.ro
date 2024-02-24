@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import Loader from "../components/Loader";
 import Error from "../components/Error";
 import BlockContent from "@sanity/block-content-to-react";
-import FlyingLeaf from "../components/FlyingLeaf";
 
 const serializers = {
   types: {

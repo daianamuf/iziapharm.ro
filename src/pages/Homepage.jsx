@@ -3,6 +3,7 @@ import Hero from "../components/Hero";
 import Loader from "../components/Loader";
 import Categories from "../components/Categories";
 import ReviewSection from "../components/ReviewSection";
+import Products from "../components/ProductsSlider";
 
 function Homepage() {
   const navigation = useNavigation();
@@ -12,6 +13,7 @@ function Homepage() {
       {isLoading && <Loader />}
       <Hero />
       <Categories />
+      <Products />
       <ReviewSection />
     </div>
   );

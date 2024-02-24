@@ -70,9 +70,15 @@
   }
 }
 
-@media (max-width: 65em) {
+@media (max-width: 69.4em) {
   .nav {
     display: flex;
+
+    &__logo {
+      width: 28rem;
+      height: 20rem;
+      justify-self: center;
+    }
   }
 
   .nav__logo--blur {

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function Nav({ menuOpen, setMenuOpen, toggleMenu }) {
   const [isScrolling, setIsScrolling] = useState(false);
-  const [media, setMedia] = useState(window.innerWidth <= 1040);
+  const [media, setMedia] = useState(window.innerWidth <= 1110);
 
   useEffect(() => {
     const handleScroll = () => {
