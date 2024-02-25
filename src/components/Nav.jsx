@@ -1,18 +1,32 @@
 import { Leaf, List, X } from "@phosphor-icons/react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getCart } from "../cart/cartSlice";
-// import Cart from "../cart/Cart";
 import OpenCart from "../cart/OpenCart";
 import Cart from "../cart/Cart";
+import { OrderContext } from "../App";
 
 function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
   const [isScrolling, setIsScrolling] = useState(false);
   const [media, setMedia] = useState(window.innerWidth <= 1110);
   const cart = useSelector(getCart);
+  const { choiceOpen, setChoiceOpen } = useContext(OrderContext);
+  const navigate = useNavigate();
 
+  const handleOrderClick = () => {
+    setMenuOpen(false);
+    if (cart.length === 0) {
+      setChoiceOpen(true);
+      navigate("/comanda");
+    } else {
+      setChoiceOpen(false);
+      navigate("/comanda");
+    }
+  };
+
+  console.log(choiceOpen);
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -80,14 +94,10 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
             <Leaf className="nav__sidebar--icon" />
             Cum comand?
           </Link>
-          <Link
-            to={"/comanda"}
-            className="nav__sidebar--link"
-            onClick={() => setMenuOpen(false)}
-          >
+          <button className="nav__sidebar--link" onClick={handleOrderClick}>
             <Leaf className="nav__sidebar--icon" />
             Comandă
-          </Link>
+          </button>
           <Link
             to={"/produse"}
             className="nav__sidebar--link"
@@ -151,12 +161,12 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
         <Link className="nav__link underline_animation_hover--green">
           Cum comand?
         </Link>
-        <Link
-          to={"/comanda"}
+        <button
           className="nav__link underline_animation_hover--green"
+          onClick={handleOrderClick}
         >
           Comandă
-        </Link>
+        </button>
       </div>
 
       <Link

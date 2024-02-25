@@ -608,3 +608,68 @@ body {
     padding: 0.8rem;
   }
 }
+
+.formchoice {
+  width: 50%;
+  height: 30rem;
+  display: flex;
+  flex-direction: column;
+
+  &__heading {
+    font-family: "Cabin";
+    font-size: $h3;
+    text-align: center;
+    color: $taupe;
+    margin-bottom: 2rem;
+  }
+
+  &__choice {
+    display: flex;
+    gap: 1rem;
+    font-family: "Cabin";
+    font-size: $h5;
+
+    &:nth-of-type(1) {
+      margin-bottom: 1rem;
+    }
+    &:nth-of-type(2) {
+      margin-bottom: 3rem;
+    }
+  }
+
+  &__input {
+    width: 3rem;
+
+    &:checked {
+      accent-color: $green;
+    }
+  }
+
+  &__btn {
+    cursor: pointer;
+    border: none;
+    width: 12rem;
+    padding: 1.4rem;
+    margin: 0 auto;
+    background: $gold;
+    font-family: "Cabin";
+    font-size: $h6;
+    color: $green-dark;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    transition: all 0.3s;
+
+    &:hover {
+      background: $green;
+      color: $gold-light;
+    }
+  }
+
+  &__msg {
+    font-family: "Cabin";
+    text-align: center;
+    color: $red;
+    font-weight: 700;
+    font-size: $h6;
+  }
+}

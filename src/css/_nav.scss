@@ -78,6 +78,8 @@
   }
 
   &__link {
+    border: none;
+    background: transparent;
     font-family: "Cabin";
     font-size: $h5;
     color: $green;
@@ -167,6 +169,8 @@
     }
 
     &--link {
+      border: none;
+      background: transparent;
       padding-left: 2rem;
       font-family: "Cabin";
       font-size: $h4;

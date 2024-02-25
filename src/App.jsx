@@ -64,19 +64,19 @@ export const OrderContext = createContext();
 
 function App() {
   const [vet, setVet] = useState(false);
-  const [uman, setUman] = useState(false);
-  const [needsPrescription, setNeedsPrescription] = useState(false);
+  const [needsPrescription, setNeedsPrescription] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
+  const [choiceOpen, setChoiceOpen] = useState(false);
 
   const orderContextValue = {
     vet,
     setVet,
-    uman,
-    setUman,
     needsPrescription,
     setNeedsPrescription,
     modalOpen,
     setModalOpen,
+    choiceOpen,
+    setChoiceOpen,
   };
   return (
     <OrderContext.Provider value={orderContextValue}>
