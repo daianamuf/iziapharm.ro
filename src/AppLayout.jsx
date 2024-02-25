@@ -15,7 +15,7 @@ function AppLayout() {
       document.body.style.overflow = "hidden";
       document.body.classList.add("ScrollBehindOffIOS");
     } else {
-      document.body.style.overflow = "visibile";
+      document.body.style.overflow = "visible";
       document.body.classList.remove("ScrollBehindOffIOS");
     }
 
@@ -45,7 +45,8 @@ function AppLayout() {
       if (
         cartOpen &&
         !e.target.closest(".cartOverview") &&
-        !e.target.closest(".btn__openCart")
+        !e.target.closest(".btn__openCart") &&
+        !e.target.closest(".cart__message")
       ) {
         setCartOpen(false);
       }

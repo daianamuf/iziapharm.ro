@@ -1,9 +1,10 @@
 .cart {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 5rem;
-  overflow: scroll;
+  overflow-y: scroll;
 
   &__item {
     position: relative;
@@ -65,6 +66,29 @@
       font-size: $p;
     }
   }
+
+  &__message {
+    width: 50%;
+    height: 40rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 40;
+    background: $white-smoke;
+    padding: 2rem;
+    border: 3px solid $gold;
+    border-radius: 10px;
+
+    &--choices {
+      display: flex;
+      gap: 5rem;
+    }
+
+    &--btn {
+      font-size: $h3;
+    }
+  }
 }
 
 .cartOverview {
@@ -106,5 +130,46 @@
     &--icon {
       color: $gold;
     }
+  }
+
+  &__btns {
+    display: flex;
+    margin: 0 auto;
+    gap: 5rem;
+    margin-top: 2rem;
+  }
+
+  &__btn--order {
+    cursor: pointer;
+    border: none;
+    font-size: $h4;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: "Cabin";
+    color: $green;
+    background: $gold;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+
+    &-icon {
+      transition: all 0.3s;
+    }
+
+    &:hover {
+      .cartOverview__btn--order-icon {
+        transform: rotate(-40deg);
+      }
+    }
+  }
+
+  &__btn--delete {
+    cursor: pointer;
+    border: none;
+    font-size: $h4;
+    color: $green;
+    background: transparent;
+    font-family: "Cabin";
   }
 }

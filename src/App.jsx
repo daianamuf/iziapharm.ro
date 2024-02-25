@@ -1,5 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { Suspense, lazy } from "react";
+import { Suspense, createContext, lazy, useState } from "react";
 // import Homepage from "./pages/Homepage";
 const Homepage = lazy(() => import("./pages/Homepage"));
 import Loader from "./components/Loader";
@@ -59,8 +59,30 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
+export const OrderContext = createContext();
+
 function App() {
-  return <RouterProvider router={router} />;
+  const [vet, setVet] = useState(false);
+  const [uman, setUman] = useState(false);
+  const [needsPrescription, setNeedsPrescription] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const orderContextValue = {
+    vet,
+    setVet,
+    uman,
+    setUman,
+    needsPrescription,
+    setNeedsPrescription,
+    modalOpen,
+    setModalOpen,
+  };
+  return (
+    <OrderContext.Provider value={orderContextValue}>
+      <RouterProvider router={router} />
+    </OrderContext.Provider>
+  );
 }
 
 export default App;

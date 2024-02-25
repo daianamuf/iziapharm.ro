@@ -81,6 +81,7 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
             Cum comand?
           </Link>
           <Link
+            to={"/comanda"}
             className="nav__sidebar--link"
             onClick={() => setMenuOpen(false)}
           >
@@ -150,7 +151,10 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
         <Link className="nav__link underline_animation_hover--green">
           Cum comand?
         </Link>
-        <Link className="nav__link underline_animation_hover--green">
+        <Link
+          to={"/comanda"}
+          className="nav__link underline_animation_hover--green"
+        >
           Comandă
         </Link>
       </div>
