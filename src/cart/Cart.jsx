@@ -31,7 +31,6 @@ function Cart({ cartOpen, setCartOpen }) {
   const handleYesClick = () => {
     navigate("/comanda");
     setCartOpen(false);
-    console.log("daaa");
   };
 
   useEffect(() => {

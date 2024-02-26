@@ -163,9 +163,6 @@ function OrderForm() {
         isFormValid = false;
       }
     });
-    if (Object.values(state.errors).every((error) => error === "")) {
-      console.log("Form submitted", state.inputs);
-    }
 
     // Additional check for fileUpload to ensure an error is displayed if no file is selected
     if (

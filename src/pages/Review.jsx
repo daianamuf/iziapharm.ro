@@ -1,14 +1,117 @@
-// import GoogleForm from "../components/GoogleForm";
-import { useState } from "react";
-// import StarRating from "../components/StarRating";
-import { Leaf } from "@phosphor-icons/react";
+import { useReducer, useState } from "react";
+
+const initialState = {
+  inputs: {
+    lastName: "",
+    firstName: "",
+    email: "",
+    cod: "",
+    productName: "",
+    feedback: "",
+  },
+  errors: {},
+};
+
+function formReducer(state, action) {
+  switch (action.type) {
+    case "setInput":
+      return {
+        ...state,
+        inputs: { ...state.inputs, [action.field]: action.value },
+      };
+    case "setError":
+      return {
+        ...state,
+        errors: { ...state.errors, [action.field]: action.error },
+      };
+    case "resetForm":
+      return initialState;
+    default:
+      return state;
+  }
+}
 
 function Review() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [state, dispatch] = useReducer(formReducer, initialState);
+  // const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submissionMessage, setSubmissionMessage] = useState("");
+  const [formKey, setFormKey] = useState(Date.now());
+
+  const validateInput = (id, value) => {
+    let error = "";
+    switch (id) {
+      case "lastName":
+      case "firstName":
+      case "cod":
+      case "feedback":
+        if (!value.trim()) {
+          error = "Acest câmp este obligatoriu.";
+        }
+        break;
+      case "email":
+        if (!value.trim()) {
+          error = "Acest câmp este obligatoriu.";
+        } else if (
+          !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value)
+        ) {
+          error = "Adresa de email nu este validă.";
+        }
+        break;
+      default:
+        error = "";
+    }
+    dispatch({ type: "setError", field: id, error });
+  };
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    dispatch({ type: "setInput", field: id, value: value });
+    validateInput(id, value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    let isFormValid = true;
+    let newErrors = {}; // Local object to track errors
+
+    Object.keys(state.inputs).forEach((key) => {
+      const value = state.inputs[key];
+      if (!value.trim()) {
+        newErrors[key] = "Acest câmp este obligatoriu.";
+        isFormValid = false;
+      } else {
+        // Apply specific field validation here as needed
+        if (key === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          newErrors[key] = "Adresa de email nu este validă.";
+          isFormValid = false;
+        }
+      }
+    });
+
+    // Update state with new errors if any
+    if (!isFormValid) {
+      Object.entries(newErrors).forEach(([field, error]) => {
+        dispatch({ type: "setError", field, error });
+      });
+      return; // Prevent form submission if not valid
+    }
+
+    console.log("errors", state.errors);
+
+    if (Object.values(state.errors).every((error) => error === "")) {
+      console.log("Form submitted", state.inputs);
+    }
+
+    if (isFormValid) {
+      console.log("Form data:", state.inputs);
+      dispatch({ type: "resetForm" });
+      setSubmissionMessage("Review-ul a fost trimis cu succes!");
+      setFormKey(Date.now());
+
+      setTimeout(() => {
+        setSubmissionMessage("");
+      }, 5000);
+    }
   };
 
   return (
@@ -27,65 +130,97 @@ function Review() {
         este auzită.
       </p>
 
-      <form className="review__form" onSubmit={handleSubmit}>
+      <form key={formKey} className="review__form" onSubmit={handleSubmit}>
         <p className="review__form--text">
           <span>*</span>
           <span>- câmpuri obligatorii</span>
         </p>
-        <label htmlFor="nume" className="review__form--label">
+
+        <label htmlFor="lastName" className="review__form--label">
           Nume<span>*</span>
+          {state.errors.lastName && (
+            <span className="error-message">{state.errors.lastName}</span>
+          )}
         </label>
         <input
-          id="nume"
+          id="lastName"
           type="text"
           className="review__form--input"
           autoComplete="true"
+          onChange={handleChange}
         />
 
-        <label htmlFor="prenume" className="review__form--label">
+        <label htmlFor="firstName" className="review__form--label">
           Prenume<span>*</span>
+          {state.errors.firstName && (
+            <span className="error-message">{state.errors.firstName}</span>
+          )}
         </label>
         <input
-          id="prenume"
+          id="firstName"
           type="text"
           className="review__form--input"
           autoComplete="true"
+          onChange={handleChange}
         />
 
         <label htmlFor="email" className="review__form--label">
           Email<span>*</span>
+          {state.errors.email && (
+            <span className="error-message">{state.errors.email}</span>
+          )}
         </label>
         <input
           id="email"
           type="email"
           className="review__form--input"
           autoComplete="true"
+          onChange={handleChange}
         />
 
         <label htmlFor="cod" className="review__form--label">
           Codul produsului<span>*</span>
+          {state.errors.cod && (
+            <span className="error-message">{state.errors.cod}</span>
+          )}
         </label>
-        <input id="cod" className="review__form--input" autoComplete="true" />
+        <input
+          id="cod"
+          className="review__form--input"
+          autoComplete="true"
+          onChange={handleChange}
+        />
 
-        <label htmlFor="numeProd" className="review__form--label">
+        <label htmlFor="productName" className="review__form--label">
           Numele produsului
         </label>
         <input
-          id="numeProd"
+          id="productName"
           type="text"
           className="review__form--input"
           autoComplete="true"
+          onChange={handleChange}
         />
 
         <label htmlFor="feedback" className="review__form--label">
-          Feedback-ul dumneavoastră
+          Feedback<span>*</span>
+          {state.errors.feedback && (
+            <span className="error-message">{state.errors.feedback}</span>
+          )}
         </label>
-        <textarea id="feedback" type="text" className="review__form--input" />
+        <textarea
+          id="feedback"
+          type="text"
+          className="review__form--input"
+          onChange={handleChange}
+        />
 
-        <div className="review__submit">
-          <button className="review__form--btn">Trimite Feedback</button>
-          {isSubmitted && <Leaf className="review__leaf" />}
-        </div>
+        <button type="submit" className="review__form--btn">
+          Trimite Feedback
+        </button>
+        {submissionMessage && (
+          <div className="submission-message">{submissionMessage}</div>
+        )}
       </form>
     </div>
   );

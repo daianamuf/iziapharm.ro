@@ -127,7 +127,6 @@ function ProductPost() {
       totalPrice: product.price * 1,
     };
     dispatch(addItem(newItem));
-    console.log(currentQuantity);
   };
 
   if (isLoading) return <Loader />;

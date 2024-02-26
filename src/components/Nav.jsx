@@ -12,7 +12,7 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
   const [isScrolling, setIsScrolling] = useState(false);
   const [media, setMedia] = useState(window.innerWidth <= 1110);
   const cart = useSelector(getCart);
-  const { choiceOpen, setChoiceOpen } = useContext(OrderContext);
+  const { setChoiceOpen } = useContext(OrderContext);
   const navigate = useNavigate();
 
   const handleOrderClick = () => {
@@ -26,7 +26,6 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
     }
   };
 
-  console.log(choiceOpen);
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
