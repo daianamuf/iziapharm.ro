@@ -48,7 +48,13 @@
 
     &--heading {
       font-size: $h4;
+      font-weight: 600;
       text-transform: uppercase;
+
+      & span {
+        font-size: $h4;
+        color: $red;
+      }
     }
 
     &--text {
@@ -60,7 +66,7 @@
       margin-bottom: -0.8rem;
 
       & span {
-        font-size: $small;
+        font-size: $h5;
         color: $red;
       }
     }
@@ -81,9 +87,14 @@
     }
 
     &--field {
+      width: 100%;
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 4rem;
+
+      & label {
+        margin-right: 1rem;
+      }
     }
 
     &--btn {

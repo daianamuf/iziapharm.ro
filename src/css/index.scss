@@ -673,3 +673,19 @@ body {
     font-size: $h6;
   }
 }
+
+.error-message {
+  font-family: "Cabin";
+  font-size: $h5;
+  color: $red;
+  margin-left: 1rem;
+  font-weight: 700;
+}
+
+.submission-message {
+  font-family: "Cabin";
+  font-weight: $h4;
+  color: $green;
+  font-weight: 600;
+  text-align: center;
+}

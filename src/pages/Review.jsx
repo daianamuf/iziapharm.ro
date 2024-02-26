@@ -77,11 +77,6 @@ function Review() {
           autoComplete="true"
         />
 
-        {/* <label className="review__form--label">
-          Acordați un calificativ<span>*</span>
-        </label>
-        <StarRating /> */}
-
         <label htmlFor="feedback" className="review__form--label">
           Feedback-ul dumneavoastră
         </label>

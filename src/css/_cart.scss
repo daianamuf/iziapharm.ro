@@ -69,7 +69,7 @@
 
   &__message {
     width: 50%;
-    height: 40rem;
+    height: 20rem;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -80,13 +80,27 @@
     border: 3px solid $gold;
     border-radius: 10px;
 
+    &--text {
+      font-family: "Cabin";
+      font-size: $h4;
+      color: $red;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
     &--choices {
       display: flex;
+      align-items: center;
+      justify-content: center;
       gap: 5rem;
     }
 
     &--btn {
+      cursor: pointer;
       font-size: $h3;
+      text-decoration: none;
+      border: none;
+      color: $green;
     }
   }
 }
