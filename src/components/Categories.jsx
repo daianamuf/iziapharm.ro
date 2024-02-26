@@ -99,10 +99,10 @@ function Categories() {
         })}
       </section>
       <Link
-        to="/produse"
+        to="/comanda"
         className="treatments__section--btn underline_animation_hover--green "
       >
-        Produse <ArrowRight />
+        Comandă <ArrowRight />
       </Link>
     </div>
   );

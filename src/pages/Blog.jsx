@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 // import BlockContent from "@sanity/block-content-to-react";
 import { Link } from "react-router-dom";
+import Loader from "../components/Loader";
 
 function Blog() {
   const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const query = encodeURIComponent(`*[_type == "post"]{
       _id,
@@ -18,13 +21,18 @@ function Blog() {
      }
      `);
     const url = `https://c9cs4cyr.api.sanity.io/v1/data/query/production?query=${query}`;
+
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
         console.log(data.result);
         setPosts(data.result);
+        setIsLoading(false);
       })
-      .catch((error) => console.error("Error fetching data:", error));
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setIsLoading(false);
+      });
   }, []);
 
   const formatData = (publishedAt) => {
@@ -39,6 +47,8 @@ function Blog() {
 
     return `${day}/${month}/${year}`;
   };
+
+  if (isLoading) return <Loader />;
 
   return (
     <div className="blog">

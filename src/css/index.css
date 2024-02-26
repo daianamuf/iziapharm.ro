@@ -1752,6 +1752,7 @@ body {
   color: #606658;
   text-decoration: none;
   margin: 0 auto;
+  margin-bottom: 5rem;
 }
 
 .categories {
@@ -1762,7 +1763,7 @@ body {
   -moz-column-gap: 3rem;
        column-gap: 3rem;
   row-gap: 3rem;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
 }
 @media (max-width: 50em) {
   .categories {

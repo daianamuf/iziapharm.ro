@@ -8,12 +8,24 @@ import OpenCart from "../cart/OpenCart";
 import Cart from "../cart/Cart";
 import { OrderContext } from "../App";
 
+function debounce(callback, wait) {
+  let timerId;
+  return (...args) => {
+    clearTimeout(timerId);
+    timerId = setTimeout(() => {
+      callback(...args);
+    }, wait);
+  };
+}
+
 function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
   const [isScrolling, setIsScrolling] = useState(false);
   const [media, setMedia] = useState(window.innerWidth <= 1110);
   const cart = useSelector(getCart);
   const { setChoiceOpen } = useContext(OrderContext);
   const navigate = useNavigate();
+
+  const debounceNavigate = debounce((path) => navigate(path), 300);
 
   const handleOrderClick = () => {
     setMenuOpen(false);
@@ -97,14 +109,17 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
             <Leaf className="nav__sidebar--icon" />
             Comandă
           </button>
-          <Link
-            to={"/produse"}
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              debounceNavigate("/produse");
+              setMenuOpen(false);
+            }}
             className="nav__sidebar--link"
-            onClick={() => setMenuOpen(false)}
           >
             <Leaf className="nav__sidebar--icon" />
             Produse
-          </Link>
+          </button>
           <Link
             to={"/review"}
             className="nav__sidebar--link"
@@ -113,14 +128,17 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
             <Leaf className="nav__sidebar--icon" />
             Lasă un review
           </Link>
-          <Link
-            to={"/blog"}
+          <button
             className="nav__sidebar--link"
-            onClick={() => setMenuOpen(false)}
+            onClick={(e) => {
+              e.preventDefault();
+              debounceNavigate("/blog");
+              setMenuOpen(false);
+            }}
           >
             <Leaf className="nav__sidebar--icon" />
             Blog
-          </Link>
+          </button>
           <Link
             to={"/contact"}
             className="nav__sidebar--link "
@@ -183,24 +201,32 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
       </Link>
 
       <div className="nav__other">
-        <Link
-          to={"/produse"}
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            debounceNavigate("/produse");
+            setMenuOpen(false);
+          }}
           className="nav__link underline_animation_hover--green"
         >
           Produse
-        </Link>
+        </button>
         <Link
           to={"/review"}
           className="nav__link underline_animation_hover--green"
         >
           Lasă un review
         </Link>
-        <Link
-          to={"/blog"}
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            debounceNavigate("/blog");
+            setMenuOpen(false);
+          }}
           className="nav__link underline_animation_hover--green"
         >
           Blog
-        </Link>
+        </button>
         <Link
           to={"/contact"}
           className="nav__link underline_animation_hover--green"
