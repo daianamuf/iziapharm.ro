@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { getCart } from "../cart/cartSlice";
 import { OrderContext } from "../App";
 import FormChoice from "../components/FormChoice";
+import readFile from "../useFileReader";
 
 const initialState = {
   inputs: {
@@ -57,6 +58,7 @@ function OrderForm() {
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
+    
     if (!file) {
       dispatch({
         type: "setError",
@@ -181,9 +183,8 @@ function OrderForm() {
     }
 
     if (isFormValid) {
+      
       // Proceed with form submission actions if validation passes
-      console.log("Form submitted", state.inputs);
-
       setOrder(state.inputs);
 
       // Consider resetting the form or providing further user feedback here
@@ -197,14 +198,13 @@ function OrderForm() {
     }
   };
 
-  const setOrder = async (formData) => {
+  const setOrder = async (inputs) => {
+    inputs.fileUpload = await readFile(inputs.fileUpload);
+    console.log(JSON.stringify(inputs));
     try {
       const response = await fetch('/.netlify/functions/orderHandler', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData), 
+        body: JSON.stringify(inputs), 
       });
       if (!response.ok) throw new Error('Upload failed');
       const result = await response.json();
