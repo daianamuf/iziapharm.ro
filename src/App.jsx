@@ -1,18 +1,18 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Suspense, createContext, lazy, useState } from "react";
-// import Homepage from "./pages/Homepage";
-const Homepage = lazy(() => import("./pages/Homepage"));
 import Loader from "./components/Loader";
-import About from "./pages/About";
 import AppLayout from "./AppLayout";
 import Error from "./components/Error";
-import Review from "./pages/Review";
-import Blog from "./pages/Blog";
-import Products from "./pages/Products";
-import Contact from "./pages/Contact";
-import BlogPost from "./pages/BlogPost";
-import ProductPost from "./pages/ProductPost";
-import OrderForm from "./pages/OrderForm";
+const Homepage = lazy(() => import("./pages/Homepage"));
+const About = lazy(() => import("./pages/About"));
+const Review = lazy(() => import("./pages/Review"));
+const Blog = lazy(() => import("./pages/Blog"));
+const Products = lazy(() => import("./pages/Products"));
+const Contact = lazy(() => import("./pages/Contact"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
+const ProductPost = lazy(() => import("./pages/ProductPost"));
+const OrderForm = lazy(() => import("./pages/OrderForm"));
+const OrderSteps = lazy(() => import("./pages/OrderSteps"));
 
 const router = createBrowserRouter([
   {
@@ -29,32 +29,75 @@ const router = createBrowserRouter([
       },
       {
         path: "/despre",
-        element: <About />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <About />,
+          </Suspense>
+        ),
       },
       {
         path: "/review",
-        element: <Review />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Review />,
+          </Suspense>
+        ),
       },
       {
         path: "/blog",
-        element: <Blog />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Blog />,
+          </Suspense>
+        ),
       },
-      { path: "/blog/:slug", element: <BlogPost /> },
+      {
+        path: "/blog/:slug",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <BlogPost />
+          </Suspense>
+        ),
+      },
       {
         path: "/produse",
-        element: <Products />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Products />
+          </Suspense>
+        ),
       },
       {
         path: "/produse/:slug",
-        element: <ProductPost />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <ProductPost />
+          </Suspense>
+        ),
       },
       {
         path: "/contact",
-        element: <Contact />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Contact />
+          </Suspense>
+        ),
       },
       {
         path: "/comanda",
-        element: <OrderForm />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <OrderForm />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/cumcomand",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <OrderSteps />
+          </Suspense>
+        ),
       },
     ],
   },

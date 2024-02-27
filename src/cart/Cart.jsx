@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
-import { clearCart, getCart } from "./cartSlice";
-import CartItem from "./CartItem";
-import { Leaf, X } from "@phosphor-icons/react";
-import PropTypes from "prop-types";
 import { useContext, useEffect, useState } from "react";
-import { OrderContext } from "../App";
+import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Leaf, X } from "@phosphor-icons/react";
+import { clearCart, getCart, getTotalCartPrice } from "./cartSlice";
+import { OrderContext } from "../App";
+import CartItem from "./CartItem";
 
 function Cart({ cartOpen, setCartOpen }) {
   const [showMessage, setShowMessage] = useState(false);
@@ -14,6 +14,7 @@ function Cart({ cartOpen, setCartOpen }) {
     useContext(OrderContext);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const totalCartPrice = useSelector(getTotalCartPrice);
 
   const handleNoClick = () => {
     setShowMessage(false);
@@ -64,6 +65,7 @@ function Cart({ cartOpen, setCartOpen }) {
           ))}
         </ul>
 
+        <p className="cartOverview__total">TOTAL: {totalCartPrice} RON</p>
         <div className="cartOverview__btns">
           <button
             className="cartOverview__btn--order"

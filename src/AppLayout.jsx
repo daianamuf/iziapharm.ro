@@ -86,7 +86,7 @@ function AppLayout() {
         </main>
       </div>
 
-      <Footer />
+      <Footer cartOpen={cartOpen} />
     </div>
   );
 }

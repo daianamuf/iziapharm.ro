@@ -1,7 +1,7 @@
 import { Leaf } from "@phosphor-icons/react";
 import { useContext, useEffect, useReducer, useState } from "react";
 import { useSelector } from "react-redux";
-import { getCart } from "../cart/cartSlice";
+import { getCart, getTotalCartPrice } from "../cart/cartSlice";
 import { OrderContext } from "../App";
 import FormChoice from "../components/FormChoice";
 import readFile from "../useFileReader";
@@ -55,6 +55,7 @@ function OrderForm() {
   const cart = useSelector(getCart);
   const { needsPrescription, choiceOpen, vet, setVet } =
     useContext(OrderContext);
+  const totalCartPrice = useSelector(getTotalCartPrice);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -222,17 +223,23 @@ function OrderForm() {
       {!choiceOpen && (
         <form key={formKey} className="order__form" onSubmit={handleSubmit}>
           {cart.length > 0 && (
-            <ul className="order__list">
-              {cart.map((item) => (
-                <li className="order__list--item" key={item.productId}>
-                  <Leaf className="order__list--icon" />
-                  <p className="order__list--quantity">
-                    {item.quantity}&times; {item.name}
-                  </p>
-                  <p className="order__list--price"> - {item.totalPrice} RON</p>
-                </li>
-              ))}
-            </ul>
+            <>
+              <ul className="order__list">
+                {cart.map((item) => (
+                  <li className="order__list--item" key={item.productId}>
+                    <Leaf className="order__list--icon" />
+                    <p className="order__list--quantity">
+                      {item.quantity}&times; {item.name}
+                    </p>
+                    <p className="order__list--price">
+                      {" "}
+                      - {item.totalPrice} RON
+                    </p>
+                  </li>
+                ))}
+              </ul>
+              <p className="order__list--total">TOTAL: {totalCartPrice} RON</p>
+            </>
           )}
 
           <p className="order__form--text">
@@ -422,7 +429,7 @@ function OrderForm() {
           <textarea
             id="orderDescription"
             type="text"
-            rows={5}
+            rows={10}
             className="order__form--input"
             onChange={handleChange}
           />

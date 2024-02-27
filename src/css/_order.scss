@@ -37,13 +37,16 @@
     font-size: $h5;
     color: $taupe;
 
+    @media (max-width: 53em) {
+      padding: 3rem 6rem;
+    }
+
     @media (max-width: 35em) {
-      padding: 4rem 6rem;
+      padding: 2rem;
     }
 
     @media (max-width: 32em) {
       width: 95%;
-      padding: 2rem;
     }
 
     &--heading {
@@ -51,9 +54,17 @@
       font-weight: 600;
       text-transform: uppercase;
 
+      @media (max-width: 20em) {
+        font-size: $h5;
+      }
+
       & span {
         font-size: $h4;
         color: $red;
+
+        @media (max-width: 20em) {
+          font-size: $h5;
+        }
       }
     }
 
@@ -65,9 +76,17 @@
     &--label {
       margin-bottom: -0.8rem;
 
+      @media (max-width: 20em) {
+        font-size: $h6;
+      }
+
       & span {
         font-size: $h5;
         color: $red;
+
+        @media (max-width: 20em) {
+          font-size: $p;
+        }
       }
     }
 
@@ -92,8 +111,19 @@
       align-items: center;
       gap: 4rem;
 
+      @media (max-width: 35em) {
+        gap: 2rem;
+      }
+      @media (max-width: 20em) {
+        gap: 1rem;
+      }
+
       & label {
         margin-right: 1rem;
+
+        @media (max-width: 20em) {
+          font-size: $h6;
+        }
       }
     }
 
@@ -161,6 +191,15 @@
       gap: 1rem;
       font-size: $p;
       color: $green-dark;
+
+      @media (max-width: 53em) {
+        gap: 0.4rem;
+      }
+    }
+    &--total {
+      font-family: "Cabin";
+      color: $green-dark;
+      font-size: $h5;
     }
   }
 

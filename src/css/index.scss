@@ -9,6 +9,7 @@
 @import "products";
 @import "cart";
 @import "order";
+@import "ordersteps";
 
 .hidden {
   visibility: hidden;
@@ -60,7 +61,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
     background: rgba(0, 0, 0, 0.5);
     z-index: 10;
   }
@@ -431,10 +432,6 @@ body {
     color: $gold;
     transition: all 0.3s;
 
-    // &--left {
-    //   left: -1rem;
-    // }
-
     &:hover {
       font-size: $h1;
     }
@@ -481,7 +478,7 @@ body {
         transform: scale(0.7);
       }
 
-      @media (max-width: 24em) {
+      @media (max-width: 27em) {
         display: none;
       }
     }
@@ -539,7 +536,7 @@ body {
         transform: scale(0.7);
       }
 
-      @media (max-width: 24em) {
+      @media (max-width: 27em) {
         display: none;
       }
     }
@@ -584,10 +581,11 @@ body {
     font-weight: 600;
     color: $green;
     background: $gold;
-    border: none;
+    border: 2px solid $green;
     padding: 0.6rem;
     cursor: pointer;
     border-radius: 8px;
+    z-index: 40;
 
     &--icon {
       font-size: $h2;
@@ -614,7 +612,12 @@ body {
   width: 50%;
   height: 30rem;
   display: flex;
+  gap: 2rem;
   flex-direction: column;
+
+  @media (max-width: 32em) {
+    width: 80%;
+  }
 
   &__heading {
     font-family: "Cabin";
@@ -622,6 +625,10 @@ body {
     text-align: center;
     color: $taupe;
     margin-bottom: 2rem;
+
+    @media (max-width: 19em) {
+      font-size: $h4;
+    }
   }
 
   &__choice {
@@ -681,6 +688,11 @@ body {
   color: $red;
   margin-left: 1rem;
   font-weight: 700;
+
+  @media (max-width: 20em) {
+    font-size: $p;
+    margin-left: 0.5rem;
+  }
 }
 
 .submission-message {

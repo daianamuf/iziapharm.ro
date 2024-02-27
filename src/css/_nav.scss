@@ -78,9 +78,10 @@
   }
 
   &__link {
+    cursor: pointer;
     border: none;
-    background: transparent;
     font-family: "Cabin";
+    background-color: transparent;
     font-size: $h5;
     color: $green;
     text-decoration: none;

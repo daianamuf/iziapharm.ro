@@ -1,4 +1,4 @@
-import { Envelope, MapPin, Phone } from "@phosphor-icons/react";
+import { Clock, Envelope, MapPin, Phone } from "@phosphor-icons/react";
 import Map from "../components/Map";
 
 function Contact() {
@@ -18,7 +18,14 @@ function Contact() {
           <Envelope className="contact__info--icon" />
           <p>iziapharm@gmail.com</p>
         </div>
-        <p>PROGRAM</p>
+        <div className="contact__info--el">
+          <Clock className="contact__info--icon" />
+          <div className="contact__program">
+            <p>Luni - Vineri: 09:00 - 17:00</p>
+            <p>Sâmbătă: 09:00 - 14:00</p>
+            <p>Duminică: ÎNCHIS</p>
+          </div>
+        </div>
         <div className="contact__info--el">
           <MapPin className="contact__info--icon" />
           <p>

@@ -5,9 +5,11 @@ import {
   Phone,
 } from "@phosphor-icons/react";
 
-function Footer() {
+import PropTypes from "prop-types";
+
+function Footer({ cartOpen }) {
   return (
-    <footer className="footer">
+    <footer className={`footer ${cartOpen ? "blur content" : ""}`}>
       <img
         src="/assets/logo/logo3-gold-transparent.png"
         alt="Logo"
@@ -51,5 +53,9 @@ function Footer() {
     </footer>
   );
 }
+
+Footer.propTypes = {
+  cartOpen: PropTypes.bool.isRequired,
+};
 
 export default Footer;

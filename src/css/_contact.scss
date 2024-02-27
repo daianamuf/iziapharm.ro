@@ -54,4 +54,11 @@
   &__map {
     width: 100%;
   }
+
+  &__program {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-weight: 600;
+  }
 }
