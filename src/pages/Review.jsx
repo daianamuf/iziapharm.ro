@@ -213,6 +213,7 @@ function Review() {
           type="text"
           className="review__form--input"
           onChange={handleChange}
+          rows={10}
         />
 
         <button type="submit" className="review__form--btn">

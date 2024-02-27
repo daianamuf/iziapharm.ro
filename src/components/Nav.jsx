@@ -43,7 +43,7 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
       const scrollPosition = window.scrollY;
       const totalHeight =
         document.documentElement.scrollHeight - window.innerHeight;
-      const scrollTreshold = totalHeight * 0.05;
+      const scrollTreshold = totalHeight * 0.02;
 
       setIsScrolling(scrollPosition > scrollTreshold);
     };
@@ -161,7 +161,7 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
     );
 
   return (
-    <nav className={`nav ${isScrolling ? "nav-scrolling" : ""}`}>
+    <nav className={`nav ${isScrolling ? "nav-scrolling" : ""} `}>
       {cart.length > 0 && (
         <OpenCart
           onClick={() => setCartOpen(true)}
@@ -172,18 +172,25 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
       <div className="nav__order">
         <Link
           to={"/despre"}
-          className="nav__link underline_animation_hover--green"
+          // className="nav__link underline_animation_hover--green"
+          className={`nav__link underline_animation_hover--green ${
+            cartOpen ? "blur" : ""
+          }`}
         >
           Despre Iziapharm
         </Link>
         <Link
           to={"/cumcomand"}
-          className="nav__link underline_animation_hover--green"
+          className={`nav__link underline_animation_hover--green ${
+            cartOpen ? "blur" : ""
+          }`}
         >
           Cum comand?
         </Link>
         <button
-          className="nav__link underline_animation_hover--green"
+          className={`nav__link underline_animation_hover--green ${
+            cartOpen ? "blur" : ""
+          }`}
           onClick={handleOrderClick}
         >
           Comandă
@@ -192,7 +199,9 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
 
       <Link
         to={"/"}
-        className={`nav__logo ${isScrolling ? "nav__logo--scrolling" : ""}`}
+        className={`nav__logo ${isScrolling ? "nav__logo--scrolling" : ""} ${
+          cartOpen ? "nav__logo--blur blur" : ""
+        }`}
       >
         <img
           src="/assets/logo/logo2_transparent.png"
@@ -211,13 +220,17 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
             debounceNavigate("/produse");
             setMenuOpen(false);
           }}
-          className="nav__link underline_animation_hover--green"
+          className={`nav__link underline_animation_hover--green ${
+            cartOpen ? "blur" : ""
+          }`}
         >
           Produse
         </button>
         <Link
           to={"/review"}
-          className="nav__link underline_animation_hover--green"
+          className={`nav__link underline_animation_hover--green ${
+            cartOpen ? "blur" : ""
+          }`}
         >
           Lasă un review
         </Link>
@@ -227,13 +240,17 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
             debounceNavigate("/blog");
             setMenuOpen(false);
           }}
-          className="nav__link underline_animation_hover--green"
+          className={`nav__link underline_animation_hover--green ${
+            cartOpen ? "blur" : ""
+          }`}
         >
           Blog
         </button>
         <Link
           to={"/contact"}
-          className="nav__link underline_animation_hover--green"
+          className={`nav__link underline_animation_hover--green ${
+            cartOpen ? "blur" : ""
+          }`}
         >
           Contact
         </Link>

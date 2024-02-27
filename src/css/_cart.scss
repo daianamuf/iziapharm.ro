@@ -80,12 +80,20 @@
     border: 3px solid $gold;
     border-radius: 10px;
 
+    @media (max-width: 38em) {
+      width: 95%;
+    }
+
     &--text {
       font-family: "Cabin";
       font-size: $h4;
       color: $red;
       font-weight: 700;
       margin-bottom: 1rem;
+
+      @media (max-width: 20em) {
+        font-size: $h5;
+      }
     }
 
     &--choices {
@@ -100,6 +108,7 @@
       font-size: $h3;
       text-decoration: none;
       border: none;
+      background: transparent;
       color: $green;
     }
   }
@@ -185,5 +194,12 @@
     color: $green;
     background: transparent;
     font-family: "Cabin";
+  }
+
+  &__total {
+    font-family: "Cabin";
+    color: $green-dark;
+    font-size: $h5;
+    padding-left: 5rem;
   }
 }
