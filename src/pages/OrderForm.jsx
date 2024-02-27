@@ -183,7 +183,6 @@ function OrderForm() {
     }
 
     if (isFormValid) {
-      
       // Proceed with form submission actions if validation passes
       setOrder(state.inputs);
 
@@ -200,11 +199,13 @@ function OrderForm() {
 
   const setOrder = async (inputs) => {
     inputs.fileUpload = await readFile(inputs.fileUpload);
-    console.log(JSON.stringify(inputs));
     try {
       const response = await fetch('/.netlify/functions/orderHandler', {
         method: 'POST',
-        body: JSON.stringify(inputs), 
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(inputs)
       });
       if (!response.ok) throw new Error('Upload failed');
       const result = await response.json();

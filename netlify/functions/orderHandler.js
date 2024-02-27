@@ -11,17 +11,17 @@ const auth = new GoogleAuth({
   scopes: ['https://www.googleapis.com/auth/drive', 'https://www.googleapis.com/auth/spreadsheets'],
 });
   
-async function uploadImageToDrive(authClient, imageData) {
-    console.log(imageData);
+async function uploadImageToDrive(authClient, imageData, data) {
     const driveService = google.drive({ version: 'v3', auth: authClient });
-    console.log('m am auth')
+
     const fileMetadata = {
-        name: 'image-name',
+        mimeType: 'image/jpg',
+        name: `${data.firstName} ${data.lastName}`,
         parents: ['1AmX95jiT2wtUBme5N0LiYMTxHARW_j20'],
     };
 
     // Convert the base64 string to a Buffer
-    const buffer = Buffer.from(imageData, 'base64');
+    const buffer = Buffer.from(imageData.replace(/^data:image\/\w+;base64,/, ""), 'base64');
 
     // Convert the Buffer into a Readable Stream
     const stream = new Readable();
@@ -29,8 +29,8 @@ async function uploadImageToDrive(authClient, imageData) {
     stream.push(null); // EOF
 
     const media = {
-        mimeType: 'image/jpeg',
-        body: stream, // Use the stream here
+        mimeType: 'image/jpg',
+        body: stream,
     };
 
     const file = await driveService.files.create({
@@ -43,39 +43,32 @@ async function uploadImageToDrive(authClient, imageData) {
 }
   
 
-  async function updateGoogleSheet(authClient, sheetId, data, imageUrl) {
+  async function updateGoogleSheet(authClient, data) {
     const sheetsService = google.sheets({ version: 'v4', auth: authClient });
     const values = [
       // Structure your data here, including the image URL
-      [data.name, data.value, imageUrl], // Example row
+      [data.firstName, data.lastName, data.fileUpload, data.email, data.phoneNumber, data.role, data.orderDescription, data.medic, /* Produse*/, data.petName, data.species, data.gender, data.age, data.weight], // Example row
     ];
     await sheetsService.spreadsheets.values.append({
-      spreadsheetId: sheetId,
-      range: 'Sheet1', // Adjust as needed
+      spreadsheetId: '1DlB9OeqRObamgGciZ71YcwKmJD5A0PXDcBMNee19ZBQ',
+      range: 'Foaie1', // Adjust as needed
       valueInputOption: 'RAW',
       requestBody: { values },
     });
   }
 
   exports.handler = async (event) => {
-    // Message for FE. 
-  if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
-  } 
-
   try {
     const formData = event.body
     const parsedData = JSON.parse(formData);
 
     const authClient = await auth.getClient();
 
-    // Assuming `data.image` contains the base64-encoded image data
-    const imageUrl = await uploadImageToDrive(authClient, parsedData.fileUpload);
-    console.log(imageUrl);
-    // // Remove the image from data to prevent trying to add it as a separate field in the sheet
-    // delete data.image;
+    const imageUrl = await uploadImageToDrive(authClient, parsedData.fileUpload, parsedData);
+    //Remove the image from data to prevent trying to add it as a separate field in the sheet
+    parsedData.fileUpload = imageUrl;
 
-    // await updateGoogleSheet(authClient, 'your-sheet-id', data, imageUrl);
+    await updateGoogleSheet(authClient, parsedData);
 
     return {
       statusCode: 200,
