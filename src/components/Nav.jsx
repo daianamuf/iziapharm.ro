@@ -99,6 +99,7 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
             Despre Iziapharm
           </Link>
           <Link
+            to={"/cumcomand"}
             className="nav__sidebar--link"
             onClick={() => setMenuOpen(false)}
           >
@@ -175,7 +176,10 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
         >
           Despre Iziapharm
         </Link>
-        <Link className="nav__link underline_animation_hover--green">
+        <Link
+          to={"/cumcomand"}
+          className="nav__link underline_animation_hover--green"
+        >
           Cum comand?
         </Link>
         <button

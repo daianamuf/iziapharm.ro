@@ -13,6 +13,7 @@ import Contact from "./pages/Contact";
 import BlogPost from "./pages/BlogPost";
 import ProductPost from "./pages/ProductPost";
 import OrderForm from "./pages/OrderForm";
+import OrderSteps from "./pages/OrderSteps";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "/comanda",
         element: <OrderForm />,
+      },
+      {
+        path: "/cumcomand",
+        element: <OrderSteps />,
       },
     ],
   },
