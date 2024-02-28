@@ -83,6 +83,7 @@ function ProductPost() {
       description,
       prescription,
       price,
+      productCode,
       "slug": slug.current,
       "field":field->{
         fieldName
@@ -117,10 +118,13 @@ function ProductPost() {
 
   const isInCart = currentQuantity > 0;
 
+  console.log(product);
+
   const handleAddToCart = () => {
     const newItem = {
       productId: product.id,
       name: product.name,
+      productCode: product.productCode,
       prescription: product.prescription,
       quantity: 1,
       unitPrice: product.price,
