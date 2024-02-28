@@ -1,7 +1,7 @@
 import { Leaf } from "@phosphor-icons/react";
 import { useContext, useEffect, useReducer, useState } from "react";
-import { useSelector } from "react-redux";
-import { getCart, getTotalCartPrice } from "../cart/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { clearCart, getCart, getTotalCartPrice } from "../cart/cartSlice";
 import { OrderContext } from "../App";
 import FormChoice from "../components/FormChoice";
 import readFile from "../useFileReader";
@@ -48,18 +48,17 @@ function OrderForm() {
   const [state, dispatch] = useReducer(formReducer, initialState);
   const [submissionMessage, setSubmissionMessage] = useState("");
   const [formKey, setFormKey] = useState(Date.now());
-
-  // const [isSubmitted, setIsSubmitted] = useState(false);
-  // const [selectedFile, setSelectedFile] = useState(null);
   const [choice, setChoice] = useState("");
   const cart = useSelector(getCart);
+  const dispatchCart = useDispatch();
+
   const { needsPrescription, choiceOpen, vet, setVet } =
     useContext(OrderContext);
   const totalCartPrice = useSelector(getTotalCartPrice);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    
+
     if (!file) {
       dispatch({
         type: "setError",
@@ -191,7 +190,7 @@ function OrderForm() {
       dispatch({ type: "resetForm" });
       setSubmissionMessage("Comanda a fost trimisă cu succes!");
       setFormKey(Date.now());
-
+      dispatchCart(clearCart);
       setTimeout(() => {
         setSubmissionMessage("");
       }, 5000);
@@ -201,20 +200,20 @@ function OrderForm() {
   const setOrder = async (inputs) => {
     inputs.fileUpload = await readFile(inputs.fileUpload);
     try {
-      const response = await fetch('/.netlify/functions/orderHandler', {
-        method: 'POST',
+      const response = await fetch("/.netlify/functions/orderHandler", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(inputs)
+        body: JSON.stringify(inputs),
       });
-      if (!response.ok) throw new Error('Upload failed');
+      if (!response.ok) throw new Error("Upload failed");
       const result = await response.json();
-      console.log('Upload successful:', result);
+      console.log("Upload successful:", result);
     } catch (error) {
-      console.error('Error uploading file:', error);
+      console.error("Error uploading file:", error);
     }
-  }
+  };
 
   return (
     <section className="order">
