@@ -252,6 +252,10 @@ body {
   row-gap: 3rem;
   margin-bottom: 2rem;
 
+  @media (min-width: 91em) {
+    max-width: 120rem;
+  }
+
   @media (max-width: 50em) {
     width: 95%;
   }
@@ -328,6 +332,9 @@ body {
   flex-direction: column;
   gap: 3rem;
 
+  @media (min-width: 91em) {
+    max-width: 120rem;
+  }
   @media (max-width: 50em) {
     width: 95%;
   }
@@ -409,6 +416,9 @@ body {
   margin-bottom: 3rem;
   position: relative;
 
+  @media (min-width: 91em) {
+    max-width: 100rem;
+  }
   @media (max-width: 29em) {
     width: 100%;
   }

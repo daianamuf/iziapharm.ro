@@ -97,6 +97,9 @@
   margin-bottom: 3rem;
   opacity: 0;
 
+  @media (min-width: 91em) {
+    width: 60%;
+  }
   @media (max-width: 30em) {
     width: 95%;
   }

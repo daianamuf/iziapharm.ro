@@ -146,6 +146,9 @@
   grid-template-rows: min-content 1fr;
   column-gap: 3rem;
 
+  @media (min-width: 91em) {
+    width: 60%;
+  }
   @media (max-width: 64em) {
     width: 90%;
   }
@@ -181,7 +184,7 @@
     background: rgba($green, 0.2);
     padding-left: 0.8rem;
     border-radius: 8px;
-    margin-bottom: 0.4rem;
+    margin-bottom: 2rem;
 
     @media (max-width: 50em) {
       font-size: $h3;
@@ -252,9 +255,8 @@
     cursor: pointer;
     border: none;
     background: $gold;
-    position: absolute;
-    right: 0;
-    top: 3rem;
+    margin-bottom: 2rem;
+    width: 50%;
     padding: 1rem;
     font-family: "Cabin";
     font-size: $h4;
@@ -270,8 +272,7 @@
 
     @media (max-width: 59em) {
       font-size: $h5;
-      position: static;
-      margin-bottom: 1rem;
+
       width: 50%;
     }
 
@@ -281,17 +282,14 @@
   }
 
   &--updateOrder {
-    position: absolute;
-    right: 0;
-    top: 1rem;
+    width: 50%;
     display: flex;
     gap: 2rem;
     align-items: center;
+    margin-bottom: 2rem;
 
     @media (max-width: 59em) {
       font-size: $h5;
-      position: static;
-      margin-bottom: 1rem;
       width: 80%;
     }
 

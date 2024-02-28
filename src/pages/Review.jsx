@@ -31,6 +31,7 @@ function formReducer(state, action) {
   }
 }
 
+//// DE SCHIMBAT CHEIA PTR MAILUL IZEI//////////
 function Review() {
   const [state, dispatch] = useReducer(formReducer, initialState);
   // const [isSubmitted, setIsSubmitted] = useState(false);
@@ -69,7 +70,7 @@ function Review() {
     validateInput(id, value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let isFormValid = true;
     let newErrors = {}; // Local object to track errors
@@ -104,8 +105,28 @@ function Review() {
 
     if (isFormValid) {
       console.log("Form data:", state.inputs);
+      const formData = new FormData(e.target);
+      Object.entries(state.inputs).forEach(([key, value]) => {
+        formData.append(key, value);
+      });
+      console.log(formData);
+      formData.append("access_key", "be6eeaf9-8feb-4de2-be37-79c3273c0ada");
+
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      }).then((res) => res.json());
+
+      if (res.success) {
+        console.log("Success", res);
+        setSubmissionMessage("Review-ul a fost trimis cu succes!");
+      } else {
+        console.log("Error", res);
+        setSubmissionMessage("A apărut o eroare, review-ul a putut fi trimis!");
+      }
+
       dispatch({ type: "resetForm" });
-      setSubmissionMessage("Review-ul a fost trimis cu succes!");
+
       setFormKey(Date.now());
 
       setTimeout(() => {
