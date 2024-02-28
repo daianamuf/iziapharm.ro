@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const stepsOrder = [
   {
     id: 1,
-    text: "În cazul în care doriți să customizați un tratament recomandat de un medic, pe baza unei rețete medicale, navigați la pagina de comandă.",
+    text: "În cazul în care doriți să obțineți un tratament particular recomandat de un medic, pe baza unei rețete medicale, mergeți la pagina de comandă.",
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const stepsOrder = [
 const stepsProducts = [
   {
     id: 1,
-    text: "Pentru a achiziționa produsele noastre, navigați la pagina destinata produselor. Acolo veți găsi atât produse uzuale, pe care le puteți comanda oricând doriți, cât si tratamente mai complexe, care necesită eliberarea unei prescripții medicale.",
+    text: "Pentru a achiziționa produsele noastre, mergeți la pagina destinată produselor. Acolo veți găsi atât produse uzuale, pe care le puteți comanda oricând doriți, cât si tratamente mai complexe, care necesită eliberarea unei prescripții medicale.",
   },
   {
     id: 2,

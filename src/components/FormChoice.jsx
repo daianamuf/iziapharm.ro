@@ -3,13 +3,14 @@ import { OrderContext } from "../App";
 import PropTypes from "prop-types";
 
 function FormChoice({ choice, setChoice }) {
-  const { setChoiceOpen } = useContext(OrderContext);
+  const { setChoiceOpen, setNeedsPrescription } = useContext(OrderContext);
   const [message, setMessage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (choice) {
       setChoiceOpen(false);
+      setNeedsPrescription(true);
       setMessage("");
     } else {
       setMessage("Pentru a merge mai departe, alegeți o categorie!");

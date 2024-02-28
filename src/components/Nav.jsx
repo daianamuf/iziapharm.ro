@@ -1,12 +1,11 @@
 import { Leaf, List, X } from "@phosphor-icons/react";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getCart } from "../cart/cartSlice";
 import OpenCart from "../cart/OpenCart";
 import Cart from "../cart/Cart";
-import { OrderContext } from "../App";
 
 function debounce(callback, wait) {
   let timerId;
@@ -22,20 +21,13 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
   const [isScrolling, setIsScrolling] = useState(false);
   const [media, setMedia] = useState(window.innerWidth <= 1110);
   const cart = useSelector(getCart);
-  const { setChoiceOpen } = useContext(OrderContext);
   const navigate = useNavigate();
 
   const debounceNavigate = debounce((path) => navigate(path), 300);
 
   const handleOrderClick = () => {
     setMenuOpen(false);
-    if (cart.length === 0) {
-      setChoiceOpen(true);
-      navigate("/comanda");
-    } else {
-      setChoiceOpen(false);
-      navigate("/comanda");
-    }
+    navigate("/comanda");
   };
 
   useEffect(() => {

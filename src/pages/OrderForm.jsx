@@ -47,14 +47,39 @@ function formReducer(state, action) {
 function OrderForm() {
   const [state, dispatch] = useReducer(formReducer, initialState);
   const [submissionMessage, setSubmissionMessage] = useState("");
-  const [formKey, setFormKey] = useState(Date.now());
+  // const [formKey, setFormKey] = useState(Date.now());
   const [choice, setChoice] = useState("");
   const cart = useSelector(getCart);
   const dispatchCart = useDispatch();
+  const { setNeedsPrescription, setChoiceOpen } = useContext(OrderContext);
 
   const { needsPrescription, choiceOpen, vet, setVet } =
     useContext(OrderContext);
   const totalCartPrice = useSelector(getTotalCartPrice);
+
+  useEffect(() => {
+    if (cart.length === 0) {
+      setChoiceOpen(true);
+    } else {
+      setChoiceOpen(false);
+    }
+  }, [setChoiceOpen, cart.length]);
+
+  useEffect(() => {
+    if (cart.some((product) => product.prescription) || choice) {
+      setNeedsPrescription(true);
+    } else {
+      setNeedsPrescription(false);
+    }
+  }, [cart, setNeedsPrescription, choice]);
+
+  useEffect(() => {
+    if (choice === "vet") {
+      setVet(true);
+    } else {
+      setVet(false);
+    }
+  }, [choice, setVet]);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -67,15 +92,14 @@ function OrderForm() {
       });
       return;
     }
-    const allowedTypes = ["image/jpeg", "image/png", "application/pdf"];
+    const allowedTypes = ["image/jpeg", "image/png"];
     const maxSize = 5 * 1024 * 1024; // 5 MB in bytes
 
     if (!allowedTypes.includes(file.type)) {
       dispatch({
         type: "setError",
         field: "fileUpload",
-        error:
-          "Tipul fișierului este invalid. Doar JPEG, PNG, și PDF sunt permise.",
+        error: "Tipul fișierului este invalid. Doar JPEG și PNG sunt permise.",
       });
       return;
     }
@@ -89,17 +113,9 @@ function OrderForm() {
       return;
     }
 
-    dispatch({ type: "setInput", field: "fileUpload", value: file });
+    dispatch({ type: "setInput", field: "fileUpload", value: file || "" });
     dispatch({ type: "setError", field: "fileUpload", error: "" });
   };
-
-  useEffect(() => {
-    if (choice === "vet") {
-      setVet(true);
-    } else {
-      setVet(false);
-    }
-  }, [choice, setVet]);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -168,8 +184,9 @@ function OrderForm() {
 
     // Additional check for fileUpload to ensure an error is displayed if no file is selected
     if (
-      !state.inputs.fileUpload ||
-      state.inputs.fileUpload instanceof File === false
+      needsPrescription &&
+      (!state.inputs.fileUpload ||
+        state.inputs.fileUpload instanceof File === false)
     ) {
       dispatch({
         type: "setError",
@@ -182,34 +199,47 @@ function OrderForm() {
       dispatch({ type: "setError", field: "fileUpload", error: "" });
     }
 
+    const submissionData = {
+      ...state.inputs,
+      orderedProducts: cart.map(
+        (product) => `${product.quantity} x ${product.productCode}`
+      ),
+      totalCartPrice: totalCartPrice,
+    };
+
     if (isFormValid) {
       // Proceed with form submission actions if validation passes
-      setOrder(state.inputs);
+      setOrder(submissionData);
 
       // Consider resetting the form or providing further user feedback here
       dispatch({ type: "resetForm" });
-      setSubmissionMessage("Comanda a fost trimisă cu succes!");
-      setFormKey(Date.now());
-      dispatchCart(clearCart);
+
+      // setFormKey(Date.now());
       setTimeout(() => {
+        dispatchCart(clearCart());
         setSubmissionMessage("");
       }, 5000);
     }
   };
 
-  const setOrder = async (inputs) => {
-    inputs.fileUpload = await readFile(inputs.fileUpload);
+  const setOrder = async (submissionData) => {
+    if (submissionData.fileUpload) {
+      submissionData.fileUpload = await readFile(submissionData.fileUpload);
+    }
     try {
       const response = await fetch("/.netlify/functions/orderHandler", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(inputs),
+        body: JSON.stringify(submissionData),
       });
       if (!response.ok) throw new Error("Upload failed");
       const result = await response.json();
       console.log("Upload successful:", result);
+      setSubmissionMessage(
+        result.message || "Comanda a fost trimisă cu succes!"
+      );
     } catch (error) {
       console.error("Error uploading file:", error);
     }
@@ -220,7 +250,7 @@ function OrderForm() {
       <h1 className="order__heading">Comandă</h1>
       {choiceOpen && <FormChoice choice={choice} setChoice={setChoice} />}
       {!choiceOpen && (
-        <form key={formKey} className="order__form" onSubmit={handleSubmit}>
+        <form className="order__form" onSubmit={handleSubmit}>
           {cart.length > 0 && (
             <>
               <ul className="order__list">
