@@ -63,7 +63,7 @@ function Blog() {
   return (
     <div className="blog">
       <h1 className="blog__heading">Blog</h1>
-      <p className="blog__page">Pagina {currentPage}</p>
+
       <section className="blog__posts">
         {currentPosts.map((post) => (
           <div key={post._id} className="blog__post">
@@ -83,21 +83,23 @@ function Blog() {
         ))}
       </section>
 
-      <div className="blog__pagination">
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button
-            // className=""
-            className={
-              currentPage === index + 1
-                ? "blog__pagination--btn blog__pagination--active"
-                : "blog__pagination--btn"
-            }
-            key={index + 1}
-            onClick={() => paginate(index + 1)}
-          >
-            {index + 1}
-          </button>
-        ))}
+      <div className="pagination">
+        <p className="pagination__currentpage">Pagina {currentPage}</p>
+        <div className="pagination__pages">
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              className={
+                currentPage === index + 1
+                  ? "pagination__btn pagination__active"
+                  : "pagination__btn"
+              }
+              key={index + 1}
+              onClick={() => paginate(index + 1)}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

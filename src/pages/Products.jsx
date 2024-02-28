@@ -13,6 +13,9 @@ function Products() {
   const [fields, setFields] = useState([]);
   const [administrations, setAdministrations] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(10);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     setIsLoading(true);
@@ -93,8 +96,23 @@ function Products() {
       tempProducts = tempProducts.sort((a, b) => a.price - b.price);
     }
 
-    setFilteredProducts(tempProducts);
-  }, [products, fieldFilter, administrationFilter, sortOrder]);
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentFilteredProducts = tempProducts.slice(
+      indexOfFirstProduct,
+      indexOfLastProduct
+    );
+    setTotalPages(Math.ceil(products.length / productsPerPage));
+
+    setFilteredProducts(currentFilteredProducts);
+  }, [
+    products,
+    fieldFilter,
+    administrationFilter,
+    sortOrder,
+    currentPage,
+    productsPerPage,
+  ]);
 
   const toggleFilter = () => {
     setIsOpen(!isOpen);
@@ -171,6 +189,25 @@ function Products() {
           ))
         )}
       </section>
+
+      <div className="pagination">
+        <p className="pagination__currentpage">Pagina {currentPage}</p>
+        <div className="pagination__pages">
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              className={
+                currentPage === index + 1
+                  ? "pagination__btn pagination__active"
+                  : "pagination__btn"
+              }
+              key={index + 1}
+              onClick={() => setCurrentPage(index + 1)}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
