@@ -20,6 +20,12 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: 'productCode',
+      title: 'Product Code',
+      type: 'string',
+      validation: (Rule) => Rule.required().max(15),
+    },
+    {
       name: 'prescription',
       title: 'Prescription',
       type: 'boolean', // Checkbox input
