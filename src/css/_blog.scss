@@ -17,7 +17,7 @@
     width: 100%;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
     row-gap: 2rem;
     column-gap: 4rem;
   }
@@ -83,6 +83,36 @@
     &--btn {
       text-decoration: none;
       cursor: pointer;
+    }
+  }
+
+  &__page {
+    align-self: start;
+    font-family: "Cursive";
+    font-size: $h4;
+    font-weight: 500;
+    color: $green;
+    margin-bottom: 1rem;
+  }
+
+  &__pagination {
+    display: flex;
+    gap: 1rem;
+
+    &--btn {
+      cursor: pointer;
+      background: transparent;
+      border: 2px solid $green;
+      font-family: "Cabin";
+      font-size: $h5;
+      font-weight: 600;
+      color: $green;
+      padding: 1rem 2rem;
+      border-radius: 50%;
+    }
+
+    &--active {
+      background: rgba($gold, 0.8);
     }
   }
 }
