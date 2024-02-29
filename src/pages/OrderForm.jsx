@@ -217,7 +217,9 @@ function OrderForm() {
         }, 5000);
       } catch (error) {
         console.error(error);
-        setSubmissionMessage("Eroare de server. Vă rugăm incercați mai tarziu!");
+        setSubmissionMessage(
+          "Eroare de server. Vă rugăm incercați mai tarziu!"
+        );
       }
     }
   };
@@ -235,9 +237,7 @@ function OrderForm() {
     });
     if (!response.ok) throw new Error("Upload failed");
     const result = await response.json();
-    setSubmissionMessage(
-      result.message || "Comanda a fost trimisă cu succes!"
-    );
+    setSubmissionMessage(result.message || "Comanda a fost trimisă cu succes!");
   };
 
   return (

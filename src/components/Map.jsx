@@ -1,10 +1,22 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
 
 const center = {
   lat: 44.363099317114305,
   lng: 26.129275619821453,
 };
+
+let defaultIcon = L.icon({
+  iconUrl: icon,
+  shadowUrl: iconShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
 
 function Map() {
   const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${center.lat},${center.lng}`;
@@ -26,7 +38,11 @@ function Map() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
-      <Marker position={center} eventHandlers={{ click: onMarkerClick }}>
+      <Marker
+        icon={defaultIcon}
+        position={center}
+        eventHandlers={{ click: onMarkerClick }}
+      >
         <Popup className="map__popup">Farmacia Iziapharm</Popup>
       </Marker>
     </MapContainer>
