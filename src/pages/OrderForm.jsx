@@ -170,7 +170,7 @@ function OrderForm() {
     dispatch({ type: "setError", field: id, error });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     let isFormValid = true;
@@ -208,15 +208,17 @@ function OrderForm() {
     };
 
     if (isFormValid) {
-      // Proceed with form submission actions if validation passes
-      setOrder(submissionData).then(() => {
-        // Consider resetting the form or providing further user feedback here
+      try {
+        await setOrder(submissionData);
         dispatch({ type: "resetForm" });
         setTimeout(() => {
           dispatchCart(clearCart());
           setSubmissionMessage("");
         }, 5000);
-      });
+      } catch (error) {
+        console.error(error);
+        setSubmissionMessage("Eroare de server. Vă rugăm incercați mai tarziu!");
+      }
     }
   };
 
@@ -224,22 +226,18 @@ function OrderForm() {
     if (submissionData.fileUpload) {
       submissionData.fileUpload = await readFile(submissionData.fileUpload);
     }
-    try {
-      const response = await fetch("/.netlify/functions/orderHandler", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(submissionData),
-      });
-      if (!response.ok) throw new Error("Upload failed");
-      const result = await response.json();
-      setSubmissionMessage(
-        result.message || "Comanda a fost trimisă cu succes!"
-      );
-    } catch (error) {
-      console.error("Error uploading file:", error);
-    }
+    const response = await fetch("/.netlify/functions/orderHandler", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(submissionData),
+    });
+    if (!response.ok) throw new Error("Upload failed");
+    const result = await response.json();
+    setSubmissionMessage(
+      result.message || "Comanda a fost trimisă cu succes!"
+    );
   };
 
   return (
