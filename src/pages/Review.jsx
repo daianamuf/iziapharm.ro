@@ -104,12 +104,10 @@ function Review() {
     }
 
     if (isFormValid) {
-      console.log("Form data:", state.inputs);
       const formData = new FormData(e.target);
       Object.entries(state.inputs).forEach(([key, value]) => {
         formData.append(key, value);
       });
-      console.log(formData);
       formData.append("access_key", "be6eeaf9-8feb-4de2-be37-79c3273c0ada");
 
       const res = await fetch("https://api.web3forms.com/submit", {
@@ -118,7 +116,6 @@ function Review() {
       }).then((res) => res.json());
 
       if (res.success) {
-        console.log("Success", res);
         setSubmissionMessage("Review-ul a fost trimis cu succes!");
       } else {
         console.log("Error", res);

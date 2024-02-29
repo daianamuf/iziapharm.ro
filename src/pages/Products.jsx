@@ -37,7 +37,6 @@ function Products() {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.result);
         setProducts(data.result);
         setFilteredProducts(data.result);
         setIsLoading(false);

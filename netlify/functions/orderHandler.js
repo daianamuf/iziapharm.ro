@@ -88,13 +88,15 @@ exports.handler = async (event) => {
 
     const authClient = await auth.getClient();
 
-    const imageUrl = await uploadImageToDrive(
-      authClient,
-      parsedData.fileUpload,
-      parsedData
-    );
-    //Remove the image from data to prevent trying to add it as a separate field in the sheet
-    parsedData.fileUpload = imageUrl;
+    if (parsedData.fileUpload) {
+      const imageUrl = await uploadImageToDrive(
+        authClient,
+        parsedData.fileUpload,
+        parsedData
+      );
+      //Remove the image from data to prevent trying to add it as a separate field in the sheet
+      parsedData.fileUpload = imageUrl;
+    }
 
     await updateGoogleSheet(authClient, parsedData);
 
@@ -106,7 +108,7 @@ exports.handler = async (event) => {
     console.error(error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ message: "Internal Server Error" }),
+      body: JSON.stringify({ message: "Eroare de server. Vă rugăm incercați mai tarziu!" }),
     };
   }
 };

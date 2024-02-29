@@ -19,7 +19,7 @@ const initialState = {
     age: "",
     weight: "",
     orderDescription: "",
-    fileUpload: "",
+    fileUpload: null,
     medic: "",
   },
   errors: {},
@@ -113,7 +113,7 @@ function OrderForm() {
       return;
     }
 
-    dispatch({ type: "setInput", field: "fileUpload", value: file || "" });
+    dispatch({ type: "setInput", field: "fileUpload", value: file });
     dispatch({ type: "setError", field: "fileUpload", error: "" });
   };
 
@@ -209,16 +209,14 @@ function OrderForm() {
 
     if (isFormValid) {
       // Proceed with form submission actions if validation passes
-      setOrder(submissionData);
-
-      // Consider resetting the form or providing further user feedback here
-      dispatch({ type: "resetForm" });
-
-      // setFormKey(Date.now());
-      setTimeout(() => {
-        dispatchCart(clearCart());
-        setSubmissionMessage("");
-      }, 5000);
+      setOrder(submissionData).then(() => {
+        // Consider resetting the form or providing further user feedback here
+        dispatch({ type: "resetForm" });
+        setTimeout(() => {
+          dispatchCart(clearCart());
+          setSubmissionMessage("");
+        }, 5000);
+      });
     }
   };
 
@@ -236,7 +234,6 @@ function OrderForm() {
       });
       if (!response.ok) throw new Error("Upload failed");
       const result = await response.json();
-      console.log("Upload successful:", result);
       setSubmissionMessage(
         result.message || "Comanda a fost trimisă cu succes!"
       );

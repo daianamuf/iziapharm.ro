@@ -27,7 +27,6 @@ function Blog() {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.result);
         setPosts(data.result);
         setIsLoading(false);
       })
