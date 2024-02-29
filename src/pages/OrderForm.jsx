@@ -461,7 +461,7 @@ function OrderForm() {
           {needsPrescription && (
             <div className="order__form--prescription">
               <label htmlFor="fileUpload" className="order__form--label">
-                Încarcă rețeta (img/pdf)<span>*</span>
+                Încarcă rețeta (jpg/png)<span>*</span>
                 {state.errors.fileUpload && (
                   <span className="error-message">
                     {state.errors.fileUpload}

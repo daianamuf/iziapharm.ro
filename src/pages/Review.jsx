@@ -108,7 +108,7 @@ function Review() {
       Object.entries(state.inputs).forEach(([key, value]) => {
         formData.append(key, value);
       });
-      formData.append("access_key", "be6eeaf9-8feb-4de2-be37-79c3273c0ada");
+      formData.append("access_key", "69fa3466-12f2-49c6-9c9c-039540c71048");
 
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
