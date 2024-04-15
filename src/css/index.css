@@ -842,7 +842,7 @@
 }
 @media (min-width: 91em) {
   .post {
-    width: 60%;
+    width: 70%;
   }
 }
 @media (max-width: 30em) {
@@ -872,8 +872,9 @@
   }
 }
 .post__heading {
-  font-size: 4.8828rem;
+  font-size: 3.125rem;
   font-family: "Heading";
+  text-transform: uppercase;
   color: #606658;
   align-self: center;
   margin: 0 auto;
@@ -910,6 +911,7 @@
   font-family: "Cabin";
   color: #464035;
   text-align: justify;
+  margin-bottom: 1.6rem;
 }
 @media (max-width: 48em) {
   .post__content {
