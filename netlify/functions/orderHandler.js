@@ -23,7 +23,7 @@ async function uploadImageToDrive(authClient, imageData, data) {
   const fileMetadata = {
     mimeType: "image/jpg",
     name: `${data.firstName} ${data.lastName}`,
-    parents: ["1AmX95jiT2wtUBme5N0LiYMTxHARW_j20"],
+    parents: [process.env.GOOGLE_DRIVE_FOLDER_ID],
   };
 
   // Convert the base64 string to a Buffer
@@ -74,7 +74,7 @@ async function updateGoogleSheet(authClient, data) {
     ], // Example row
   ];
   await sheetsService.spreadsheets.values.append({
-    spreadsheetId: "1DlB9OeqRObamgGciZ71YcwKmJD5A0PXDcBMNee19ZBQ",
+    spreadsheetId: process.env.GOOGLE_SPREADSHEET_ID,
     range: "Foaie1", // Adjust as needed
     valueInputOption: "RAW",
     requestBody: { values },
@@ -108,7 +108,9 @@ exports.handler = async (event) => {
     console.error(error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ message: "Eroare de server. Vă rugăm incercați mai tarziu!" }),
+      body: JSON.stringify({
+        message: "Eroare de server. Vă rugăm incercați mai tarziu!",
+      }),
     };
   }
 };
