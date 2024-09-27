@@ -1,4 +1,4 @@
-import { Leaf } from "@phosphor-icons/react";
+import { Pill } from "@phosphor-icons/react";
 import { useContext, useEffect, useReducer, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart, getCart, getTotalCartPrice } from "../cart/cartSlice";
@@ -251,7 +251,7 @@ function OrderForm() {
               <ul className="order__list">
                 {cart.map((item) => (
                   <li className="order__list--item" key={item.productId}>
-                    <Leaf className="order__list--icon" />
+                    <Pill className="order__list--icon" />
                     <p className="order__list--quantity">
                       {item.quantity}&times; {item.name}
                     </p>

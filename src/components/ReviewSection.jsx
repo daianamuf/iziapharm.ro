@@ -1,4 +1,4 @@
-import { Leaf, Quotes } from "@phosphor-icons/react";
+import { Pill, Quotes } from "@phosphor-icons/react";
 
 const reviews = [
   {
@@ -28,7 +28,7 @@ function ReviewSection() {
         return (
           <div key={rev.id} className="rev">
             <p className="rev__name">
-              <Leaf className="rev__name--icon" />
+              <Pill className="rev__name--icon" />
               {rev.name}
             </p>
             <div className="rev__review">

@@ -1,4 +1,4 @@
-import { Leaf, List, X } from "@phosphor-icons/react";
+import { Pill, List, X } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
@@ -87,7 +87,7 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
             className="nav__sidebar--link"
             onClick={() => setMenuOpen(false)}
           >
-            <Leaf className="nav__sidebar--icon" />
+            <Pill className="nav__sidebar--icon" />
             Despre Iziapharm
           </Link>
           <Link
@@ -95,11 +95,11 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
             className="nav__sidebar--link"
             onClick={() => setMenuOpen(false)}
           >
-            <Leaf className="nav__sidebar--icon" />
+            <Pill className="nav__sidebar--icon" />
             Cum comand?
           </Link>
           <button className="nav__sidebar--link" onClick={handleOrderClick}>
-            <Leaf className="nav__sidebar--icon" />
+            <Pill className="nav__sidebar--icon" />
             Comandă
           </button>
           <button
@@ -110,7 +110,7 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
             }}
             className="nav__sidebar--link"
           >
-            <Leaf className="nav__sidebar--icon" />
+            <Pill className="nav__sidebar--icon" />
             Produse
           </button>
           <Link
@@ -118,7 +118,7 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
             className="nav__sidebar--link"
             onClick={() => setMenuOpen(false)}
           >
-            <Leaf className="nav__sidebar--icon" />
+            <Pill className="nav__sidebar--icon" />
             Lasă un review
           </Link>
           <button
@@ -129,7 +129,7 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
               setMenuOpen(false);
             }}
           >
-            <Leaf className="nav__sidebar--icon" />
+            <Pill className="nav__sidebar--icon" />
             Blog
           </button>
           <Link
@@ -137,7 +137,7 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
             className="nav__sidebar--link "
             onClick={() => setMenuOpen(false)}
           >
-            <Leaf className="nav__sidebar--icon" />
+            <Pill className="nav__sidebar--icon" />
             Contact
           </Link>
         </div>

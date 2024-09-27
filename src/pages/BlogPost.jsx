@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import BlockContent from "@sanity/block-content-to-react";
 import Loader from "../components/Loader";
 import Error from "../components/Error";
-import FlyingLeaf from "../components/FlyingLeaf";
+import FlyingIcon from "../components/FlyingIcon";
 
 const serializers = {
   types: {
@@ -136,7 +136,7 @@ function BlogPost() {
 
   return (
     <>
-      <FlyingLeaf className="post__leaf" />
+      <FlyingIcon className="post__pill" />
       <article className="post slideFromLeft">
         <img src={post.mainImageUrl} alt={post.title} className="post__img" />
         <h1 className="post__heading">{post.title}</h1>

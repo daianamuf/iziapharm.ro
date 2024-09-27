@@ -1,4 +1,4 @@
-import { Leaf } from "@phosphor-icons/react";
+import { Pill } from "@phosphor-icons/react";
 import useMultipleElementIntersectionObserver from "../useMultipleElementIntersectionObserver";
 
 function About() {
@@ -10,7 +10,7 @@ function About() {
   const sections = [
     {
       id: 1,
-      img: "/assets/images/iza.jpeg",
+      img: "",
       text: "Am pus toată priceperea și viziunea mea și am dat naștere unui proiect foarte important pentru mine, o farmacie cu laborator modern,specializată în prepararea și formularea tratamentelor și cosmeticelor.",
     },
     {
@@ -46,14 +46,16 @@ function About() {
               isVisible[index] ? "in" : ""
             } ${index % 2 === 0 ? "odd" : "even"}`}
           >
-            <img
-              className="about__section--content--img"
-              src={section.img}
-              alt=""
-            />
+            {section.img && (
+              <img
+                className="about__section--content--img"
+                src={section.img}
+                alt=""
+              />
+            )}
             <p className="about__section--content--text">{section.text}</p>
           </div>
-          <Leaf className={`leaf-icon ${isVisible[index] ? "in" : ""}`} />
+          <Pill className={`pill-icon ${isVisible[index] ? "in" : ""}`} />
         </div>
       ))}
     </div>

@@ -50,6 +50,33 @@ function Footer({ cartOpen }) {
           <FacebookLogo className="footer__media--icon" />
         </a>
       </div>
+
+      <div className="footer__documents"></div>
+
+      <div className="footer__links">
+        <a
+          href="https://anpc.ro/ce-este-sal/"
+          target="_blank"
+          rel="noreferrer"
+          className="footer__link"
+        >
+          <img
+            src="https://cdn.shopify.com/s/files/1/0525/7248/7863/files/sigla-anpc-1024x483_480x480.png?v=1612802439"
+            alt="Autoritatea Nationala pentru Protectia Consumatorului"
+          />
+        </a>
+        <a
+          href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=RO"
+          target="_blank"
+          rel="noreferrer"
+          className="footer__link"
+        >
+          <img
+            src="https://www.deplast-ambalaje.ro/wp-content/uploads/anpc-SOL.png"
+            alt="Autoritatea Nationala pentru Protectia Consumatorului"
+          />
+        </a>
+      </div>
     </footer>
   );
 }

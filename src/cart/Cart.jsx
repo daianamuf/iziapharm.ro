@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Leaf, X } from "@phosphor-icons/react";
+import { Pill, X } from "@phosphor-icons/react";
 import { clearCart, getCart, getTotalCartPrice } from "./cartSlice";
 import { OrderContext } from "../App";
 import CartItem from "./CartItem";
@@ -71,7 +71,7 @@ function Cart({ cartOpen, setCartOpen }) {
             className="cartOverview__btn--order"
             onClick={handleOrderClick}
           >
-            <Leaf className="cartOverview__btn--order-icon" /> Comandă
+            <Pill className="cartOverview__btn--order-icon" /> Comandă
           </button>
           <button
             className="cartOverview__btn--delete underline_animation_hover--green"
