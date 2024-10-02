@@ -3,9 +3,33 @@ import {
   InstagramLogo,
   MapPin,
   Phone,
+  Pill,
 } from "@phosphor-icons/react";
 
 import PropTypes from "prop-types";
+
+const documents = [
+  {
+    id: 1,
+    title: "Politica de confidentialitate",
+    url: "/assets/documents/Politica de confidentialitate-Iziapharm.pdf",
+  },
+  {
+    id: 2,
+    title: "Termeni si conditii",
+    url: "/assets/documents/Termeni si conditii-Iziapharm.pdf",
+  },
+  {
+    id: 3,
+    title: "Politica de retur",
+    url: "/assets/documents/Politica de retur Iziapharm.pdf",
+  },
+  {
+    id: 4,
+    title: "Cum se livreaza",
+    url: "/assets/documents/Cum se livreaza-Iziapharm.pdf",
+  },
+];
 
 function Footer({ cartOpen }) {
   return (
@@ -30,6 +54,9 @@ function Footer({ cartOpen }) {
             0768 070 630 / 031 420 99 14
           </p>
         </div>
+        <p className="footer__contact">
+          Autorizatie de functionare: MS 3588/IM4891/02.07.2021, CUI: 43125750
+        </p>
       </div>
 
       <div className="footer__media">
@@ -51,7 +78,16 @@ function Footer({ cartOpen }) {
         </a>
       </div>
 
-      <div className="footer__documents"></div>
+      <ul className="footer__documents">
+        {documents.map((doc) => (
+          <li key={doc.id}>
+            <Pill />
+            <a href={doc.url} target="_blanck" rel="noopener noreferrer">
+              {doc.title}
+            </a>
+          </li>
+        ))}
+      </ul>
 
       <div className="footer__links">
         <a
