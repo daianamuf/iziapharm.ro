@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
 const stepsOrder = [
@@ -52,63 +53,79 @@ function OrderSteps() {
   const [productsOrder, setProductsOrder] = useState(false);
 
   return (
-    <section className="ordersteps">
-      <h1 className="ordersteps__heading">Cum comand?</h1>
-      <p className="ordersteps__description">
-        Fie că doriți să achiziționați{" "}
-        <Link className="ordersteps__link" to={"/produse"}>
-          produsele noastre
-        </Link>{" "}
-        care au fost deja create în scopul de a rezolva diferitele probleme care
-        apar în viața de zi cu zi, sau aveți nevoie de{" "}
-        <Link className="ordersteps__link" to={"/comanda"}>
-          tratamente adaptate
-        </Link>{" "}
-        nevoilor individuale, procesul de realizare al unei comenzi este ușor,
-        menit să faciliteze comunicarea client-farmacist, pentru o cooperare cât
-        mai eficientă.
-      </p>
+    <>
+      <Helmet>
+        <title>
+          Comandă Tratamente Personalizate și Achiziționează Produse – Farmacia
+          Iziapharm
+        </title>
+        <meta
+          name="description"
+          content="Farmacia Iziapharm oferă un proces simplu de comandă pentru tratamente personalizate și produse deja create. Colaborează cu farmacistul, încarcă rețeta medicală și obține soluții pentru tine și animalul tău de companie."
+        />
+        <meta
+          name="keywords"
+          content="Farmacia Iziapharm, tratamente personalizate, opțiuni variate tratamente, farmacie București, farmacie România, medicamente, preparate farmaceutice, rețete personalizate, medicamente pentru animale, tratamente veterinare, farmacie pentru oameni și animale, farmacie cu preparate speciale, farmacie în București și România, tratament animale, tratament, farmacie cu laborator"
+        />
+      </Helmet>
+      <section className="ordersteps">
+        <h1 className="ordersteps__heading">Cum comand?</h1>
+        <p className="ordersteps__description">
+          Fie că doriți să achiziționați{" "}
+          <Link className="ordersteps__link" to={"/produse"}>
+            produsele noastre
+          </Link>{" "}
+          care au fost deja create în scopul de a rezolva diferitele probleme
+          care apar în viața de zi cu zi, sau aveți nevoie de{" "}
+          <Link className="ordersteps__link" to={"/comanda"}>
+            tratamente adaptate
+          </Link>{" "}
+          nevoilor individuale, procesul de realizare al unei comenzi este ușor,
+          menit să faciliteze comunicarea client-farmacist, pentru o cooperare
+          cât mai eficientă.
+        </p>
 
-      <div className="ordersteps__info">
-        <div className="ordersteps__info--btns">
-          <button
-            className={`ordersteps__btn ${directOrder ? "selected" : ""}`}
-            onClick={() => {
-              setDirectOrder(true);
-              setProductsOrder(false);
-            }}
-          >
-            Comandă directă
-          </button>
-          <p> sau </p>
-          <button
-            className={`ordersteps__btn ${productsOrder ? "selected" : ""}`}
-            onClick={() => {
-              setProductsOrder(true);
-              setDirectOrder(false);
-            }}
-          >
-            Achiziționarea produselor
-          </button>
+        <div className="ordersteps__info">
+          <div className="ordersteps__info--btns">
+            <button
+              className={`ordersteps__btn ${directOrder ? "selected" : ""}`}
+              onClick={() => {
+                setDirectOrder(true);
+                setProductsOrder(false);
+              }}
+            >
+              Comandă directă
+            </button>
+            <p> sau </p>
+            <button
+              className={`ordersteps__btn ${productsOrder ? "selected" : ""}`}
+              onClick={() => {
+                setProductsOrder(true);
+                setDirectOrder(false);
+              }}
+            >
+              Achiziționarea produselor
+            </button>
+          </div>
+
+          {directOrder &&
+            stepsOrder.map((step) => (
+              <div key={step.id} className="ordersteps__step">
+                <p className="ordersteps__step--number">{step.id}</p>
+                <p className="ordersteps__step--text">{step.text}</p>
+              </div>
+            ))}
+
+          {productsOrder &&
+            stepsProducts.map((step) => (
+              <div key={step.id} className="ordersteps__step">
+                <p className="ordersteps__step--number">{step.id}</p>
+                <p className="ordersteps__step--text">{step.text}</p>
+              </div>
+            ))}
         </div>
-
-        {directOrder &&
-          stepsOrder.map((step) => (
-            <div key={step.id} className="ordersteps__step">
-              <p className="ordersteps__step--number">{step.id}</p>
-              <p className="ordersteps__step--text">{step.text}</p>
-            </div>
-          ))}
-
-        {productsOrder &&
-          stepsProducts.map((step) => (
-            <div key={step.id} className="ordersteps__step">
-              <p className="ordersteps__step--number">{step.id}</p>
-              <p className="ordersteps__step--text">{step.text}</p>
-            </div>
-          ))}
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 

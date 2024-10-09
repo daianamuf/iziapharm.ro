@@ -1,5 +1,6 @@
 import { Pill } from "@phosphor-icons/react";
 import useMultipleElementIntersectionObserver from "../useMultipleElementIntersectionObserver";
+import { Helmet } from "react-helmet-async";
 
 function About() {
   const { setElementRef, isVisible } = useMultipleElementIntersectionObserver({
@@ -31,34 +32,50 @@ function About() {
   ];
 
   return (
-    <div className="about">
-      <h1 className="about__heading">Despre Iziapharm</h1>
+    <>
+      <Helmet>
+        <title>
+          Despre Farmacia Iziapharm – Profesionalism în Prepararea Tratamente
+          Personalizate și Cosmetice în București
+        </title>
+        <meta
+          name="description"
+          content="Farmacia Iziapharm este un proiect dedicat preparării tratamentelor și cosmeticelor personalizate în laboratorul nostru modern din București. Colaborarea cu medicii are în centrul atenției pacientul pentru a oferi cele mai bune soluții terapeutice."
+        />
+        <meta
+          name="keywords"
+          content="Farmacia Iziapharm, despre, tratamente personalizate, cosmetice personalizate, farmacie cu laborator, echipa medicală, colaborare medic farmacist, preparare tratamente, farmacie în București, laborator farmaceutic modern, succes terapeutic, farmacie rețete personalizate, tratamente personalizate, tratament veterinar, tratament animale, tratamente personalizate de uz veterinar, tratamente personalizate de uz uman"
+        />
+      </Helmet>
+      <div className="about">
+        <h1 className="about__heading">Despre Iziapharm</h1>
 
-      {sections.map((section, index) => (
-        <div
-          key={section.id}
-          ref={setElementRef}
-          data-index={index}
-          className={`about__section ${index % 2 === 0 ? "odd" : "even"}`}
-        >
+        {sections.map((section, index) => (
           <div
-            className={`about__section--content ${
-              isVisible[index] ? "in" : ""
-            } ${index % 2 === 0 ? "odd" : "even"}`}
+            key={section.id}
+            ref={setElementRef}
+            data-index={index}
+            className={`about__section ${index % 2 === 0 ? "odd" : "even"}`}
           >
-            {section.img && (
-              <img
-                className="about__section--content--img"
-                src={section.img}
-                alt=""
-              />
-            )}
-            <p className="about__section--content--text">{section.text}</p>
+            <div
+              className={`about__section--content ${
+                isVisible[index] ? "in" : ""
+              } ${index % 2 === 0 ? "odd" : "even"}`}
+            >
+              {section.img && (
+                <img
+                  className="about__section--content--img"
+                  src={section.img}
+                  alt=""
+                />
+              )}
+              <p className="about__section--content--text">{section.text}</p>
+            </div>
+            <Pill className={`pill-icon ${isVisible[index] ? "in" : ""}`} />
           </div>
-          <Pill className={`pill-icon ${isVisible[index] ? "in" : ""}`} />
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   );
 }
 
