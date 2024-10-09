@@ -3,6 +3,7 @@ import { Suspense, createContext, lazy, useState } from "react";
 import Loader from "./components/Loader";
 import AppLayout from "./AppLayout";
 import Error from "./components/Error";
+import { HelmetProvider } from "react-helmet-async";
 const Homepage = lazy(() => import("./pages/Homepage"));
 const About = lazy(() => import("./pages/About"));
 const Review = lazy(() => import("./pages/Review"));
@@ -122,9 +123,11 @@ function App() {
     setChoiceOpen,
   };
   return (
-    <OrderContext.Provider value={orderContextValue}>
-      <RouterProvider router={router} />
-    </OrderContext.Provider>
+    <HelmetProvider>
+      <OrderContext.Provider value={orderContextValue}>
+        <RouterProvider router={router} />
+      </OrderContext.Provider>
+    </HelmetProvider>
   );
 }
 
