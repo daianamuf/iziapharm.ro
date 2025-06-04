@@ -5,8 +5,8 @@ import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 
 const center = {
-  lat: 44.363099317114305,
-  lng: 26.129275619821453,
+  lat: 44.389998,
+  lng: 26.118999,
 };
 
 let defaultIcon = L.icon({

@@ -44,10 +44,7 @@ function Contact() {
           </div>
           <div className="contact__info--el">
             <MapPin className="contact__info--icon" />
-            <p>
-              Cartier Solar, B-dul Metalurgiei, nr. 132, bl. A, spațiul
-              comercial nr. 6{" "}
-            </p>
+            <p>Strada Nițu Vasile 9, București</p>
           </div>
         </section>
 

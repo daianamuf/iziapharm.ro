@@ -44,8 +44,7 @@ function Footer({ cartOpen }) {
         <div className="footer__contact">
           <MapPin className="footer__contact--icon" />
           <p className="footer__contact--adress">
-            Cartier Solar, B-dul Metalurgiei, nr. 132, bl. A, spațiul comercial
-            nr. 6{" "}
+            Strada Nițu Vasile 9, București
           </p>
         </div>
         <div className="footer__contact">
@@ -82,7 +81,11 @@ function Footer({ cartOpen }) {
         {documents.map((doc) => (
           <li key={doc.id}>
             <Pill />
-            <a href={doc.url} target="_blanck" rel="noopener noreferrer">
+            <a
+              href={doc.url}
+              target="_blanck"
+              rel="noopener noreferrer"
+            >
               {doc.title}
             </a>
           </li>
