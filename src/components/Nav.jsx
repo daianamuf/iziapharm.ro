@@ -19,6 +19,7 @@ function debounce(callback, wait) {
 
 function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
   const [isScrolling, setIsScrolling] = useState(false);
+  const [hasProducts, setHasProducts] = useState(false);
   const [media, setMedia] = useState(window.innerWidth <= 1110);
   const cart = useSelector(getCart);
   const navigate = useNavigate();
@@ -44,6 +45,17 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
       setMedia(window.innerWidth <= 1024);
     };
 
+    fetch(
+      `https://c9cs4cyr.api.sanity.io/v1/data/query/production?query=${encodeURIComponent(
+        'count(*[_type == "product"])'
+      )}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.result >= 3) setHasProducts(true);
+      })
+      .catch((error) => console.error("Error checking product count:", error));
+
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleResize);
 
@@ -56,7 +68,10 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
   if (media)
     return (
       <nav className={`nav ${isScrolling ? "nav-scrolling" : ""}`}>
-        <button className="nav__menu--btn" onClick={() => toggleMenu()}>
+        <button
+          className="nav__menu--btn"
+          onClick={() => toggleMenu()}
+        >
           <List />
         </button>
         <Link
@@ -83,12 +98,12 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
             <X />
           </button>
           <Link
-            to={"/despre"}
+            to={"/rezultate"}
             className="nav__sidebar--link"
             onClick={() => setMenuOpen(false)}
           >
             <Pill className="nav__sidebar--icon" />
-            Despre Iziapharm
+            Rezultate clienți
           </Link>
           <Link
             to={"/cumcomand"}
@@ -98,21 +113,27 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
             <Pill className="nav__sidebar--icon" />
             Cum comand?
           </Link>
-          <button className="nav__sidebar--link" onClick={handleOrderClick}>
+          <button
+            className="nav__sidebar--link"
+            onClick={handleOrderClick}
+          >
             <Pill className="nav__sidebar--icon" />
             Comandă
           </button>
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              debounceNavigate("/produse");
-              setMenuOpen(false);
-            }}
-            className="nav__sidebar--link"
-          >
-            <Pill className="nav__sidebar--icon" />
-            Produse
-          </button>
+
+          {hasProducts && (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                debounceNavigate("/produse");
+                setMenuOpen(false);
+              }}
+              className="nav__sidebar--link"
+            >
+              <Pill className="nav__sidebar--icon" />
+              Produse
+            </button>
+          )}
           <Link
             to={"/review"}
             className="nav__sidebar--link"
@@ -148,7 +169,12 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
             classname="nav__cart--smallMedia"
           />
         )}
-        {cartOpen && <Cart cartOpen={cartOpen} setCartOpen={setCartOpen} />}
+        {cartOpen && (
+          <Cart
+            cartOpen={cartOpen}
+            setCartOpen={setCartOpen}
+          />
+        )}
       </nav>
     );
 
@@ -160,16 +186,21 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
           classname="nav__cart--bigMedia"
         />
       )}
-      {cartOpen && <Cart cartOpen={cartOpen} setCartOpen={setCartOpen} />}
+      {cartOpen && (
+        <Cart
+          cartOpen={cartOpen}
+          setCartOpen={setCartOpen}
+        />
+      )}
       <div className="nav__order">
         <Link
-          to={"/despre"}
+          to={"/rezultate"}
           // className="nav__link underline_animation_hover--green"
           className={`nav__link underline_animation_hover--green ${
             cartOpen ? "blur" : ""
           }`}
         >
-          Despre Iziapharm
+          Rezultate clienți
         </Link>
         <Link
           to={"/cumcomand"}
@@ -206,18 +237,20 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
       </Link>
 
       <div className="nav__other">
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            debounceNavigate("/produse");
-            setMenuOpen(false);
-          }}
-          className={`nav__link underline_animation_hover--green ${
-            cartOpen ? "blur" : ""
-          }`}
-        >
-          Produse
-        </button>
+        {hasProducts && (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              debounceNavigate("/produse");
+              setMenuOpen(false);
+            }}
+            className={`nav__link underline_animation_hover--green ${
+              cartOpen ? "blur" : ""
+            }`}
+          >
+            Produse
+          </button>
+        )}
         <Link
           to={"/review"}
           className={`nav__link underline_animation_hover--green ${

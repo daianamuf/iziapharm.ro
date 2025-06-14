@@ -5,7 +5,7 @@ import AppLayout from "./AppLayout";
 import Error from "./components/Error";
 import { HelmetProvider } from "react-helmet-async";
 const Homepage = lazy(() => import("./pages/Homepage"));
-const About = lazy(() => import("./pages/About"));
+const Results = lazy(() => import("./pages/Results"));
 const Review = lazy(() => import("./pages/Review"));
 const Blog = lazy(() => import("./pages/Blog"));
 const Products = lazy(() => import("./pages/Products"));
@@ -29,10 +29,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/despre",
+        path: "/rezultate",
         element: (
           <Suspense fallback={<Loader />}>
-            <About />,
+            <Results />,
           </Suspense>
         ),
       },

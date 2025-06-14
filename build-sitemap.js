@@ -51,7 +51,7 @@ const main = async () => {
 
     const staticPaths = [
       "/",
-      "/despre",
+      "/rezultate",
       "/cumcomand",
       "/comanda",
       "/produse",

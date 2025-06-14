@@ -1824,6 +1824,66 @@
   }
 }
 
+.results-page {
+  padding: 3rem;
+  max-width: 120rem;
+  margin: 25rem auto 0 auto;
+}
+.results-page .results-heading {
+  text-align: center;
+  font-size: 3.906rem;
+  margin-bottom: 3rem;
+  font-family: "Heading";
+  color: #464035;
+  text-transform: uppercase;
+}
+.results-page .results-grid {
+  display: grid;
+  gap: 3rem;
+  font-family: "Cabin";
+  color: #454a3f;
+}
+.results-page .results-grid .result-card {
+  background-color: #fbfbfa;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+.results-page .results-grid .result-card .result-images {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.results-page .results-grid .result-card .result-images div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.results-page .results-grid .result-card .result-images div .label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.results-page .results-grid .result-card .result-images div .result-img {
+  max-width: 100%;
+  width: 30rem;
+  height: 35rem;
+  border-radius: 0.5rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.results-page .results-grid .result-card .result-description {
+  margin-top: 3rem;
+  padding: 0rem 4rem;
+  font-size: 1.6rem;
+  color: #454a3f;
+}
+.results-page .results-grid .result-card .result-description__line {
+  margin-bottom: 0.5rem;
+}
+
 .hidden {
   visibility: hidden;
 }
