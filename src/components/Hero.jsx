@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 function Hero() {
   return (
     <section className="hero">
-      <img src="/assets/images/hero.jpeg" className="hero__img  " />
+      <img
+        src="/assets/images/hero.jpeg"
+        className="hero__img  "
+      />
       <div className="hero__content">
         <h4 className="hero__heading">
           Din pasiune pentru prepararea farmaceutică
@@ -18,10 +21,6 @@ function Hero() {
             farmacie cu suflet.
           </span>
         </p>
-        <Link to={"/despre"} className="hero__btn underline_animation_hover">
-          <span>Misiunea mea</span>
-          <ArrowRight />
-        </Link>
       </div>
     </section>
   );
