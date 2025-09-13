@@ -37,8 +37,8 @@ function Contact() {
           <div className="contact__info--el">
             <Clock className="contact__info--icon" />
             <div className="contact__program">
-              <p>Luni - Vineri: 09:00 - 17:00</p>
-              <p>Sâmbătă: 09:00 - 14:00</p>
+              <p>Luni - Vineri: 08:00 - 22:00</p>
+              <p>Sâmbătă: 09:00 - 17:00</p>
               <p>Duminică: ÎNCHIS</p>
             </div>
           </div>
