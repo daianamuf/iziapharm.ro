@@ -52,7 +52,7 @@ function Nav({ menuOpen, setMenuOpen, toggleMenu, cartOpen, setCartOpen }) {
     )
       .then((res) => res.json())
       .then((data) => {
-        if (data.result >= 3) setHasProducts(true);
+        if (data.result >= 2) setHasProducts(true);
       })
       .catch((error) => console.error("Error checking product count:", error));
 

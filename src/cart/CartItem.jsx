@@ -7,7 +7,7 @@ import { useContext, useEffect } from "react";
 import { OrderContext } from "../App";
 
 function CartItem({ item }) {
-  const { productId, name, quantity, totalPrice, prescription } = item;
+  const { productId, name, quantity, prescription } = item;
 
   const currentQuantity = useSelector(getCurrentQuantityById(productId));
   const { setNeedsPrescription } = useContext(OrderContext);
@@ -26,7 +26,6 @@ function CartItem({ item }) {
         {quantity}&times; {name}
       </p>
 
-      <p className="cart__item--price">{totalPrice} RON</p>
       {prescription && (
         <p className="cart__item--prescription">
           - Necesită prescripție medicală!

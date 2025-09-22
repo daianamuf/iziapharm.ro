@@ -1039,9 +1039,6 @@
   color: #f4f4f2;
   background-color: rgba(96, 102, 88, 0.6);
 }
-.productEl__text.price {
-  font-size: 2rem;
-}
 .productEl__btn {
   width: 20rem;
   font-family: "Cabin";
@@ -1149,12 +1146,6 @@
   font-size: 1.6rem;
   margin-bottom: 1rem;
 }
-.product__details--price {
-  font-size: 2.5rem;
-  font-weight: 500;
-  color: #606658;
-  margin-bottom: 2rem;
-}
 .product__details--prescription {
   color: #ed5c5c;
   font-weight: 600;
@@ -1260,12 +1251,6 @@
 }
 .cart__item--quantity {
   width: 100%;
-}
-.cart__item--price {
-  grid-column: 1/2;
-  justify-self: start;
-  color: #606658;
-  font-weight: 700;
 }
 .cart__item--prescription {
   justify-self: start;

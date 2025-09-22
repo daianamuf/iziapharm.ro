@@ -24,7 +24,6 @@ function Products() {
       name,
       "slug": slug.current,
       description,
-      price,
       field->{
         fieldName
       },
@@ -89,12 +88,6 @@ function Products() {
       );
     }
 
-    if (sortOrder === "lowToHigh") {
-      tempProducts = tempProducts.sort((a, b) => b.price - a.price);
-    } else if (sortOrder === "highToLow") {
-      tempProducts = tempProducts.sort((a, b) => a.price - b.price);
-    }
-
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
     const currentFilteredProducts = tempProducts.slice(
@@ -123,7 +116,10 @@ function Products() {
     <div className="product__page">
       <h1 className="product__page--heading">Produse</h1>
 
-      <button className="product__page--filter-btn" onClick={toggleFilter}>
+      <button
+        className="product__page--filter-btn"
+        onClick={toggleFilter}
+      >
         <Funnel />
       </button>
       {isOpen && (
@@ -131,7 +127,10 @@ function Products() {
           <select onChange={(e) => setFieldFilter(e.target.value)}>
             <option value="">Categorie</option>
             {fields.map((field) => (
-              <option key={field._id} value={field.fieldName}>
+              <option
+                key={field._id}
+                value={field.fieldName}
+              >
                 {field.fieldName}
               </option>
             ))}
@@ -139,7 +138,10 @@ function Products() {
           <select onChange={(e) => setAdministrationFilter(e.target.value)}>
             <option value="">Cale de administrare</option>
             {administrations.map((admin) => (
-              <option key={admin._id} value={admin.routeName}>
+              <option
+                key={admin._id}
+                value={admin.routeName}
+              >
                 {admin.routeName}
               </option>
             ))}
@@ -162,7 +164,10 @@ function Products() {
           </div>
         ) : (
           filteredProducts.map((product) => (
-            <div className="productEl" key={product._id}>
+            <div
+              className="productEl"
+              key={product._id}
+            >
               <Link
                 to={`/produse/${product.slug}`}
                 className="productEl__btn underline_animation_hover--green"
@@ -180,7 +185,6 @@ function Products() {
                   <p className="productEl__text administration">
                     {product.administration.routeName}
                   </p>
-                  <p className="productEl__text price">{product.price} RON</p>
                 </div>
                 Vezi produs
               </Link>

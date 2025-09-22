@@ -65,7 +65,7 @@ async function updateGoogleSheet(authClient, data) {
       data.orderDescription,
       data.medic,
       data.orderedProducts.join(", "),
-      data.totalCartPrice,
+      // data.totalCartPrice,
       data.petName,
       data.species,
       data.gender,

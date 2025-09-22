@@ -82,7 +82,6 @@ function ProductPost() {
       name,
       description,
       prescription,
-      price,
       productCode,
       "slug": slug.current,
       "field":field->{
@@ -127,8 +126,6 @@ function ProductPost() {
       productCode: product.productCode,
       prescription: product.prescription,
       quantity: 1,
-      unitPrice: product.price,
-      totalPrice: product.price * 1,
     };
     dispatch(addItem(newItem));
   };
@@ -179,9 +176,7 @@ function ProductPost() {
                   Acest preparat este eliberat doar pe baza rețetei medicale!
                 </p>
               )}
-              <p className="product__details--text product__details--price">
-                Preț: {product.price} RON
-              </p>
+
               <BlockContent
                 className="product__details--description"
                 blocks={product.description}
@@ -194,7 +189,10 @@ function ProductPost() {
         ) : (
           <p className="product__text">Product not found.</p>
         )}
-        <Link to={"/produse"} className="product__details--btn ">
+        <Link
+          to={"/produse"}
+          className="product__details--btn "
+        >
           Înapoi
         </Link>
       </div>

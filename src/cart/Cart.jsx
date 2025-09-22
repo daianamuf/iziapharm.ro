@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Pill, X } from "@phosphor-icons/react";
-import { clearCart, getCart, getTotalCartPrice } from "./cartSlice";
+import { clearCart, getCart } from "./cartSlice";
 import { OrderContext } from "../App";
 import CartItem from "./CartItem";
 
@@ -14,7 +14,6 @@ function Cart({ cartOpen, setCartOpen }) {
     useContext(OrderContext);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const totalCartPrice = useSelector(getTotalCartPrice);
 
   const handleNoClick = () => {
     setShowMessage(false);
@@ -61,11 +60,13 @@ function Cart({ cartOpen, setCartOpen }) {
         </button>
         <ul className="cart">
           {cart.map((item) => (
-            <CartItem item={item} key={item.productId} />
+            <CartItem
+              item={item}
+              key={item.productId}
+            />
           ))}
         </ul>
 
-        <p className="cartOverview__total">TOTAL: {totalCartPrice} RON</p>
         <div className="cartOverview__btns">
           <button
             className="cartOverview__btn--order"
@@ -96,7 +97,10 @@ function Cart({ cartOpen, setCartOpen }) {
             >
               DA
             </Link>
-            <button className="cart__message--btn" onClick={handleNoClick}>
+            <button
+              className="cart__message--btn"
+              onClick={handleNoClick}
+            >
               NU
             </button>
           </div>

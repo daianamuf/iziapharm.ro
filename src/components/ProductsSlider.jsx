@@ -12,8 +12,7 @@ function Products() {
       name,
       "slug": slug.current,
       description,
-      price,
-      field->{
+          field->{
         fieldName
       },
       administration->{
@@ -93,7 +92,6 @@ function Products() {
                   <p className="productEl__text administration">
                     {product.administration.routeName}
                   </p>
-                  <p className="productEl__text price">{product.price} RON</p>
                 </div>
                 <p className={`${index === 2 ? "visible" : "hidden"}`}>
                   Vezi produs

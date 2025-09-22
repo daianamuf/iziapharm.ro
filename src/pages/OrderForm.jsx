@@ -1,7 +1,7 @@
 import { Pill } from "@phosphor-icons/react";
 import { useContext, useEffect, useReducer, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart, getCart, getTotalCartPrice } from "../cart/cartSlice";
+import { clearCart, getCart } from "../cart/cartSlice";
 import { OrderContext } from "../App";
 import FormChoice from "../components/FormChoice";
 import readFile from "../useFileReader";
@@ -55,7 +55,6 @@ function OrderForm() {
 
   const { needsPrescription, choiceOpen, vet, setVet } =
     useContext(OrderContext);
-  const totalCartPrice = useSelector(getTotalCartPrice);
 
   useEffect(() => {
     if (cart.length === 0) {
@@ -204,7 +203,6 @@ function OrderForm() {
       orderedProducts: cart.map(
         (product) => `${product.quantity} x ${product.productCode}`
       ),
-      totalCartPrice: totalCartPrice,
     };
 
     if (isFormValid) {
@@ -243,26 +241,32 @@ function OrderForm() {
   return (
     <section className="order">
       <h1 className="order__heading">Comandă</h1>
-      {choiceOpen && <FormChoice choice={choice} setChoice={setChoice} />}
+      {choiceOpen && (
+        <FormChoice
+          choice={choice}
+          setChoice={setChoice}
+        />
+      )}
       {!choiceOpen && (
-        <form className="order__form" onSubmit={handleSubmit}>
+        <form
+          className="order__form"
+          onSubmit={handleSubmit}
+        >
           {cart.length > 0 && (
             <>
               <ul className="order__list">
                 {cart.map((item) => (
-                  <li className="order__list--item" key={item.productId}>
+                  <li
+                    className="order__list--item"
+                    key={item.productId}
+                  >
                     <Pill className="order__list--icon" />
                     <p className="order__list--quantity">
                       {item.quantity}&times; {item.name}
                     </p>
-                    <p className="order__list--price">
-                      {" "}
-                      - {item.totalPrice} RON
-                    </p>
                   </li>
                 ))}
               </ul>
-              <p className="order__list--total">TOTAL: {totalCartPrice} RON</p>
             </>
           )}
 
@@ -273,7 +277,10 @@ function OrderForm() {
 
           {vet && <h3 className="order__form--heading">Proprietar</h3>}
 
-          <label htmlFor="lastName" className="order__form--label">
+          <label
+            htmlFor="lastName"
+            className="order__form--label"
+          >
             Nume<span>*</span>
             {state.errors.lastName && (
               <span className="error-message">{state.errors.lastName}</span>
@@ -287,7 +294,10 @@ function OrderForm() {
             onChange={handleChange}
           />
 
-          <label htmlFor="firstName" className="order__form--label">
+          <label
+            htmlFor="firstName"
+            className="order__form--label"
+          >
             Prenume<span>*</span>
             {state.errors.firstName && (
               <span className="error-message">{state.errors.firstName}</span>
@@ -301,7 +311,10 @@ function OrderForm() {
             onChange={handleChange}
           />
 
-          <label htmlFor="email" className="order__form--label">
+          <label
+            htmlFor="email"
+            className="order__form--label"
+          >
             Email<span>*</span>
             {state.errors.email && (
               <span className="error-message">{state.errors.email}</span>
@@ -317,7 +330,10 @@ function OrderForm() {
 
           <div className="order__form--field">
             <div>
-              <label htmlFor="phoneNumber" className="order__form--label">
+              <label
+                htmlFor="phoneNumber"
+                className="order__form--label"
+              >
                 Telefon<span>*</span>
               </label>
               <input
@@ -336,7 +352,10 @@ function OrderForm() {
             </div>
 
             <div>
-              <label htmlFor="role" className="order__form--label">
+              <label
+                htmlFor="role"
+                className="order__form--label"
+              >
                 În calitate de
               </label>
               <select
@@ -358,7 +377,10 @@ function OrderForm() {
               <h3 className="order__form--heading">Pacient</h3>
 
               <div className="order__form--vet-input">
-                <label htmlFor="petName" className="order__form--label">
+                <label
+                  htmlFor="petName"
+                  className="order__form--label"
+                >
                   Nume<span>*</span>
                   {state.errors.petName && (
                     <span className="error-message">
@@ -376,7 +398,10 @@ function OrderForm() {
               </div>
 
               <div className="order__form--vet-input">
-                <label htmlFor="species" className="order__form--label">
+                <label
+                  htmlFor="species"
+                  className="order__form--label"
+                >
                   Specie<span>*</span>
                   {state.errors.species && (
                     <span className="error-message">
@@ -394,7 +419,10 @@ function OrderForm() {
               </div>
 
               <div className="order__form--vet-input">
-                <label htmlFor="gender" className="order__form--label">
+                <label
+                  htmlFor="gender"
+                  className="order__form--label"
+                >
                   Sex
                 </label>
                 <select
@@ -409,7 +437,10 @@ function OrderForm() {
               </div>
 
               <div className="order__form--vet-input">
-                <label htmlFor="age" className="order__form--label">
+                <label
+                  htmlFor="age"
+                  className="order__form--label"
+                >
                   Varsta (ani)<span>*</span>
                   {state.errors.age && (
                     <span className="error-message">{state.errors.age}</span>
@@ -425,7 +456,10 @@ function OrderForm() {
               </div>
 
               <div className="order__form--vet-input">
-                <label htmlFor="weight" className="order__form--label">
+                <label
+                  htmlFor="weight"
+                  className="order__form--label"
+                >
                   Greutate (kg)<span>*</span>
                   {state.errors.weight && (
                     <span className="error-message">{state.errors.weight}</span>
@@ -442,7 +476,10 @@ function OrderForm() {
             </div>
           )}
 
-          <label htmlFor="orderDescription" className="order__form--heading">
+          <label
+            htmlFor="orderDescription"
+            className="order__form--heading"
+          >
             Descrie comanda<span>*</span>
             {state.errors.orderDescription && (
               <span className="error-message">
@@ -460,7 +497,10 @@ function OrderForm() {
 
           {needsPrescription && (
             <div className="order__form--prescription">
-              <label htmlFor="fileUpload" className="order__form--label">
+              <label
+                htmlFor="fileUpload"
+                className="order__form--label"
+              >
                 Încarcă rețeta (jpg/png)<span>*</span>
                 {state.errors.fileUpload && (
                   <span className="error-message">
@@ -476,7 +516,10 @@ function OrderForm() {
                 onChange={handleFileChange}
               />
 
-              <label htmlFor="medic" className="order__form--label">
+              <label
+                htmlFor="medic"
+                className="order__form--label"
+              >
                 Medic- nume și prenume<span>*</span>
                 {state.errors.medic && (
                   <span className="error-message">{state.errors.medic}</span>
@@ -493,7 +536,10 @@ function OrderForm() {
             </div>
           )}
 
-          <button type="submit" className="order__form--btn">
+          <button
+            type="submit"
+            className="order__form--btn"
+          >
             Trimite Comanda
           </button>
           {submissionMessage && (

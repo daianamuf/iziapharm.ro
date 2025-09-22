@@ -119,10 +119,6 @@
     font-weight: 600;
     color: $white-smoke;
     background-color: rgba($green, 0.6);
-
-    &.price {
-      font-size: $h5;
-    }
   }
 
   &__btn {
@@ -218,13 +214,6 @@
   &--text {
     font-size: $p;
     margin-bottom: 1rem;
-  }
-
-  &--price {
-    font-size: $h4;
-    font-weight: 500;
-    color: $green;
-    margin-bottom: 2rem;
   }
 
   &--prescription {

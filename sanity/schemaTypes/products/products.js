@@ -37,13 +37,7 @@ export default {
       type: 'blockContent', // Multi-line text input
       validation: (Rule) => Rule.required(),
     },
-    {
-      name: 'price',
-      title: 'Price',
-      type: 'number', // Number input
-      validation: (Rule) => Rule.required().min(0), // Price must be a positive number
-    },
-    {
+      {
       name: 'field',
       title: 'Field',
       type: 'reference', // References another document

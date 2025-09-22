@@ -34,13 +34,6 @@
       width: 100%;
     }
 
-    &--price {
-      grid-column: 1/2;
-      justify-self: start;
-      color: $green;
-      font-weight: 700;
-    }
-
     &--prescription {
       justify-self: start;
       color: $red;
