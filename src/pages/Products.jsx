@@ -9,13 +9,16 @@ function Products() {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [fieldFilter, setFieldFilter] = useState("");
   const [administrationFilter, setAdministrationFilter] = useState("");
-  const [sortOrder, setSortOrder] = useState("");
+  const [sortOrder] = useState("");
   const [fields, setFields] = useState([]);
   const [administrations, setAdministrations] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(10);
   const [totalPages, setTotalPages] = useState(1);
+
+  // per-item hover state
+  const [hoveredId, setHoveredId] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
@@ -24,79 +27,63 @@ function Products() {
       name,
       "slug": slug.current,
       description,
-      field->{
-        fieldName
-      },
-      administration->{
-        routeName
-      },
-      "image": images[].asset->url, 
+      field->{ fieldName },
+      administration->{ routeName },
+      "image": images[].asset->url
     }`);
     const url = `https://c9cs4cyr.api.sanity.io/v1/data/query/production?query=${query}`;
+
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        setProducts(data.result);
-        setFilteredProducts(data.result);
-        setIsLoading(false);
+        setProducts(data.result || []);
+        setFilteredProducts(data.result || []);
       })
-      .catch((error) => console.error("Error fetching data:", error));
+      .catch((error) => console.error("Error fetching products:", error))
+      .finally(() => setIsLoading(false));
 
-    // Fetch medical fields
     const fieldsQuery = encodeURIComponent(
       '*[_type == "medicalField"]{_id,fieldName}'
     );
-    const fieldsUrl = `https://c9cs4cyr.api.sanity.io/v1/data/query/production?query=${fieldsQuery}`;
-
-    fetch(fieldsUrl)
+    fetch(
+      `https://c9cs4cyr.api.sanity.io/v1/data/query/production?query=${fieldsQuery}`
+    )
       .then((res) => res.json())
-      .then((data) => {
-        setFields(data.result);
-        setIsLoading(false);
-      })
+      .then((data) => setFields(data.result || []))
       .catch((error) => console.error("Error fetching medical fields:", error));
 
-    // Fetch routes of administration
     const administrationsQuery = encodeURIComponent(
       '*[_type == "routeOfAdministration"]{_id,routeName}'
     );
-    const administrationsUrl = `https://c9cs4cyr.api.sanity.io/v1/data/query/production?query=${administrationsQuery}`;
-
-    fetch(administrationsUrl)
+    fetch(
+      `https://c9cs4cyr.api.sanity.io/v1/data/query/production?query=${administrationsQuery}`
+    )
       .then((res) => res.json())
-      .then((data) => {
-        setAdministrations(data.result);
-        setIsLoading(false);
-      })
+      .then((data) => setAdministrations(data.result || []))
       .catch((error) =>
         console.error("Error fetching routes of administration:", error)
       );
   }, []);
 
   useEffect(() => {
-    let tempProducts = products;
+    let temp = products;
 
     if (fieldFilter) {
-      tempProducts = tempProducts.filter(
-        (product) => product.field.fieldName === fieldFilter
-      );
+      temp = temp.filter((p) => p.field?.fieldName === fieldFilter);
     }
-
     if (administrationFilter) {
-      tempProducts = tempProducts.filter(
-        (product) => product.administration.routeName === administrationFilter
+      temp = temp.filter(
+        (p) => p.administration?.routeName === administrationFilter
       );
     }
 
-    const indexOfLastProduct = currentPage * productsPerPage;
-    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-    const currentFilteredProducts = tempProducts.slice(
-      indexOfFirstProduct,
-      indexOfLastProduct
-    );
-    setTotalPages(Math.ceil(products.length / productsPerPage));
+    // pagination after filtering
+    const indexOfLast = currentPage * productsPerPage;
+    const indexOfFirst = indexOfLast - productsPerPage;
+    const pageSlice = temp.slice(indexOfFirst, indexOfLast);
 
-    setFilteredProducts(currentFilteredProducts);
+    setTotalPages(Math.max(1, Math.ceil(temp.length / productsPerPage)));
+    setFilteredProducts(pageSlice);
   }, [
     products,
     fieldFilter,
@@ -106,9 +93,7 @@ function Products() {
     productsPerPage,
   ]);
 
-  const toggleFilter = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleFilter = () => setIsOpen((v) => !v);
 
   if (isLoading) return <Loader />;
 
@@ -122,9 +107,13 @@ function Products() {
       >
         <Funnel />
       </button>
+
       {isOpen && (
         <div className="product__page--filter">
-          <select onChange={(e) => setFieldFilter(e.target.value)}>
+          <select
+            value={fieldFilter}
+            onChange={(e) => setFieldFilter(e.target.value)}
+          >
             <option value="">Categorie</option>
             {fields.map((field) => (
               <option
@@ -135,7 +124,11 @@ function Products() {
               </option>
             ))}
           </select>
-          <select onChange={(e) => setAdministrationFilter(e.target.value)}>
+
+          <select
+            value={administrationFilter}
+            onChange={(e) => setAdministrationFilter(e.target.value)}
+          >
             <option value="">Cale de administrare</option>
             {administrations.map((admin) => (
               <option
@@ -145,11 +138,6 @@ function Products() {
                 {admin.routeName}
               </option>
             ))}
-          </select>
-          <select onChange={(e) => setSortOrder(e.target.value)}>
-            <option value="">Preț</option>
-            <option value="lowToHigh">Crescător</option>
-            <option value="highToLow">Descrescător</option>
           </select>
         </div>
       )}
@@ -163,33 +151,55 @@ function Products() {
             </p>
           </div>
         ) : (
-          filteredProducts.map((product) => (
-            <div
-              className="productEl"
-              key={product._id}
-            >
-              <Link
-                to={`/produse/${product.slug}`}
-                className="productEl__btn underline_animation_hover--green"
+          filteredProducts.map((product) => {
+            const imgSrc = Array.isArray(product.image)
+              ? product.image[0]
+              : product.image;
+            const isHovered = hoveredId === product._id;
+
+            return (
+              <div
+                className="productEl"
+                key={product._id}
               >
-                <h2 className="productEl__heading">{product.name}</h2>
-                <img
-                  className="productEl__img"
-                  src={product.image}
-                  alt={product.name}
-                />
-                <div className="productEl__content">
-                  <p className="productEl__text field">
-                    {product.field.fieldName}
+                <Link
+                  to={`/produse/${product.slug}`}
+                  className="productEl__btn"
+                  onMouseEnter={() => setHoveredId(product._id)}
+                  onMouseLeave={() => setHoveredId(null)}
+                  onFocus={() => setHoveredId(product._id)}
+                  onBlur={() => setHoveredId(null)}
+                >
+                  <h2 className="productEl__heading">{product.name}</h2>
+
+                  {imgSrc && (
+                    <img
+                      className="productEl__img"
+                      src={imgSrc}
+                      alt={product.name}
+                    />
+                  )}
+
+                  <div className="productEl__content">
+                    <p className="productEl__text field">
+                      {product.field?.fieldName}
+                    </p>
+                    <p className="productEl__text administration">
+                      {product.administration?.routeName}
+                    </p>
+                  </div>
+
+                  <p
+                    className={`productEl__cta ${
+                      isHovered ? "underline_animation_hover--green" : ""
+                    }`}
+                  >
+                    Vezi produs
                   </p>
-                  <p className="productEl__text administration">
-                    {product.administration.routeName}
-                  </p>
-                </div>
-                Vezi produs
-              </Link>
-            </div>
-          ))
+                </Link>
+              </div>
+            );
+          })
         )}
       </section>
 

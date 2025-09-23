@@ -127,7 +127,8 @@
 }
 
 .underline_animation_hover--green {
-  padding-bottom: 1px;
+  display: inline-block;
+  padding-bottom: 2px;
   background-image: linear-gradient(#606658 0 0);
   background-position: 0 100%;
   background-size: 0% 2px;
@@ -1020,7 +1021,7 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  bottom: 3rem;
+  bottom: 0;
 }
 .productEl__heading {
   padding: 1rem 2rem;
@@ -1040,7 +1041,10 @@
   background-color: rgba(96, 102, 88, 0.6);
 }
 .productEl__btn {
+  display: flex;
+  flex-direction: column;
   width: 20rem;
+  height: auto;
   font-family: "Cabin";
   font-size: 2rem;
   font-weight: 700;
@@ -1048,6 +1052,13 @@
   color: #454a3f;
   cursor: pointer;
   text-align: center;
+}
+.productEl__cta {
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -3rem;
 }
 
 .product__details {

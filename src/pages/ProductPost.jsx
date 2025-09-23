@@ -168,7 +168,7 @@ function ProductPost() {
                 {product.field.fieldName}
               </p>
               <p className="product__details--text">
-                Cale de administrare: {product.administration.routeName}
+                Forma farmaceutică: {product.administration.routeName}
               </p>
 
               {product.prescription && (
