@@ -86,16 +86,14 @@ function Products() {
                   alt={product.name}
                 />
                 <div className="productEl__content">
-                  <p className="productEl__text field">
+                  <p className=" productEl__text productEl__text--field">
                     {product.field.fieldName}
                   </p>
                   <p className="productEl__text administration">
                     {product.administration.routeName}
                   </p>
                 </div>
-                <p className={`${index === 2 ? "visible" : "hidden"}`}>
-                  Vezi produs
-                </p>
+                <span className="productEl__overlay">Vezi detalii</span>
               </Link>
             </div>
           ))}

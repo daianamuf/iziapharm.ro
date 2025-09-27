@@ -1,13 +1,16 @@
 .product__page {
   position: relative;
-  width: 80%;
+  width: 50%;
   margin: 0 auto;
   margin-top: 20rem;
   margin-bottom: 5rem;
   display: flex;
   flex-direction: column;
 
-  @media (max-width: 48em) {
+  @media (max-width: 90em) {
+    width: 80%;
+  }
+  @media (max-width: 64em) {
     width: 90%;
   }
 
@@ -19,43 +22,11 @@
     align-self: center;
   }
 
-  &--filter-btn {
-    cursor: pointer;
-    align-self: start;
-    padding: 1rem;
-    border-radius: 8px;
-    background: rgba($green, 0.7);
-    border: none;
-    font-size: $h1;
-    color: $gold;
-    margin-bottom: 1rem;
-    transition: all 0.2s;
-
-    &:hover,
-    &:active {
-      background: rgba($green, 0.9);
-    }
-
-    @media (max-width: 32em) {
-      font-size: $h4;
-    }
-  }
-
   &--filter {
-    width: 50%;
-    position: absolute;
-    top: 10rem;
-    left: 10rem;
     display: flex;
-    gap: 1rem;
-    z-index: 10;
-
-    @media (max-width: 32em) {
-      width: 90%;
-      flex-wrap: wrap;
-      top: 6rem;
-      left: 5rem;
-    }
+    flex-direction: column;
+    gap: 2rem;
+    margin: 2rem auto;
 
     & option,
     & select {
@@ -73,10 +44,10 @@
   width: 100%;
 
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   justify-items: center;
-  column-gap: 2rem;
-  row-gap: 2rem;
+
+  row-gap: 5rem;
   margin-bottom: 4rem;
 }
 
@@ -88,10 +59,10 @@
 
   &__img {
     width: 20rem;
-    height: auto;
+    height: 20rem;
     object-fit: cover;
     aspect-ratio: 3/4;
-    // filter: blur(2px);
+    transition: transform 0.3s ease, filter 0.3s ease;
   }
 
   &__content {
@@ -113,19 +84,23 @@
   }
 
   &__text {
-    padding: 0.8rem 2rem;
+    padding: 0.6rem 1rem;
     font-family: "Cabin";
     font-size: $small;
     font-weight: 600;
     color: $white-smoke;
     background-color: rgba($green, 0.6);
+
+    &--field {
+      overflow-wrap: break-word;
+    }
   }
 
   &__btn {
     display: flex;
     flex-direction: column;
     width: 20rem;
-    height: auto;
+    height: 35rem;
     font-family: "Cabin";
     font-size: $h5;
     font-weight: 700;
@@ -133,6 +108,8 @@
     color: $green-dark;
     cursor: pointer;
     text-align: center;
+    position: relative;
+    overflow: hidden;
   }
   &__cta {
     width: 100%;
@@ -140,6 +117,41 @@
     left: 50%;
     transform: translateX(-50%);
     bottom: -3rem;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    font-family: "Cabin";
+    font-weight: 700;
+    font-size: $h4;
+    color: $gold;
+    background: rgba($green, 0.8);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    letter-spacing: 0.05em;
+  }
+
+  &__btn:hover .productEl__overlay,
+  &__btn:focus-visible .productEl__overlay {
+    opacity: 1;
+  }
+
+  &__btn:hover .productEl__img,
+  &__btn:focus-visible .productEl__img {
+    transform: scale(1.03);
+  }
+
+  &__btn:hover .productEl__content,
+  &__btn:focus-visible .productEl__content,
+  &__btn:hover .productEl__heading,
+  &__btn:focus-visible .productEl__heading {
+    opacity: 0.15;
+    transition: opacity 0.2s ease;
   }
 }
 

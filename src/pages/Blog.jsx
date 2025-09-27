@@ -65,20 +65,23 @@ function Blog() {
 
       <section className="blog__posts">
         {currentPosts.map((post) => (
-          <div key={post._id} className="blog__post">
-            <Link to={`/blog/${post.slug}`} className="blog__post--btn">
-              <img
-                src={post.mainImageUrl}
-                alt={post.title}
-                className="blog__post--img"
-              />
-
+          <Link
+            key={post._id}
+            to={`/blog/${post.slug}`}
+            className="blog__post"
+          >
+            <img
+              src={post.mainImageUrl}
+              alt={post.title}
+              className="blog__post--img"
+            />
+            <div className="blog__post--details">
               <h1 className="blog__post--heading">{post.title}</h1>
               <p className="blog__post--publishedAt">
                 {post.authorName}, {formatData(post.publishedAt)}
               </p>
-            </Link>
-          </div>
+            </div>
+          </Link>
         ))}
       </section>
 

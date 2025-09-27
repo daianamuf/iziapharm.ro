@@ -104,33 +104,13 @@
       position: relative;
       font-size: $h2;
       color: $gold;
-      padding: 2.2rem 4rem;
-      border: 2px solid $gold;
-      border-radius: 50%;
+      padding-right: 1rem;
 
       @media (max-width: 33em) {
         font-size: $h4;
-        padding: 2rem 3rem;
       }
       @media (max-width: 31em) {
         font-size: $h4;
-        padding: 1.8rem 2.4rem;
-      }
-
-      &::after {
-        content: "";
-        height: 3.8rem;
-        width: 3px;
-        background-color: $gold;
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateY(100%);
-        height: 4rem;
-
-        @media (max-width: 31em) {
-          height: 6.2rem;
-        }
       }
     }
 

@@ -1,4 +1,3 @@
-import { Funnel } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
@@ -12,13 +11,9 @@ function Products() {
   const [sortOrder] = useState("");
   const [fields, setFields] = useState([]);
   const [administrations, setAdministrations] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(10);
   const [totalPages, setTotalPages] = useState(1);
-
-  // per-item hover state
-  const [hoveredId, setHoveredId] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
@@ -77,7 +72,6 @@ function Products() {
       );
     }
 
-    // pagination after filtering
     const indexOfLast = currentPage * productsPerPage;
     const indexOfFirst = indexOfLast - productsPerPage;
     const pageSlice = temp.slice(indexOfFirst, indexOfLast);
@@ -93,54 +87,43 @@ function Products() {
     productsPerPage,
   ]);
 
-  const toggleFilter = () => setIsOpen((v) => !v);
-
   if (isLoading) return <Loader />;
 
   return (
     <div className="product__page">
       <h1 className="product__page--heading">Produse</h1>
 
-      <button
-        className="product__page--filter-btn"
-        onClick={toggleFilter}
-      >
-        <Funnel />
-      </button>
+      <div className="product__page--filter">
+        <select
+          value={fieldFilter}
+          onChange={(e) => setFieldFilter(e.target.value)}
+        >
+          <option value="">Categorie</option>
+          {fields.map((field) => (
+            <option
+              key={field._id}
+              value={field.fieldName}
+            >
+              {field.fieldName}
+            </option>
+          ))}
+        </select>
 
-      {isOpen && (
-        <div className="product__page--filter">
-          <select
-            value={fieldFilter}
-            onChange={(e) => setFieldFilter(e.target.value)}
-          >
-            <option value="">Categorie</option>
-            {fields.map((field) => (
-              <option
-                key={field._id}
-                value={field.fieldName}
-              >
-                {field.fieldName}
-              </option>
-            ))}
-          </select>
-
-          <select
-            value={administrationFilter}
-            onChange={(e) => setAdministrationFilter(e.target.value)}
-          >
-            <option value="">Cale de administrare</option>
-            {administrations.map((admin) => (
-              <option
-                key={admin._id}
-                value={admin.routeName}
-              >
-                {admin.routeName}
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
+        <select
+          value={administrationFilter}
+          onChange={(e) => setAdministrationFilter(e.target.value)}
+        >
+          <option value="">Cale de administrare</option>
+          {administrations.map((admin) => (
+            <option
+              key={admin._id}
+              value={admin.routeName}
+            >
+              {admin.routeName}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <section className="products">
         {filteredProducts.length === 0 ? (
@@ -155,7 +138,6 @@ function Products() {
             const imgSrc = Array.isArray(product.image)
               ? product.image[0]
               : product.image;
-            const isHovered = hoveredId === product._id;
 
             return (
               <div
@@ -165,10 +147,6 @@ function Products() {
                 <Link
                   to={`/produse/${product.slug}`}
                   className="productEl__btn"
-                  onMouseEnter={() => setHoveredId(product._id)}
-                  onMouseLeave={() => setHoveredId(null)}
-                  onFocus={() => setHoveredId(product._id)}
-                  onBlur={() => setHoveredId(null)}
                 >
                   <h2 className="productEl__heading">{product.name}</h2>
 
@@ -188,14 +166,7 @@ function Products() {
                       {product.administration?.routeName}
                     </p>
                   </div>
-
-                  <p
-                    className={`productEl__cta ${
-                      isHovered ? "underline_animation_hover--green" : ""
-                    }`}
-                  >
-                    Vezi produs
-                  </p>
+                  <span className="productEl__overlay">Vezi detalii</span>
                 </Link>
               </div>
             );

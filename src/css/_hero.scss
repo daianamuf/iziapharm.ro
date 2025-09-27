@@ -3,7 +3,7 @@
   margin-top: 20rem;
   margin-bottom: 5rem;
 
-  width: 80%;
+  width: 70%;
   background: $green;
   display: flex;
 
@@ -14,7 +14,7 @@
   }
 
   @media (max-width: 38em) {
-    width: 80%;
+    width: 95%;
     flex-direction: column-reverse;
   }
 
@@ -39,41 +39,43 @@
   }
 
   &__heading {
-    font-size: $h4;
-    font-family: "Heading";
+    font-size: $h1;
+    font-family: "Cabin";
     color: $gold;
-    text-transform: uppercase;
     letter-spacing: 0.5px;
-    padding: 8rem 8rem;
+    padding: 4rem;
     padding-bottom: 4rem;
     animation: slideInFromLeft 1s 1 ease-in;
 
     @media (max-width: 69em) {
-      font-size: $h5;
-      padding: 4rem;
-      padding-bottom: 0rem;
-    }
-
-    @media (max-width: 63em) {
-      font-size: $h6;
-    }
-
-    @media (max-width: 38em) {
+      font-size: $h3;
+      padding: 2rem 1rem;
       text-align: center;
     }
+
+    // @media (max-width: 63em) {
+    //   font-size: $h3;
+    // }
+
+    // @media (max-width: 38em) {
+    //   text-align: center;
+    // }
   }
 
   &__text {
     width: 95%;
     font-family: "Cabin";
-    font-size: $h5;
+    font-size: $h3;
     color: $white-smoke;
-    padding: 0 8rem;
+    padding: 0 4rem;
+    padding-bottom: 2rem;
     animation: slideInFromLeft 1s 1 ease-in;
 
     @media (max-width: 69em) {
-      font-size: $h6;
-      padding: 4rem;
+      font-size: $h5;
+      padding: 1rem;
+      padding-bottom: 2rem;
+      text-align: center;
     }
 
     & span:first-of-type {

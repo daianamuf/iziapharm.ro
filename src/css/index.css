@@ -338,7 +338,7 @@
   margin: 0 auto;
   margin-top: 20rem;
   margin-bottom: 5rem;
-  width: 80%;
+  width: 70%;
   background: #606658;
   display: flex;
   border-radius: 10px;
@@ -350,7 +350,7 @@
 }
 @media (max-width: 38em) {
   .hero {
-    width: 80%;
+    width: 95%;
     flex-direction: column-reverse;
   }
 }
@@ -370,44 +370,36 @@
   }
 }
 .hero__heading {
-  font-size: 2.5rem;
-  font-family: "Heading";
+  font-size: 4.8828rem;
+  font-family: "Cabin";
   color: #f4bf87;
-  text-transform: uppercase;
   letter-spacing: 0.5px;
-  padding: 8rem 8rem;
+  padding: 4rem;
   padding-bottom: 4rem;
   animation: slideInFromLeft 1s 1 ease-in;
 }
 @media (max-width: 69em) {
   .hero__heading {
-    font-size: 2rem;
-    padding: 4rem;
-    padding-bottom: 0rem;
-  }
-}
-@media (max-width: 63em) {
-  .hero__heading {
-    font-size: 1.8rem;
-  }
-}
-@media (max-width: 38em) {
-  .hero__heading {
+    font-size: 3.125rem;
+    padding: 2rem 1rem;
     text-align: center;
   }
 }
 .hero__text {
   width: 95%;
   font-family: "Cabin";
-  font-size: 2rem;
+  font-size: 3.125rem;
   color: #f4f4f2;
-  padding: 0 8rem;
+  padding: 0 4rem;
+  padding-bottom: 2rem;
   animation: slideInFromLeft 1s 1 ease-in;
 }
 @media (max-width: 69em) {
   .hero__text {
-    font-size: 1.8rem;
-    padding: 4rem;
+    font-size: 2rem;
+    padding: 1rem;
+    padding-bottom: 2rem;
+    text-align: center;
   }
 }
 .hero__text span:first-of-type {
@@ -766,24 +758,25 @@
   color: #464035;
 }
 .blog__posts {
-  width: 100%;
+  width: 70%;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
-  row-gap: 2rem;
-  -moz-column-gap: 4rem;
-       column-gap: 4rem;
+  margin-bottom: 10rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 .blog__post {
-  position: relative;
   width: 100%;
-  height: 25rem;
   padding: 1rem;
-  padding-top: 15rem;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
 }
 .blog__post--heading {
   font-family: "Cabin";
-  font-size: 2rem;
+  font-size: 3.906rem;
   margin-bottom: 0.6rem;
   color: #606658;
   width: inherit;
@@ -793,27 +786,20 @@
 }
 .blog__post--publishedAt {
   font-family: "Cabin";
-  font-size: 1.28rem;
+  font-size: 2rem;
   color: grey;
   margin-bottom: 2rem;
 }
 .blog__post--img {
-  width: 100%;
-  height: 55%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  width: 50%;
+  height: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
   border-radius: 10px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  cursor: pointer;
   transition: all 0.4s ease;
 }
-.blog__post--img:hover {
-  transform: scale(1.1);
-}
 .blog__post--content {
-  font-size: 1.6rem;
+  font-size: 3.125rem;
   font-family: "Cabin";
   color: #464035;
   width: 24rem;
@@ -821,14 +807,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-.blog__post--link {
-  font-size: 1.6rem;
-  color: #606658;
-}
-.blog__post--btn {
-  text-decoration: none;
-  cursor: pointer;
 }
 
 .post {
@@ -874,11 +852,12 @@
 }
 .post__heading {
   font-size: 3.125rem;
-  font-family: "Heading";
+  font-family: "Cabin";
   text-transform: uppercase;
   color: #606658;
   align-self: center;
   margin: 0 auto;
+  margin-top: 3rem;
   text-align: center;
 }
 @media (max-width: 64em) {
@@ -927,14 +906,19 @@
 
 .product__page {
   position: relative;
-  width: 80%;
+  width: 50%;
   margin: 0 auto;
   margin-top: 20rem;
   margin-bottom: 5rem;
   display: flex;
   flex-direction: column;
 }
-@media (max-width: 48em) {
+@media (max-width: 90em) {
+  .product__page {
+    width: 80%;
+  }
+}
+@media (max-width: 64em) {
   .product__page {
     width: 90%;
   }
@@ -946,42 +930,11 @@
   margin-bottom: 3rem;
   align-self: center;
 }
-.product__page--filter-btn {
-  cursor: pointer;
-  align-self: start;
-  padding: 1rem;
-  border-radius: 8px;
-  background: rgba(96, 102, 88, 0.7);
-  border: none;
-  font-size: 4.8828rem;
-  color: #f4bf87;
-  margin-bottom: 1rem;
-  transition: all 0.2s;
-}
-.product__page--filter-btn:hover, .product__page--filter-btn:active {
-  background: rgba(96, 102, 88, 0.9);
-}
-@media (max-width: 32em) {
-  .product__page--filter-btn {
-    font-size: 2.5rem;
-  }
-}
 .product__page--filter {
-  width: 50%;
-  position: absolute;
-  top: 10rem;
-  left: 10rem;
   display: flex;
-  gap: 1rem;
-  z-index: 10;
-}
-@media (max-width: 32em) {
-  .product__page--filter {
-    width: 90%;
-    flex-wrap: wrap;
-    top: 6rem;
-    left: 5rem;
-  }
+  flex-direction: column;
+  gap: 2rem;
+  margin: 2rem auto;
 }
 .product__page--filter option, .product__page--filter select {
   font-family: "Cabin";
@@ -995,11 +948,9 @@
 .products {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   justify-items: center;
-  -moz-column-gap: 2rem;
-       column-gap: 2rem;
-  row-gap: 2rem;
+  row-gap: 5rem;
   margin-bottom: 4rem;
 }
 
@@ -1011,10 +962,11 @@
 }
 .productEl__img {
   width: 20rem;
-  height: auto;
+  height: 20rem;
   -o-object-fit: cover;
      object-fit: cover;
   aspect-ratio: 3/4;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 .productEl__content {
   width: 100%;
@@ -1033,18 +985,21 @@
   background-color: rgba(96, 102, 88, 0.7);
 }
 .productEl__text {
-  padding: 0.8rem 2rem;
+  padding: 0.6rem 1rem;
   font-family: "Cabin";
   font-size: 1.28rem;
   font-weight: 600;
   color: #f4f4f2;
   background-color: rgba(96, 102, 88, 0.6);
 }
+.productEl__text--field {
+  overflow-wrap: break-word;
+}
 .productEl__btn {
   display: flex;
   flex-direction: column;
   width: 20rem;
-  height: auto;
+  height: 35rem;
   font-family: "Cabin";
   font-size: 2rem;
   font-weight: 700;
@@ -1052,6 +1007,8 @@
   color: #454a3f;
   cursor: pointer;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 .productEl__cta {
   width: 100%;
@@ -1059,6 +1016,32 @@
   left: 50%;
   transform: translateX(-50%);
   bottom: -3rem;
+}
+.productEl__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-family: "Cabin";
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #f4bf87;
+  background: rgba(96, 102, 88, 0.8);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  letter-spacing: 0.05em;
+}
+.productEl__btn:hover .productEl__overlay, .productEl__btn:focus-visible .productEl__overlay {
+  opacity: 1;
+}
+.productEl__btn:hover .productEl__img, .productEl__btn:focus-visible .productEl__img {
+  transform: scale(1.03);
+}
+.productEl__btn:hover .productEl__content, .productEl__btn:focus-visible .productEl__content, .productEl__btn:hover .productEl__heading, .productEl__btn:focus-visible .productEl__heading {
+  opacity: 0.15;
+  transition: opacity 0.2s ease;
 }
 
 .product__details {
@@ -1742,36 +1725,16 @@
   position: relative;
   font-size: 3.906rem;
   color: #f4bf87;
-  padding: 2.2rem 4rem;
-  border: 2px solid #f4bf87;
-  border-radius: 50%;
+  padding-right: 1rem;
 }
 @media (max-width: 33em) {
   .ordersteps__step--number {
     font-size: 2.5rem;
-    padding: 2rem 3rem;
   }
 }
 @media (max-width: 31em) {
   .ordersteps__step--number {
     font-size: 2.5rem;
-    padding: 1.8rem 2.4rem;
-  }
-}
-.ordersteps__step--number::after {
-  content: "";
-  height: 3.8rem;
-  width: 3px;
-  background-color: #f4bf87;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateY(100%);
-  height: 4rem;
-}
-@media (max-width: 31em) {
-  .ordersteps__step--number::after {
-    height: 6.2rem;
   }
 }
 .ordersteps__step--text {
@@ -2150,7 +2113,7 @@ body {
   flex-direction: column;
 }
 .treatments__section--btn {
-  font-family: "Cursive";
+  font-family: "Cabin";
   font-size: 2.5rem;
   color: #606658;
   text-decoration: none;
@@ -2269,7 +2232,7 @@ body {
 }
 .reviews__link {
   align-self: center;
-  font-family: "Cursive";
+  font-family: "Cabin";
   text-decoration: none;
   font-size: 2rem;
   color: #606658;
@@ -2352,7 +2315,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 1rem;
-  font-family: "Cursive";
+  font-family: "Cabin";
   font-size: 2.5rem;
   text-decoration: none;
   color: #606658;
@@ -2624,7 +2587,7 @@ body {
 }
 
 .pagination {
-  width: 100%;
+  width: 80%;
   display: flex;
   margin: 0 auto;
   justify-content: space-between;
@@ -2648,7 +2611,11 @@ body {
   font-size: 2rem;
   font-weight: 600;
   color: #606658;
-  padding: 0rem 2.4rem;
+  width: 4rem;
+  height: 4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
 }
 .pagination__active {
